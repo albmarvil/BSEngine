@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>BSManager Snippet</Title>
+    <Author>Alberto Martínez Villarán</Author>
+    <Shortcut>BSManager</Shortcut>
+    <Description>
+      Adds a code region with the definiton of the BSManager instance.
+    </Description>
+    <SnippetTypes>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>ClassName</ID>
+        <Default>ClassName</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="CSharp">
+      <![CDATA[    
+        #region Singleton
+
+        /// <summary>
+        /// Singleton instance of the class
+        /// </summary>
+        private static $ClassName$ m_instance = null;
+
+        /// <summary>
+        /// Property to get the singleton instance of the class.
+        /// </summary>
+        public static $ClassName$ Singleton { get { return m_instance; } }
+
+        // Explicit static constructor to tell C# compiler not to mark type as beforefieldinit
+        static $ClassName$() { }
+
+        /// <summary>
+        /// Used to initialize the $ClassName$ singleton instance
+        /// </summary>
+        ///<returns>True if everything went ok</returns>
+        public static bool Init()
+        {
+            if (m_instance != null)
+            {
+                Debug.LogError("Second initialisation not allowed");
+                return false;
+            }
+            else
+            {
+                m_instance = new $ClassName$();
+                return m_instance.open();
+            }
+        }
+
+        /// <summary>
+        /// Used to deinitialize the $ClassName$ singleton data.
+        /// </summary>
+        public static void Release()
+        {
+            if (m_instance != null)
+            {
+                m_instance.close();
+                m_instance = null;
+            }
+        }
+        
+        
+        
+        /// <summary>
+        /// Used as second step on singleton initialisation. Used to specific code of the different Engine & Game managers
+        /// </summary>
+        /// <returns>Should return true if everything went ok</returns>
+        private bool open()
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Used as second step on singleton initialisation. Used to specific code of the different Engine & Game managers
+        /// </summary>
+        private void close()
+        {
+
+        }
+
+        #endregion
+
+
+        #region Public methods
+
+        /// <summary>
+        /// Used to Update manager info, if needed.
+        /// </summary>
+        /*public void Update()
+        {
+
+        }*/
+
+        #endregion
+]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>
