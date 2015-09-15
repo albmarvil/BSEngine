@@ -1,4 +1,22 @@
-﻿using UnityEngine;
+﻿///----------------------------------------------------------------------
+/// @file InputMgr.cs
+///
+/// This file contains the declaration of InputMgr class.
+/// 
+/// This manager translates all the input from Unity to logic orders. This translations works with the definition of the current inputset
+/// 
+/// Each App State has a definition of an inputSet, where controls and orders are defined. InputMgr captures the input and send the orders trough the callbacks registered in eac state according to its definition.
+/// 
+/// ONLY KEY PRESSED & KEY RELEASED EVENTS SUPPORTED
+///
+/// @author Alberto Martinez Villaran <tukaram92@gmail.com>
+/// @date 15/9/2015
+///----------------------------------------------------------------------
+
+
+
+
+using UnityEngine;
 using System.Collections;
 
 namespace BSEngine
@@ -475,6 +493,14 @@ namespace BSEngine
                 }
             }
 
+
+
+            /// <summary>
+            /// Method used to register an Order listener. An order listener should be registered inside the callbacks of an state's inputset
+            /// </summary>
+            /// <param name="state">State to reference the desired InputSet</param>
+            /// <param name="order">Order you want to listen</param>
+            /// <param name="listener">Funciton callback you're registering</param>
             public void RegisterOrderListener(string state, string order, onOrderReceived listener)
             {
                 if (GameMgr.Singleton.States.ContainsKey(state))
@@ -483,6 +509,12 @@ namespace BSEngine
                 }
             }
 
+            /// <summary>
+            /// Method used to unregister an order listener
+            /// </summary>
+            /// <param name="state">State to reference the desired InputSet</param>
+            /// <param name="order">Order you want to listen</param>
+            /// <param name="listener">Funciton callback you're unregistering</param>
             public void UnregisterOrderListener(string state, string order, onOrderReceived listener)
             {
                 if (GameMgr.Singleton.States.ContainsKey(state))

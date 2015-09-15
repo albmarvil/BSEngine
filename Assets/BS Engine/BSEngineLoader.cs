@@ -8,7 +8,10 @@ namespace BSEngine
 
         #region Public params
 
-
+        /// <summary>
+        /// Configuration of the initial cache of objects
+        /// </summary>
+        public List<CacheObject> m_InitCache = new List<CacheObject>();
 
         #endregion
 
@@ -58,6 +61,11 @@ namespace BSEngine
 
             ///ENGINE CODE
             GameMgr.Init(this);
+            PoolMgr.Singleton.LoadInitialCache(m_InitCache);
+
+
+            //LOAD FIRST STATE
+            GameMgr.Singleton.ChangeState("menu");
         }
 
 

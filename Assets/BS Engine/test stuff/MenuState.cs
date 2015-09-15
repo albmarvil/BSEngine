@@ -5,49 +5,51 @@ using BSEngine.Input;
 
 using System.Collections.Generic;
 
-public class GameState : State
+public class MenuState : State
 {
     /// <summary>
     /// State constructor. Should call the base class
     /// </summary>
-    public GameState()
-        : base("game", createInputSet() , "scene")
+    public MenuState()
+        : base("menu", createInputSet(), "menu_scene")
     {
-        Debug.Log("game State created");
+        Debug.Log("menu State created");
     }
 
-    /// <summary>
-    /// Static method used to create the InputSet
-    /// </summary>
-    /// <returns></returns>
+
     private static InputSet createInputSet()
     {
         ///TO DO: Input set creation
         Dictionary<BSKeyCode, List<string>> keyBindings = new Dictionary<BSKeyCode, List<string>>();
 
         List<string> orders = new List<string>();
-        orders.Add("MOVE_UP");
-        keyBindings.Add(BSKeyCode.W, orders);
+        orders.Add("MENU_UP");
         keyBindings.Add(BSKeyCode.UpArrow, orders);
 
         orders = new List<string>();
-        orders.Add("MOVE_DOWN");
-        keyBindings.Add(BSKeyCode.S, orders);
+        orders.Add("MENU_DOWN");
         keyBindings.Add(BSKeyCode.DownArrow, orders);
 
 
         orders = new List<string>();
-        orders.Add("MOVE_LEFT");
-        keyBindings.Add(BSKeyCode.A, orders);
+        orders.Add("MENU_LEFT");
         keyBindings.Add(BSKeyCode.LeftArrow, orders);
 
         orders = new List<string>();
-        orders.Add("MOVE_RIGHT");
-        keyBindings.Add(BSKeyCode.D, orders);
+        orders.Add("MENU_RIGHT");
         keyBindings.Add(BSKeyCode.RightArrow, orders);
-        
 
-        return new InputSet("GameInputSet", keyBindings);
+
+        orders = new List<string>();
+        orders.Add("TO_GAME");
+        keyBindings.Add(BSKeyCode.Return, orders);
+
+        orders = new List<string>();
+        orders.Add("EXIT");
+        keyBindings.Add(BSKeyCode.Escape, orders);
+
+
+        return new InputSet("MenuInputSet", keyBindings);
     }
 
     /// <summary>
@@ -56,7 +58,7 @@ public class GameState : State
     /// <returns>True if everything went ok</returns>
     protected override bool open()
     {
-        Debug.Log("game state open");
+        Debug.Log("menu state open");
         return true;
     }
 
@@ -65,7 +67,7 @@ public class GameState : State
     /// </summary>
     protected override void close()
     {
-        Debug.Log("game state close");
+        Debug.Log("menu state close");
     }
 
     /// <summary>
@@ -74,7 +76,7 @@ public class GameState : State
     /// <returns>True if everything went ok</returns>
     protected override bool onActivate()
     {
-        Debug.Log("game state activate");
+        Debug.Log("menu state activate");
         return true;
     }
 
@@ -84,7 +86,7 @@ public class GameState : State
     /// <returns>True if everything went ok</returns>
     protected override bool onResume()
     {
-        Debug.Log("game state resume");
+        Debug.Log("menu state resume");
         return true;
     }
 
@@ -93,7 +95,7 @@ public class GameState : State
     /// </summary>
     protected override void onDeactivate()
     {
-        Debug.Log("game state deactivate");
+        Debug.Log("menu state deactivate");
     }
 
     /// <summary>
@@ -101,6 +103,6 @@ public class GameState : State
     /// </summary>
     protected override void onPause()
     {
-        Debug.Log("game state pause");
+        Debug.Log("menu state pause");
     }
 }

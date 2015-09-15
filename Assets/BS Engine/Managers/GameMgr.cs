@@ -19,6 +19,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using BSEngine.Input;
+using BSEngine.Utils;
 
 namespace BSEngine
 {
@@ -95,10 +96,12 @@ namespace BSEngine
             }
 
             /////HACK!!!!
-            ChangeState("menu");
+            //ChangeState("menu");
             ////ENDHACK
 
             InputMgr.Init();
+            PoolMgr.Init();
+            SceneMgr.Init();
 
             return true;
         }
@@ -110,7 +113,10 @@ namespace BSEngine
         private void close()
         {
             //TO DO
+            SceneMgr.Release();
+            PoolMgr.Release();
             InputMgr.Release();
+
 
             m_stateStack.Clear();
 
@@ -189,6 +195,7 @@ namespace BSEngine
 
 
             InputMgr.Singleton.Update();
+
         }
 
         /// <summary>

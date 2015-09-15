@@ -59,9 +59,9 @@ namespace BSEngine
         private InputSet m_inputSet;
 
         /// <summary>
-        /// Scene loaded when the state is activated
+        /// Default scene to load when the state is pushed into the stack
         /// </summary>
-        private string m_sceneName;
+        private SceneInfo m_sceneState;
 
         /// <summary>
         /// Flag used to indicate if the state is activated or not. (In stack or not)
@@ -89,11 +89,12 @@ namespace BSEngine
         }
 
         /// <summary>
-        /// Property to access to the sceneName of the state
+        /// Property to access to the sceneInfo of the state
         /// </summary>
-        public string SceneName
+        public SceneInfo SceneInfo
         {
-            get { return m_sceneName; }
+            get { return m_sceneState; }
+            set { m_sceneState = value; }
         }
 
         /// <summary>
@@ -113,7 +114,7 @@ namespace BSEngine
         public State(string name, InputSet set, string sceneName)
         {
             m_stateName = name;
-            m_sceneName = sceneName;
+            m_sceneState = new SceneInfo(sceneName);
             m_inputSet = set;
             m_isActive = false;
         }
@@ -152,6 +153,8 @@ namespace BSEngine
         {
             ///ENGINE CODE
             m_isActive = true;
+            m_sceneState.LoadSceneAdditive();
+
             ///GAME CODE
             return onActivate();
         }
@@ -163,7 +166,8 @@ namespace BSEngine
         public bool Resume()
         {
             ///ENGINE CODE
-            
+            m_sceneState.ActivateScene();
+
             ///GAME CODE
             return onResume();
         }
@@ -175,6 +179,7 @@ namespace BSEngine
         {
             ///ENGINE CODE
             m_isActive = false;
+            m_sceneState.DestroyScene();
             ///GAME CODE
             onDeactivate();
         }
@@ -185,7 +190,7 @@ namespace BSEngine
         public void Pause()
         {
             ///ENGINE CODE
-            
+            m_sceneState.DeactivateScene();
             ///GAME CODE
             onPause();
         }
