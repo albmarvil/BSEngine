@@ -53,11 +53,6 @@ namespace BSEngine
             ///
             ///State st = new GameState();
             ///m_initializedStates.Add(st.Name, st);
-            State st = new GameState();
-            m_initializedStates.Add(st.Name, st);
-
-            st = new MenuState();
-            m_initializedStates.Add(st.Name, st);
 
             ///ENGINE CODE
             GameMgr.Init(this);
@@ -65,7 +60,8 @@ namespace BSEngine
 
 
             //LOAD FIRST STATE
-            GameMgr.Singleton.ChangeState("menu");
+            //Example
+            //GameMgr.Singleton.ChangeState("menu");
         }
 
 
