@@ -134,6 +134,7 @@ namespace VolumetricLines
 			for (int i=0; i < m_lineVertices.Length - 1; ++i)
 			{
                 GameObject go = PoolMgr.Singleton.Instatiate(m_volumetricLinePrefab, gameObject.transform);
+                //GameObject go = GameObject.Instantiate(m_volumetricLinePrefab) as GameObject;
 				go.transform.parent = gameObject.transform;
 				go.transform.localPosition = Vector3.zero;
 				go.transform.localRotation = Quaternion.identity;
@@ -162,9 +163,12 @@ namespace VolumetricLines
 
         private void OnDestroy()
         {
-            for (int i = 0; i < m_volumetricLines.Length; ++i)
+            if (PoolMgr.Singleton != null)
             {
-                PoolMgr.Singleton.Destroy(m_volumetricLines[i].gameObject);
+                for (int i = 0; i < m_volumetricLines.Length; ++i)
+                {
+                    PoolMgr.Singleton.Destroy(m_volumetricLines[i].gameObject);
+                }
             }
         }
 

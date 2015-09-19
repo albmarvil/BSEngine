@@ -153,7 +153,8 @@ namespace BSEngine
         {
             ///ENGINE CODE
             m_isActive = true;
-            m_sceneState.LoadSceneAdditive();
+            if(GameMgr.Singleton.Loader.LoadStatesScenes)
+                m_sceneState.LoadSceneAdditive();
 
             ///GAME CODE
             return onActivate();

@@ -96,7 +96,7 @@ namespace BSEngine
             {
                 if (m_loaded && m_root != null)
                     return m_root;
-                else if (m_loaded && m_root == null)
+                else if ((m_loaded && m_root == null) || !GameMgr.Singleton.Loader.LoadStatesScenes)
                 {
                     m_root = GameObject.Find(m_name);
                     return m_root;
@@ -215,8 +215,11 @@ namespace BSEngine
                     children.Add(child.gameObject);
                 }
 
-                PoolMgr.Singleton.Destroy(children);
-                PoolMgr.Singleton.Destroy(m_root, true);
+                if (PoolMgr.Singleton != null)
+                {
+                    PoolMgr.Singleton.Destroy(children);
+                    PoolMgr.Singleton.Destroy(m_root, true);
+                }
             }
             
 

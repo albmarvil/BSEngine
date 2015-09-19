@@ -170,6 +170,14 @@ namespace BSEngine
         #region Public methods
 
         /// <summary>
+        /// Public property used to acces to the engine loader script.
+        /// </summary>
+        public BSEngineLoader Loader
+        {
+            get { return m_loader; }
+        }
+
+        /// <summary>
         /// Used to Update manager info, if needed.
         /// 
         /// We will Update all the managers of the Engine fom here.

@@ -37,5 +37,31 @@ namespace BSEngine
                 Pool = new GameObject("Pool");
             }
         }
+
+
+
+        [MenuItem("BSEngine/Add Test Elements")]
+        private static void AddTestSceneFunction()
+        {
+            GameObject BSEngineServers = GameObject.Find("BSEngineServers");
+            if (BSEngineServers == null)
+            {
+                BSEngineServers = new GameObject("BSEngineServers");
+                BSEngineLoader loader = BSEngineServers.AddComponent<BSEngineLoader>();
+                loader.LoadStatesScenes = false;
+            }
+
+
+            GameObject Pool = GameObject.Find("Pool");
+            if (Pool == null)
+            {
+                Pool = new GameObject("Pool");
+            }
+        }
     }
+
+
+    
+
+
 }

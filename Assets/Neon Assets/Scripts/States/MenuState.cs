@@ -1,51 +1,29 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿///----------------------------------------------------------------------
+/// @file MenuState.cs
+///
+/// This file contains the declaration of MenuState class.
+///
+/// @author Alberto Martinez Villaran <tukaram92@gmail.com>
+/// @date 17/9/2015
+///----------------------------------------------------------------------
 
-<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
-  <Header>
-    <Title>BSState Snippet</Title>
-    <Author>Alberto Martínez Villarán</Author>
-    <Shortcut>BSState</Shortcut>
-    <Description>
-      Adds a code region with the definiton of the BSState instance.
-    </Description>
-    <SnippetTypes>
-      <SnippetType>Expansion</SnippetType>
-    </SnippetTypes>
-  </Header>
-  <Snippet>
-    <Declarations>
-      <Literal>
-        <ID>ClassName</ID>
-        <Default>ClassName</Default>
-      </Literal>
-      <Literal>
-        <ID>StateName</ID>
-        <Default>StateName</Default>
-      </Literal>
-      <Literal>
-        <ID>SceneName</ID>
-        <Default>SceneName</Default>
-      </Literal>
-    </Declarations>
-    <Code Language="CSharp">
-      <![CDATA[    
 using UnityEngine;
 using System.Collections.Generic;
 using BSEngine;
 using BSEngine.Input;
 
 
-public class $ClassName$ : State
+public class MenuState : State
 {
     /// <summary>
     /// State constructor. Should call the base class
     /// </summary>
-    public $ClassName$()
-        : base("$StateName$", createInputSet(), "$SceneName$")
+    public MenuState()
+        : base("Menu", createInputSet(), "Menu_Scene")
     {
-        Debug.Log("$StateName$ State created");
+        Debug.Log("Menu State created");
     }
-    
+
     /// <summary>
     /// Static method used to create the InputSet
     /// </summary>
@@ -54,18 +32,25 @@ public class $ClassName$ : State
     {
         ///TO DO: Input set creation
         Dictionary<BSKeyCode, List<string>> keyBindings = new Dictionary<BSKeyCode, List<string>>();
-        
 
-        return new InputSet("$ClassName$InputSet", keyBindings);
+        List<string> orders = new List<string>();
+        orders.Add("START_GAME");
+        keyBindings.Add(BSKeyCode.Return, orders);
+
+        orders = new List<string>();
+        orders.Add("EXIT");
+        keyBindings.Add(BSKeyCode.Escape, orders);
+
+        return new InputSet("MenuStateInputSet", keyBindings);
     }
-    
+
     /// <summary>
     /// Called on Init step. Used for specific state code
     /// </summary>
     /// <returns>True if everything went ok</returns>
     protected override bool open()
     {
-        Debug.Log("$StateName$ state open");
+        Debug.Log("Menu state open");
         return true;
     }
 
@@ -74,7 +59,7 @@ public class $ClassName$ : State
     /// </summary>
     protected override void close()
     {
-        Debug.Log("$StateName$ state close");
+        Debug.Log("Menu state close");
     }
 
     /// <summary>
@@ -83,7 +68,7 @@ public class $ClassName$ : State
     /// <returns>True if everything went ok</returns>
     protected override bool onActivate()
     {
-        Debug.Log("$StateName$ state activate");
+        Debug.Log("Menu state activate");
         return true;
     }
 
@@ -93,7 +78,7 @@ public class $ClassName$ : State
     /// <returns>True if everything went ok</returns>
     protected override bool onResume()
     {
-        Debug.Log("$StateName$ state resume");
+        Debug.Log("Menu state resume");
         return true;
     }
 
@@ -102,7 +87,7 @@ public class $ClassName$ : State
     /// </summary>
     protected override void onDeactivate()
     {
-        Debug.Log("$StateName$ state deactivate");
+        Debug.Log("Menu state deactivate");
     }
 
     /// <summary>
@@ -110,10 +95,6 @@ public class $ClassName$ : State
     /// </summary>
     protected override void onPause()
     {
-        Debug.Log("$StateName$ state pause");
+        Debug.Log("Menu state pause");
     }
 }
-]]>
-    </Code>
-  </Snippet>
-</CodeSnippet>

@@ -13,6 +13,19 @@ namespace BSEngine
         /// </summary>
         public List<CacheObject> m_InitCache = new List<CacheObject>();
 
+        /// <summary>
+        /// Name of the state to load when the game starts
+        /// </summary>
+        public string m_stateToLoad = "default";
+
+        /// <summary>
+        /// With this flag set to true state's main scenes will be loaded when the state is activated at peek.
+        /// 
+        /// For testing scenes where you do not want to load those scenes, set it to false.
+        /// </summary>
+        public bool m_loadStatesScenes = true;
+
+        
         #endregion
 
         #region Private params
@@ -26,6 +39,15 @@ namespace BSEngine
 
 
         #region Public Methods
+
+        /// <summary>
+        /// Public property to access to the flag that allows the state's scenes loading
+        /// </summary>
+        public bool LoadStatesScenes
+        {
+            get { return m_loadStatesScenes; }
+            set { m_loadStatesScenes = value; }
+        }
 
         /// <summary>
         /// Porperty to acces to the states to load
@@ -45,7 +67,7 @@ namespace BSEngine
         /// 
         /// Also it will load the data needed for the PoolManager cache.
         /// </summary>
-        private void Start()
+        private void Awake()
         {
             ///GAME CODE
             ///
@@ -54,6 +76,12 @@ namespace BSEngine
             ///State st = new GameState();
             ///m_initializedStates.Add(st.Name, st);
 
+            State st = new GameState();
+            m_initializedStates.Add(st.Name, st);
+
+            st = new MenuState();
+            m_initializedStates.Add(st.Name, st);
+
             ///ENGINE CODE
             GameMgr.Init(this);
             PoolMgr.Singleton.LoadInitialCache(m_InitCache);
@@ -61,7 +89,7 @@ namespace BSEngine
 
             //LOAD FIRST STATE
             //Example
-            //GameMgr.Singleton.ChangeState("menu");
+            GameMgr.Singleton.PushState(m_stateToLoad);
         }
 
 
