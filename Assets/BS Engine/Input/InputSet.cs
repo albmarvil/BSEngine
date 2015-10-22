@@ -42,6 +42,11 @@ namespace BSEngine
             /// </summary>
             private string m_name;
 
+
+            private onMouseMoved m_mouseMoved;
+
+            private MouseCfg m_mouseCfg;
+
             #endregion
 
             #region Public methods
@@ -49,10 +54,15 @@ namespace BSEngine
             /// <summary>
             /// Temporary construction of the key bindings of the orders
             /// </summary>
-            public InputSet(string name, Dictionary<BSKeyCode, List<string>> keyBindings)
+            public InputSet(string name, Dictionary<BSKeyCode, List<string>> keyBindings, MouseCfg mouseCfg)
             {
+
                 m_key2order = keyBindings;
                 m_name = name;
+
+                m_mouseMoved = null;
+
+                m_mouseCfg = mouseCfg;
             }
 
             /// <summary>
@@ -125,6 +135,42 @@ namespace BSEngine
                 m_orderReceived.Clear();
             }
 
+
+
+            public void RegisterOnMouseMoved(onMouseMoved listener)
+            {
+
+                m_mouseMoved += listener;
+               
+            }
+
+
+            public void UnregisterOnMouseMoved(onMouseMoved listener)
+            {
+                m_mouseMoved -= listener;
+            }
+
+
+            public void ReleaseAllMouseListeners()
+            {
+                m_mouseMoved = null;
+            }
+
+            public MouseCfg MouseCfg
+            {
+                get { return m_mouseCfg; }
+            }
+
+            public bool MouseSupported
+            {
+                get { return m_mouseCfg != null; }
+            }
+
+
+            public onMouseMoved MouseListeners
+            {
+                get { return m_mouseMoved; }
+            }
             #endregion
         }
     }

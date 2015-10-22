@@ -25,6 +25,7 @@ namespace BSEngine
     {
 
         public delegate void onOrderReceived(InputEvent e);
+        public delegate void onMouseMoved(MouseState ms);
 
         
 
@@ -439,6 +440,9 @@ namespace BSEngine
             /// <returns>Should return true if everything went ok</returns>
             private bool open()
             {
+#if UNITY_STANDALONE //|| UNITY_WEBPLAYER
+                m_mouseState = new MouseState();
+#endif
                 return true;
             }
 
@@ -447,11 +451,20 @@ namespace BSEngine
             /// </summary>
             private void close()
             {
-
+#if UNITY_STANDALONE //|| UNITY_WEBPLAYER
+                m_mouseState = null;
+#endif
             }
 
             #endregion
 
+            #region Private params
+
+#if UNITY_STANDALONE //|| UNITY_WEBPLAYER
+            private static MouseState m_mouseState = null;
+#endif
+
+            #endregion
 
             #region Public methods
 
@@ -491,6 +504,19 @@ namespace BSEngine
                         }
                     }
                 }
+
+
+                //Mouse update
+#if UNITY_STANDALONE //|| UNITY_WEBPLAYER
+
+                if (GameMgr.Singleton.CurrentState.InputSet.MouseSupported)
+                {
+                    m_mouseState.Update();
+                    GameMgr.Singleton.CurrentState.InputSet.MouseListeners(m_mouseState);
+                }
+                
+
+#endif
             }
 
 
@@ -520,6 +546,22 @@ namespace BSEngine
                 if (GameMgr.Singleton.States.ContainsKey(state))
                 {
                     GameMgr.Singleton.States[state].InputSet.UnregisterOnOrderReceived(order, listener);
+                }
+            }
+
+            public void RegisterMouseListener(string state, onMouseMoved listener)
+            {
+                if (GameMgr.Singleton.States.ContainsKey(state))
+                {
+                    GameMgr.Singleton.States[state].InputSet.RegisterOnMouseMoved(listener);
+                }
+            }
+
+            public void UnregisterMouseListener(string state, onMouseMoved listener)
+            {
+                if (GameMgr.Singleton.States.ContainsKey(state))
+                {
+                    GameMgr.Singleton.States[state].InputSet.UnregisterOnMouseMoved(listener);
                 }
             }
 

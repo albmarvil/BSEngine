@@ -1,4 +1,5 @@
-﻿///----------------------------------------------------------------------
+﻿
+///----------------------------------------------------------------------
 /// @file BounceElement.cs
 ///
 /// This file contains the declaration of BounceElement class.
@@ -14,12 +15,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class BounceElement : MonoBehaviour {
-
-
-    #region Public params
-    
-    #endregion
+public class BounceElement : MonoBehaviour
+{
 
     #region Private params
 
@@ -40,7 +37,7 @@ public class BounceElement : MonoBehaviour {
     /// </summary>
     [SerializeField]
     private float m_accelVariation = 0.0f;
-    
+
     #endregion
 
     #region Public methods
@@ -66,17 +63,9 @@ public class BounceElement : MonoBehaviour {
     /// </summary>
     public float AccelVariation
     {
-        get { return m_accelVariation; } 
+        get { return m_accelVariation; }
     }
 
-
-    #endregion
-
-    #region Private methods
-
-    #endregion
-
-    #region Monobehavior calls
 
     #endregion
 

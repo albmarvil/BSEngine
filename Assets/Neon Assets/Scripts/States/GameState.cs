@@ -59,8 +59,12 @@ public class GameState : State
         orders.Add("EXIT_GAME");
         keyBindings.Add(BSKeyCode.Escape, orders);
 
+        //TO DO MouseCfg config
 
-        return new InputSet("GameStateInputSet", keyBindings);
+        MouseCfg cfg = new MouseCfg(false, false, 1.0f);
+
+
+        return new InputSet("GameStateInputSet", keyBindings, cfg);
     }
 
     /// <summary>

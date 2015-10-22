@@ -45,6 +45,12 @@ public class NeonThrowTest : MonoBehaviour {
         }
     }
 
+
+    public void onMouseMoved(MouseState ms)
+    {
+        Debug.Log(ms.AbsolutePosition + " - " + ms.RelativePosition + " - " + ms.DeltaScroll);
+    }
+
     #endregion
 
     #region Private methods
@@ -63,6 +69,10 @@ public class NeonThrowTest : MonoBehaviour {
         InputMgr.Singleton.RegisterOrderListener("Game", "MOVE_DOWN", onMoveReceived);
         InputMgr.Singleton.RegisterOrderListener("Game", "MOVE_LEFT", onMoveReceived);
         InputMgr.Singleton.RegisterOrderListener("Game", "MOVE_RIGHT", onMoveReceived);
+
+        InputMgr.Singleton.RegisterMouseListener("Game", onMouseMoved);
+
+
     }
 
     private void OnDisable()
@@ -71,6 +81,8 @@ public class NeonThrowTest : MonoBehaviour {
         InputMgr.Singleton.UnregisterOrderListener("Game", "MOVE_DOWN", onMoveReceived);
         InputMgr.Singleton.UnregisterOrderListener("Game", "MOVE_LEFT", onMoveReceived);
         InputMgr.Singleton.UnregisterOrderListener("Game", "MOVE_RIGHT", onMoveReceived);
+
+        InputMgr.Singleton.UnregisterMouseListener("Game", onMouseMoved);
     }
 
     #endregion

@@ -41,7 +41,7 @@ public class MenuState : State
         orders.Add("EXIT");
         keyBindings.Add(BSKeyCode.Escape, orders);
 
-        return new InputSet("MenuStateInputSet", keyBindings);
+        return new InputSet("MenuStateInputSet", keyBindings, null);
     }
 
     /// <summary>
