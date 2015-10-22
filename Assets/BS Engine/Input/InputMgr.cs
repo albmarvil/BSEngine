@@ -440,7 +440,7 @@ namespace BSEngine
             /// <returns>Should return true if everything went ok</returns>
             private bool open()
             {
-#if UNITY_STANDALONE //|| UNITY_WEBPLAYER
+#if UNITY_STANDALONE || UNITY_WEBPLAYER
                 m_mouseState = new MouseState();
 #endif
                 return true;
@@ -451,7 +451,7 @@ namespace BSEngine
             /// </summary>
             private void close()
             {
-#if UNITY_STANDALONE //|| UNITY_WEBPLAYER
+#if UNITY_STANDALONE || UNITY_WEBPLAYER
                 m_mouseState = null;
 #endif
             }
@@ -460,7 +460,7 @@ namespace BSEngine
 
             #region Private params
 
-#if UNITY_STANDALONE //|| UNITY_WEBPLAYER
+#if UNITY_STANDALONE || UNITY_WEBPLAYER
             private static MouseState m_mouseState = null;
 #endif
 
@@ -507,7 +507,7 @@ namespace BSEngine
 
 
                 //Mouse update
-#if UNITY_STANDALONE //|| UNITY_WEBPLAYER
+#if UNITY_STANDALONE || UNITY_WEBPLAYER
 
                 if (GameMgr.Singleton.CurrentState.InputSet.MouseSupported)
                 {
