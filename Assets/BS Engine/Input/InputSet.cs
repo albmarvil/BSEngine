@@ -42,9 +42,14 @@ namespace BSEngine
             /// </summary>
             private string m_name;
 
-
+            /// <summary>
+            /// onMouseMoved function callbacks.
+            /// </summary>
             private onMouseMoved m_mouseMoved;
 
+            /// <summary>
+            /// Current MouseCfg of the InputSet
+            /// </summary>
             private MouseCfg m_mouseCfg;
 
             #endregion
@@ -136,7 +141,10 @@ namespace BSEngine
             }
 
 
-
+            /// <summary>
+            /// Method used to register MouseMoved listeners
+            /// </summary>
+            /// <param name="listener">Function callback to register</param>
             public void RegisterOnMouseMoved(onMouseMoved listener)
             {
 
@@ -144,29 +152,42 @@ namespace BSEngine
                
             }
 
-
+            /// <summary>
+            /// Method used to unregister MouseMoved listeners
+            /// </summary>
+            /// <param name="listener">Function callback to register</param>
             public void UnregisterOnMouseMoved(onMouseMoved listener)
             {
                 m_mouseMoved -= listener;
             }
 
-
+            /// <summary>
+            /// Method used to release all mouse listeners from the input set
+            /// </summary>
             public void ReleaseAllMouseListeners()
             {
                 m_mouseMoved = null;
             }
 
+            /// <summary>
+            /// Current mouse configuration
+            /// </summary>
             public MouseCfg MouseCfg
             {
                 get { return m_mouseCfg; }
             }
 
+            /// <summary>
+            /// Is mouse supported??
+            /// </summary>
             public bool MouseSupported
             {
-                get { return m_mouseCfg != null; }
+                get { return m_mouseCfg != null && m_mouseMoved != null; }
             }
 
-
+            /// <summary>
+            /// Current mouse listeners registered
+            /// </summary>
             public onMouseMoved MouseListeners
             {
                 get { return m_mouseMoved; }

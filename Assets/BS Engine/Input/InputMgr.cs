@@ -11,6 +11,13 @@
 ///
 /// @author Alberto Martinez Villaran <tukaram92@gmail.com>
 /// @date 15/9/2015
+/// 
+/// 
+/// Added Mouse support to STANDALONE and WEBPLAYER platforms. This manager now updates a MouseState each frame. This updated MouseState will be sent to all the mouse listeners registered
+/// in the current InputSet.
+/// 
+/// @refactor Alberto Martínez Villarán <tukaram92@gmail.com>
+/// @date 22/10/2015
 ///----------------------------------------------------------------------
 
 
@@ -461,6 +468,9 @@ namespace BSEngine
             #region Private params
 
 #if UNITY_STANDALONE || UNITY_WEBPLAYER
+            /// <summary>
+            /// Current mouse state of the application
+            /// </summary>
             private static MouseState m_mouseState = null;
 #endif
 
@@ -549,6 +559,11 @@ namespace BSEngine
                 }
             }
 
+            /// <summary>
+            /// Method used to register Mouse listeners, to a given InputSet from a state
+            /// </summary>
+            /// <param name="state">State name to reference the desired InputSet</param>
+            /// <param name="listener">Function callback you're going to register</param>
             public void RegisterMouseListener(string state, onMouseMoved listener)
             {
                 if (GameMgr.Singleton.States.ContainsKey(state))
@@ -557,6 +572,11 @@ namespace BSEngine
                 }
             }
 
+            /// <summary>
+            /// Methods used to un register a mouse listener.
+            /// </summary>
+            /// <param name="state">State name to reference the desired InputSet</param>
+            /// <param name="listener">Function callback to unregister</param>
             public void UnregisterMouseListener(string state, onMouseMoved listener)
             {
                 if (GameMgr.Singleton.States.ContainsKey(state))
