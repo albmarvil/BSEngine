@@ -11,7 +11,7 @@ public class TestScript : MonoBehaviour {
 	void Start () {
 
 
-        Debug.Log(Application.persistentDataPath);
+        //Debug.Log(Application.persistentDataPath);
 
         ///Escribir algo en la pizarra
         StorageMgr.Singleton.Blackboard.Set<float>("health", 99.9f);
@@ -30,11 +30,11 @@ public class TestScript : MonoBehaviour {
         data.Set<short>("dataTest4", 144);
         data.Set<char>("dataTest5", 'c');
         data.Set<byte>("dataTest6", 5);
-        data.Set<Vector2>("dataTest7", new Vector2(0.0f, 3.0f));
+        data.Set<Vector2>("dataTest7", new Vector2(0.0f, 3.12526899955966f));
         data.Set<Vector3>("dataTest8", new Vector3(0.0f, 3.0f, 3.2f));
         data.Set<Vector4>("dataTest9", new Vector4(0.0f, 3.0f, 3.3f, 4.5f));
         data.Set<Quaternion>("datasdasda", new Quaternion(1.0f, 5.0f, -0.025f, 0.3f));
-        data.Set<Transform>("dataTest0", gameObject.transform);
+        //data.Set<Transform>("dataTest0", gameObject.transform);
 
         List<List<int>> aa = new List<List<int>>();
         for (int i = 0; i < 10; ++i)
@@ -51,10 +51,16 @@ public class TestScript : MonoBehaviour {
         di.Add(true, aa);
         di.Add(false, aa);
 
-        data.Set<Dictionary<bool, List<List<int>>>>("DiccionarioConListaChachi", di);
+        //data.Set<Dictionary<bool, List<List<int>>>>("DiccionarioConListaChachi", di);
 
         //la serializo
         StorageMgr.Singleton.SaveToFile(data, "dataTest");
+
+
+
+        ///cargo la tabla!!
+        DataTable datLoaded = StorageMgr.Singleton.LoadFile("dataTest.xml");
+        Debug.Log(datLoaded.Get<Quaternion>("datasdasda") + " - " + datLoaded.Get<string>("dataTest1"));
 
 
 	}

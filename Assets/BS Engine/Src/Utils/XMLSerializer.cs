@@ -19,6 +19,8 @@ using System.IO;
 using System.Xml;
 using System;
 
+//using BSEngine;
+
 namespace BSEngine
 {
     namespace Utils
@@ -100,11 +102,11 @@ namespace BSEngine
                     Quaternion value = (Quaternion)o;
                     SerializeQuaternionToXML(ref doc, ref elementNode, value);
                 }
-                else if (type == typeof(Transform))
-                {
-                    Transform value = (Transform)o;
-                    SerializeTransformToXML(ref doc, ref elementNode, value);
-                }
+                //else if (type == typeof(Transform))
+                //{
+                //    Transform value = (Transform)o;
+                //    SerializeTransformToXML(ref doc, ref elementNode, value);
+                //}
             }
 
             #region Basic Types serialization
@@ -216,7 +218,18 @@ namespace BSEngine
             /// <param name="value">vector2 to serialize</param>
             public static void SerializeVector2ToXML(ref XmlDocument doc, ref XmlNode elementNode, Vector2 value)
             {
-                elementNode.InnerText = value.ToString();
+                string x = value.x.ToString();
+                if (x.Length == 1)
+                {
+                    x += ".0";
+                }
+
+                string y = value.y.ToString();
+                if (y.Length == 1)
+                {
+                    y += ".0";
+                }
+                elementNode.InnerText = "(" + x + ", " + y + ")";
             }
 
             /// <summary>
@@ -227,7 +240,24 @@ namespace BSEngine
             /// <param name="value">vector3 to serialize</param>
             public static void SerializeVector3ToXML(ref XmlDocument doc, ref XmlNode elementNode, Vector3 value)
             {
-                elementNode.InnerText = value.ToString();
+                string x = value.x.ToString();
+                if (x.Length == 1)
+                {
+                    x += ".0";
+                }
+
+                string y = value.y.ToString();
+                if (y.Length == 1)
+                {
+                    y += ".0";
+                }
+
+                string z = value.z.ToString();
+                if (z.Length == 1)
+                {
+                    z += ".0";
+                }
+                elementNode.InnerText = "(" + x + ", " + y + ", " + z + ")";
             }
 
             /// <summary>
@@ -238,7 +268,30 @@ namespace BSEngine
             /// <param name="value">vector4 to serialize</param>
             public static void SerializeVector4ToXML(ref XmlDocument doc, ref XmlNode elementNode, Vector4 value)
             {
-                elementNode.InnerText = value.ToString();
+                string x = value.x.ToString();
+                if (x.Length == 1)
+                {
+                    x += ".0";
+                }
+
+                string y = value.y.ToString();
+                if (y.Length == 1)
+                {
+                    y += ".0";
+                }
+
+                string z = value.z.ToString();
+                if (z.Length == 1)
+                {
+                    z += ".0";
+                }
+
+                string w = value.w.ToString();
+                if (z.Length == 1)
+                {
+                    z += ".0";
+                }
+                elementNode.InnerText = "(" + x + ", " + y + ", " + z + ", " + w + ")";
             }
 
             /// <summary>
@@ -249,7 +302,30 @@ namespace BSEngine
             /// <param name="value">Quaternion to serialize</param>
             public static void SerializeQuaternionToXML(ref XmlDocument doc, ref XmlNode elementNode, Quaternion value)
             {
-                elementNode.InnerText = value.ToString();
+                string x = value.x.ToString();
+                if (x.Length == 1)
+                {
+                    x += ".0";
+                }
+
+                string y = value.y.ToString();
+                if (y.Length == 1)
+                {
+                    y += ".0";
+                }
+
+                string z = value.z.ToString();
+                if (z.Length == 1)
+                {
+                    z += ".0";
+                }
+
+                string w = value.w.ToString();
+                if (z.Length == 1)
+                {
+                    z += ".0";
+                }
+                elementNode.InnerText = "(" + x + ", " + y + ", " + z + ", " + w + ")";
             }
 
             /// <summary>
@@ -258,27 +334,27 @@ namespace BSEngine
             /// <param name="doc">(REF) Document where object is serialized</param>
             /// <param name="elementNode">(REF) rootNode where to include the object inside the document</param>
             /// <param name="value">Transform to serialize</param>
-            public static void SerializeTransformToXML(ref XmlDocument doc, ref XmlNode elementNode, Transform value)
-            {
-                XmlNode posNode = doc.CreateElement("position");
-                Vector3 pos = value.position;
-                SerializeVector3ToXML(ref doc, ref posNode, pos);
-                elementNode.AppendChild(posNode);
+            //public static void SerializeTransformToXML(ref XmlDocument doc, ref XmlNode elementNode, Transform value)
+            //{
+            //    XmlNode posNode = doc.CreateElement("position");
+            //    Vector3 pos = value.position;
+            //    SerializeVector3ToXML(ref doc, ref posNode, pos);
+            //    elementNode.AppendChild(posNode);
 
-                XmlNode scaleNode = doc.CreateElement("scale");
-                Vector3 scale = value.localScale;
-                SerializeVector3ToXML(ref doc, ref scaleNode, scale);
-                elementNode.AppendChild(scaleNode);
+            //    XmlNode scaleNode = doc.CreateElement("scale");
+            //    Vector3 scale = value.localScale;
+            //    SerializeVector3ToXML(ref doc, ref scaleNode, scale);
+            //    elementNode.AppendChild(scaleNode);
 
-                XmlNode rotationNode = doc.CreateElement("rotation");
-                Quaternion rotation = value.rotation;
-                SerializeQuaternionToXML(ref doc, ref rotationNode, rotation);
-                elementNode.AppendChild(rotationNode);
-            }
+            //    XmlNode rotationNode = doc.CreateElement("rotation");
+            //    Quaternion rotation = value.rotation;
+            //    SerializeQuaternionToXML(ref doc, ref rotationNode, rotation);
+            //    elementNode.AppendChild(rotationNode);
+            //}
 
             #endregion
 
-            #region collections serialization
+            #region Collections serialization
             /// <summary>
             /// DataTable serialization to XML.
             /// 
@@ -514,6 +590,260 @@ namespace BSEngine
 
                 }
             }
+            #endregion
+
+            public static object DeserializeBasicTypeFromXML(XmlNode dataNode, string type)
+            {
+                object data = null;
+
+                if (type == typeof(string).ToString())
+                {
+                    data = DeserializeStringFromXML(ref dataNode);
+                }
+                else if (type == typeof(int).ToString())
+                {
+                    data = DeserializeIntegerFromXML(ref dataNode);
+                }
+                else if (type == typeof(float).ToString())
+                {
+                    data = DeserializeFloatFromXML(ref dataNode);
+                }
+                else if (type == typeof(double).ToString())
+                {
+                    data = DeserializeDoubleFromXML(ref dataNode);
+                }
+                else if (type == typeof(long).ToString())
+                {
+                    data = DeserializeLongFromXML(ref dataNode);
+                }
+                else if (type == typeof(short).ToString())
+                {
+                    data = DeserializeShortFromXML(ref dataNode);
+                }
+                else if (type == typeof(char).ToString())
+                {
+                    data = DeserializeCharFromXML(ref dataNode);
+                }
+                else if (type == typeof(byte).ToString())
+                {
+                    data = DeserializeByteFromXML(ref dataNode);
+                }
+                else if (type == typeof(bool).ToString())
+                {
+                    data = DeserializeBoolFromXML(ref dataNode);
+                }
+                else if (type == typeof(Vector2).ToString())
+                {
+                    data = DeserializeVector2FromXML(ref dataNode);
+                }
+                else if (type == typeof(Vector3).ToString())
+                {
+                    data = DeserializeVector3FromXML(ref dataNode);
+                }
+                else if (type == typeof(Vector4).ToString())
+                {
+                    data = DeserializeVector4FromXML(ref dataNode);
+                }
+                else if (type == typeof(Quaternion).ToString())
+                {
+                    data = DeserializeQuaternionFromXML(ref dataNode);
+                }
+                //else if (type == typeof(Transform).ToString())
+                //{
+                    
+                //}
+
+                return data;
+            }
+
+            #region Basic types deserialization
+
+            public static string DeserializeStringFromXML(ref XmlNode dataNode)
+            {
+                return dataNode.InnerText;
+            }
+
+            public static int DeserializeIntegerFromXML(ref XmlNode dataNode)
+            {
+                return int.Parse(dataNode.InnerText);
+            }
+
+            public static float DeserializeFloatFromXML(ref XmlNode dataNode)
+            {
+                return float.Parse(dataNode.InnerText);
+            }
+
+            public static double DeserializeDoubleFromXML(ref XmlNode dataNode)
+            {
+                return double.Parse(dataNode.InnerText);
+            }
+
+            public static short DeserializeShortFromXML(ref XmlNode dataNode)
+            {
+                return short.Parse(dataNode.InnerText);
+            }
+
+            public static long DeserializeLongFromXML(ref XmlNode dataNode)
+            {
+                return long.Parse(dataNode.InnerText);
+            }
+
+            public static char DeserializeCharFromXML(ref XmlNode dataNode)
+            {
+                return char.Parse(dataNode.InnerText);
+            }
+
+            public static bool DeserializeBoolFromXML(ref XmlNode dataNode)
+            {
+                return bool.Parse(dataNode.InnerText);
+            }
+
+            public static byte DeserializeByteFromXML(ref XmlNode dataNode)
+            {
+                return byte.Parse(dataNode.InnerText);
+            }
+
+            public static Vector2 DeserializeVector2FromXML(ref XmlNode dataNode)
+            {
+                string data = dataNode.InnerText;
+                data = data.Split('(')[1];
+                data = data.Split(')')[0];
+
+                string[] coords = data.Split(',');
+
+                float x = float.Parse(coords[0]);
+                float y = float.Parse(coords[1]);
+
+                return new Vector2(x, y);
+            }
+
+            public static Vector3 DeserializeVector3FromXML(ref XmlNode dataNode)
+            {
+                string data = dataNode.InnerText;
+                data = data.Split('(')[1];
+                data = data.Split(')')[0];
+
+                string[] coords = data.Split(',');
+
+                float x = float.Parse(coords[0]);
+                float y = float.Parse(coords[1]);
+                float z = float.Parse(coords[2]);
+
+                return new Vector3(x, y, z);
+            }
+
+            public static Vector4 DeserializeVector4FromXML(ref XmlNode dataNode)
+            {
+                string data = dataNode.InnerText;
+                data = data.Split('(')[1];
+                data = data.Split(')')[0];
+
+                string[] coords = data.Split(',');
+
+                float x = float.Parse(coords[0]);
+                float y = float.Parse(coords[1]);
+                float z = float.Parse(coords[2]);
+                float w = float.Parse(coords[3]);
+
+                return new Vector4(x, y, z, w);
+            }
+
+            public static Quaternion DeserializeQuaternionFromXML(ref XmlNode dataNode)
+            {
+                string data = dataNode.InnerText;
+                data = data.Split('(')[1];
+                data = data.Split(')')[0];
+
+                string[] coords = data.Split(',');
+
+                float x = float.Parse(coords[0]);
+                float y = float.Parse(coords[1]);
+                float z = float.Parse(coords[2]);
+                float w = float.Parse(coords[3]);
+
+                return new Quaternion(x, y, z, w);
+            }
+
+            //public static BSETransform DeserializeTransformFromXML(ref XmlNode dataNode)
+            //{
+            //    XmlNode posNode = dataNode.ChildNodes[0];
+            //    Vector3 pos = DeserializeVector3FromXML(ref posNode);
+
+
+            //    XmlNode scaleNode = dataNode.ChildNodes[1];
+            //    Vector3 scale = DeserializeVector3FromXML(ref scaleNode);
+
+
+            //    XmlNode rotationNode = dataNode.ChildNodes[2];
+            //    Quaternion rotation = DeserializeQuaternionFromXML(ref rotationNode);
+
+            //    BSETransform trans;
+            //    trans.position = pos;
+            //    trans.localScale = scale;
+            //    trans.rotation = rotation;
+
+            //    return trans;
+                
+            //}
+
+            #endregion
+
+            #region Collections Deserialization
+
+            public static DataTable DeserializeDataTableFromXML(ref XmlNode elementNode)
+            {
+                //root node
+                XmlNode tableNode = elementNode.FirstChild;//doc.CreateElement("DataTable");
+
+                XmlNodeList nodeList = tableNode.ChildNodes;
+
+                XmlNode nameNode = nodeList[0];
+                XmlNode serializationModeNode = nodeList[1];
+                XmlNode loadToBlackboardNode = nodeList[2];
+                XmlNode dataNode = nodeList[3];
+
+                string name = nameNode.InnerText;
+                SerializationMode mode = (SerializationMode) Enum.Parse(typeof(SerializationMode), serializationModeNode.InnerText);
+                bool loadToBlackboard = Boolean.Parse(loadToBlackboardNode.InnerText);
+
+                DataTable res = new DataTable(name, mode, loadToBlackboard);
+
+                foreach (XmlNode node in dataNode.ChildNodes)
+                {
+                    string dataName = node.Attributes["name"].Value;
+                    string type = node.Attributes["type"].Value;
+
+                    object data = null;
+
+                    if (Predicates.IsBasicType(type))
+                    {
+                        data = DeserializeBasicTypeFromXML(node, type);
+                    }
+                    else if(Predicates.IsList(type))
+                    {
+
+                    }
+                    else if(Predicates.IsDictionary(type))
+                    {
+
+                    }
+
+                    res.Set<object>(dataName, data);
+                }
+
+                return res;
+            }
+
+            public static List<object> DeserializeListFromXML(ref XmlNode elementNode)
+            {
+                return null;
+            }
+
+            public static Dictionary<object, object> DeserializeDictionaryFromXML(ref XmlNode elementNode)
+            {
+                return null;
+            }
+
             #endregion
         }
     }

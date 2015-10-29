@@ -185,6 +185,37 @@ namespace BSEngine
 
         }
 
+        public DataTable LoadFile(string fileName)
+        {
+            string fullPath = Application.persistentDataPath + "/" + fileName;
+
+            string[] split = fileName.Split('.');
+
+            string extension = split[split.Length - 1];
+
+            DataTable data = null;
+
+            if (extension == "bs")
+            {
+                //TO DO
+                //Load Binary file
+            }
+            else if (extension == "xml")
+            {
+                //TO DO
+                //Load XML File
+                data = LoadXMLFile(fullPath);
+            }
+
+            //TO DO - revisar esto por la referencia
+            //if (data.LoadToBlackboard)
+            //{
+            //    Blackboard.Set<DataTable>(data.Name, data);
+            //}
+
+            return data;
+        }
+
        
 
         #endregion
@@ -207,6 +238,22 @@ namespace BSEngine
 
             doc.Save(fullPath);
 
+        }
+
+        private DataTable LoadXMLFile(string fullPath)
+        {
+            XmlDocument doc = new XmlDocument();
+
+            doc.Load(fullPath);
+
+            XmlNode rootNode = doc.FirstChild;
+
+            
+
+            DataTable data = XMLSerializer.DeserializeDataTableFromXML(ref rootNode);
+
+
+            return data;
         }
 
 
