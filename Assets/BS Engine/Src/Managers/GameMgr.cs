@@ -95,13 +95,10 @@ namespace BSEngine
                 m_initializedStates[s].Init();
             }
 
-            /////HACK!!!!
-            //ChangeState("menu");
-            ////ENDHACK
-
             InputMgr.Init();
             PoolMgr.Init();
             SceneMgr.Init();
+            StorageMgr.Init();
 
             return true;
         }
@@ -112,7 +109,7 @@ namespace BSEngine
         /// </summary>
         private void close()
         {
-            //TO DO
+            StorageMgr.Release();
             SceneMgr.Release();
             PoolMgr.Release();
             InputMgr.Release();

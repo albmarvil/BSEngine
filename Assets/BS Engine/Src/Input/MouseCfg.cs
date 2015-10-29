@@ -43,7 +43,9 @@ namespace BSEngine.Input
         /// </summary>
         private float m_sensivity;
 
-
+        /// <summary>
+        /// Flag used to configurate mouse polling. True to use Unity mouse's screen position. False to calculate through axis's delta
+        /// </summary>
         private bool m_useUnityScreenPosition;
 
         #endregion
@@ -54,7 +56,7 @@ namespace BSEngine.Input
         /// <summary>
         /// Class constructor
         /// </summary>
-        public MouseCfg(bool invertX, bool invertY, float sensivity, bool useUnityScreenPosition /*= false*/)
+        public MouseCfg(bool invertX, bool invertY, float sensivity, bool useUnityScreenPosition = false)
         {
             m_invertedX = invertX? -1.0f : 1.0f;
             m_invertedY = invertY? -1.0f : 1.0f;
@@ -122,7 +124,9 @@ namespace BSEngine.Input
             get { return m_sensivity; }
         }
 
-
+        /// <summary>
+        /// Flag used to configurate mouse polling. True to use Unity mouse's screen position. False to calculate through axis's delta
+        /// </summary>
         public bool UseUnityScreenPosition
         {
             get { return m_useUnityScreenPosition; }
