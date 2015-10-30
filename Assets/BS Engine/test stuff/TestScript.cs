@@ -14,11 +14,12 @@ public class TestScript : MonoBehaviour {
         //Debug.Log(Application.persistentDataPath);
 
         ///Escribir algo en la pizarra
-        StorageMgr.Singleton.Blackboard.Set<float>("health", 99.9f);
-        StorageMgr.Singleton.Blackboard.Set<int>("experience", 120233131);
+        //StorageMgr.Singleton.Blackboard.Set<float>("health", 99.9f);
+        //StorageMgr.Singleton.Blackboard.Set<int>("experience", 120233131);
 
         //muestro por pantalla lo que hay en la pizarra
-        Debug.Log(StorageMgr.Singleton.Blackboard.Get<float>("health"));
+        //Debug.Log(StorageMgr.Singleton.Blackboard.Get<float>("health"));
+        
 
         ///Escribo mi propia data table
         DataTable data = new DataTable("dataTest", SerializationMode.XML, true);
@@ -36,22 +37,16 @@ public class TestScript : MonoBehaviour {
         data.Set<Quaternion>("datasdasda", new Quaternion(1.0f, 5.0f, -0.025f, 0.3f));
         //data.Set<Transform>("dataTest0", gameObject.transform);
 
-        List<List<int>> aa = new List<List<int>>();
+
+        List<int> a = new List<int>();
+
+
         for (int i = 0; i < 10; ++i)
         {
-            List<int> a2 = new List<int>();
-            for (int j = 0; j < 10; ++j)
-            {
-                a2.Add(j);
-            }
-            aa.Add(a2);
+            a.Add(i);
         }
 
-        Dictionary<bool, List<List<int>>> di = new Dictionary<bool, List<List<int>>>();
-        di.Add(true, aa);
-        di.Add(false, aa);
-
-        //data.Set<Dictionary<bool, List<List<int>>>>("DiccionarioConListaChachi", di);
+        data.Set<List<int>>("lista", a);
 
         //la serializo
         StorageMgr.Singleton.SaveToFile(data, "dataTest");
@@ -60,7 +55,8 @@ public class TestScript : MonoBehaviour {
 
         ///cargo la tabla!!
         DataTable datLoaded = StorageMgr.Singleton.LoadFile("dataTest.xml");
-        Debug.Log(datLoaded.Get<Quaternion>("datasdasda") + " - " + datLoaded.Get<string>("dataTest1"));
+
+        List<int> aa = datLoaded.Get<List<int>>("lista");
 
 
 	}

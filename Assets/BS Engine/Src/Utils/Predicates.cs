@@ -31,7 +31,7 @@ namespace BSEngine
             /// <returns>True: object is a basic type</returns>
             public static bool IsBasicType(object o)
             {
-                return IsBasicType(o.GetType().ToString());
+                return IsBasicType(o.GetType());
             }
 
             /// <summary>
@@ -40,22 +40,22 @@ namespace BSEngine
             /// </summary>
             /// <param name="o">object to evaluate</param>
             /// <returns>True: object is a basic type</returns>
-            public static bool IsBasicType(string t)
+            public static bool IsBasicType(Type t)
             {
-                return t == typeof(string).ToString()
-                    || t == typeof(int).ToString()
-                    || t == typeof(short).ToString()
-                    || t == typeof(long).ToString()
-                    || t == typeof(float).ToString()
-                    || t == typeof(double).ToString()
-                    || t == typeof(bool).ToString()
-                    || t == typeof(char).ToString()
-                    || t == typeof(byte).ToString()
-                    || t == typeof(Vector2).ToString()
-                    || t == typeof(Vector3).ToString()
-                    || t == typeof(Vector4).ToString()
-                    || t == typeof(Quaternion).ToString();
-                    //|| t == typeof(Transform).ToString();
+                return t == typeof(string)
+                    || t == typeof(int)
+                    || t == typeof(short)
+                    || t == typeof(long)
+                    || t == typeof(float)
+                    || t == typeof(double)
+                    || t == typeof(bool)
+                    || t == typeof(char)
+                    || t == typeof(byte)
+                    || t == typeof(Vector2)
+                    || t == typeof(Vector3)
+                    || t == typeof(Vector4)
+                    || t == typeof(Quaternion);
+                    //|| t == typeof(Transform);
             }
 
             /// <summary>
@@ -74,20 +74,19 @@ namespace BSEngine
             /// <summary>
             /// Predicate used to determine if an object is a List
             /// </summary>
-            /// <param name="o">Ob ject to evaluate</param>
+            /// <param name="t">Type to evaluate</param>
             /// <returns>True: object is a List</returns>
             public static bool IsList(Type t)
             {
                 if (t == null) return false;
-                return t is IList &&
-                       t.IsGenericType &&
+                return t.IsGenericType &&
                        t.GetGenericTypeDefinition().IsAssignableFrom(typeof(List<>));
             }
 
             /// <summary>
             /// Predicate used to determine if an object is a Dictionary
             /// </summary>
-            /// <param name="o">Object to evluate</param>
+            /// <param name="o">Object to evaluate</param>
             /// <returns>True: object is a Dictionary</returns>
             public static bool IsDictionary(object o)
             {
@@ -100,13 +99,12 @@ namespace BSEngine
             /// <summary>
             /// Predicate used to determine if an object is a Dictionary
             /// </summary>
-            /// <param name="o">Object to evluate</param>
+            /// <param name="t">Type to evaluate</param>
             /// <returns>True: object is a Dictionary</returns>
             public static bool IsDictionary(Type t)
             {
                 if (t == null) return false;
-                return t is IDictionary &&
-                       t.IsGenericType &&
+                return t.IsGenericType &&
                        t.GetGenericTypeDefinition().IsAssignableFrom(typeof(Dictionary<,>));
             }
 

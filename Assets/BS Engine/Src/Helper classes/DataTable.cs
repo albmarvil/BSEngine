@@ -111,7 +111,16 @@ namespace BSEngine
         /// <returns>Desired parameter casted to T type</returns>
         public T Get<T>(string name)
         {
-            return (T) m_data[name];
+            try
+            {
+                return (T)m_data[name];
+            }
+            catch (System.InvalidCastException e)
+            {
+                Debug.LogWarning("Get('"+name+"') from DataTable("+Name+") not valid: " + e.Message);
+                return default(T);
+            }
+            
         }
 
         /// <summary>

@@ -250,7 +250,7 @@ namespace BSEngine
 
             
 
-            DataTable data = XMLSerializer.DeserializeDataTableFromXML(ref rootNode);
+            DataTable data = XMLSerializer.DeserializeDataTableFromXML(rootNode);
 
 
             return data;
