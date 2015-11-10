@@ -14,15 +14,16 @@ public class TestScript : MonoBehaviour {
         //Debug.Log(Application.persistentDataPath);
 
         ///Escribir algo en la pizarra
-        //StorageMgr.Singleton.Blackboard.Set<float>("health", 99.9f);
-        //StorageMgr.Singleton.Blackboard.Set<int>("experience", 120233131);
+        StorageMgr.Blackboard.Set<float>("health", 99.9f);
+        StorageMgr.Blackboard.Set<int>("experience", 120233131);
 
         //muestro por pantalla lo que hay en la pizarra
-        //Debug.Log(StorageMgr.Singleton.Blackboard.Get<float>("health"));
-        
+        //Debug.Log(StorageMgr.Blackboard.Get<float>("health"));
+
 
         ///Escribo mi propia data table
-        DataTable data = new DataTable("dataTest", SerializationMode.XML, true);
+        DataTable data = new DataTable("dataTest", SerializationMode.BIN_XML, true);
+
 
         data.Set<string>("dataTest1", "hola");
         data.Set<string>("dataTest2", "mundo");
@@ -35,18 +36,14 @@ public class TestScript : MonoBehaviour {
         data.Set<Vector3>("dataTest8", new Vector3(0.0f, 3.0f, 3.2f));
         data.Set<Vector4>("dataTest9", new Vector4(0.0f, 3.0f, 3.3f, 4.5f));
         data.Set<Quaternion>("datasdasda", new Quaternion(1.0f, 5.0f, -0.025f, 0.3f));
-        //data.Set<Transform>("dataTest0", gameObject.transform);
+
+        DataTable dataTest2 = new DataTable("dataTest2", SerializationMode.XML, false);
+        dataTest2.Set<string>("hola", "mundo");
+        dataTest2.Set<Vector2>("jeeei", new Vector2(0.0f, 6.9f));
+
+        data.Set<DataTable>("aaaag", dataTest2);
 
 
-        List<int> a = new List<int>();
-
-
-        for (int i = 0; i < 10; ++i)
-        {
-            a.Add(i);
-        }
-
-        data.Set<List<int>>("lista", a);
 
         //la serializo
         StorageMgr.Singleton.SaveToFile(data, "dataTest");
@@ -56,8 +53,13 @@ public class TestScript : MonoBehaviour {
         ///cargo la tabla!!
         DataTable datLoaded = StorageMgr.Singleton.LoadFile("dataTest.xml");
 
-        List<int> aa = datLoaded.Get<List<int>>("lista");
+        datLoaded.Set<string>("hola", "mundo");
 
+        Debug.Log(StorageMgr.Blackboard.Get<DataTable>("dataTest").Get<string>("hola"));
+
+        StorageMgr.Blackboard.Get<DataTable>("dataTest").Set<string>("hola", "que te cagas");
+
+        Debug.Log(datLoaded.Get<string>("hola"));
 
 	}
 	

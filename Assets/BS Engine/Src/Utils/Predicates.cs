@@ -17,6 +17,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
+using BSEngine.Math;
+
 namespace BSEngine
 {
     namespace Utils
@@ -51,10 +53,63 @@ namespace BSEngine
                     || t == typeof(bool)
                     || t == typeof(char)
                     || t == typeof(byte)
-                    || t == typeof(Vector2)
-                    || t == typeof(Vector3)
-                    || t == typeof(Vector4)
-                    || t == typeof(Quaternion);
+                    || t == typeof(BSEngine.Math.Vector2)
+                    || t == typeof(BSEngine.Math.Vector3)
+                    || t == typeof(BSEngine.Math.Vector4)
+                    || t == typeof(BSEngine.Math.Quaternion);
+                    //|| t == typeof(Transform);
+            }
+
+            /// <summary>
+            /// Definition of basic types of BSEngine - Math namespace.
+            /// True if the given object is considered basic type
+            /// </summary>
+            /// <param name="o">object to evaluate</param>
+            /// <returns>True: object is a basic type</returns>
+            public static bool IsMathBasicType(object o)
+            {
+                return IsMathBasicType(o.GetType());
+            }
+
+
+            /// <summary>
+            /// Definition of basic types of BSEngine - Math namespace.
+            /// True if the given object is considered basic type
+            /// </summary>
+            /// <param name="o">object to evaluate</param>
+            /// <returns>True: object is a basic type</returns>
+            public static bool IsMathBasicType(Type t)
+            {
+                return t == typeof(BSEngine.Math.Vector2)
+                    || t == typeof(BSEngine.Math.Vector3)
+                    || t == typeof(BSEngine.Math.Vector4)
+                    || t == typeof(BSEngine.Math.Quaternion);
+            }
+
+            /// <summary>
+            /// Definition of basic types of UnityEngine.
+            /// True if the given object is considered basic type
+            /// </summary>
+            /// <param name="o">object to evaluate</param>
+            /// <returns>True: object is a basic type</returns>
+            public static bool IsUnityBasicType(object o)
+            {
+                return IsUnityBasicType(o.GetType());
+            }
+
+
+            /// <summary>
+            /// Definition of basic types of UnityEngine.
+            /// True if the given object is considered basic type
+            /// </summary>
+            /// <param name="o">object to evaluate</param>
+            /// <returns>True: object is a basic type</returns>
+            public static bool IsUnityBasicType(Type t)
+            {
+                return t == typeof(UnityEngine.Vector2)
+                    || t == typeof(UnityEngine.Vector3)
+                    || t == typeof(UnityEngine.Vector4)
+                    || t == typeof(UnityEngine.Quaternion);
                     //|| t == typeof(Transform);
             }
 

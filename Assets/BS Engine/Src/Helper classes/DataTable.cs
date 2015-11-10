@@ -58,16 +58,17 @@ namespace BSEngine
         /// <param name="name">Name of the DataTable</param>
         /// <param name="mode">SerializationMode used into the table</param>
         /// <param name="loadToBlackboard">Flag to load the table into the Blackboard</param>
-        public DataTable(string name, SerializationMode mode, bool loadToBlackboard)
+        /// /// <param name="forceBlackboardLoading">OPTIONAL. default: true. Flag to load the table into the Blackboard after creation</param>
+        public DataTable(string name, SerializationMode mode, bool loadToBlackboard, bool forceBlackboardLoading = true)
         {
             m_name = name;
             m_mode = mode;
             m_loadToBlackboard = loadToBlackboard;
             m_data = new Dictionary<string, object>();
 
-            if (m_loadToBlackboard && StorageMgr.Singleton.Blackboard != null)
+            if (m_loadToBlackboard && forceBlackboardLoading && StorageMgr.Blackboard != null)
             {
-                StorageMgr.Singleton.Blackboard.Set<DataTable>(name, this);
+                StorageMgr.Blackboard.Set<DataTable>(name, this);
             }
         }
 

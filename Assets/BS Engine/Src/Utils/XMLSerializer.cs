@@ -19,7 +19,7 @@ using System.IO;
 using System.Xml;
 using System;
 
-//using BSEngine;
+using BSEngine.Math;
 
 namespace BSEngine
 {
@@ -82,24 +82,24 @@ namespace BSEngine
                     bool value = (bool)o;
                     SerializeBoolToXML(ref doc, ref elementNode, value);
                 }
-                else if (type == typeof(Vector2))
+                else if (type == typeof(BSEngine.Math.Vector2))
                 {
-                    Vector2 value = (Vector2)o;
+                    BSEngine.Math.Vector2 value = (BSEngine.Math.Vector2)o;
                     SerializeVector2ToXML(ref doc, ref elementNode, value);
                 }
-                else if (type == typeof(Vector3))
+                else if (type == typeof(BSEngine.Math.Vector3))
                 {
-                    Vector3 value = (Vector3)o;
+                    BSEngine.Math.Vector3 value = (BSEngine.Math.Vector3)o;
                     SerializeVector3ToXML(ref doc, ref elementNode, value);
                 }
-                else if (type == typeof(Vector4))
+                else if (type == typeof(BSEngine.Math.Vector4))
                 {
-                    Vector4 value = (Vector4)o;
+                    BSEngine.Math.Vector4 value = (BSEngine.Math.Vector4)o;
                     SerializeVector4ToXML(ref doc, ref elementNode, value);
                 }
-                else if (type == typeof(Quaternion))
+                else if (type == typeof(BSEngine.Math.Quaternion))
                 {
-                    Quaternion value = (Quaternion)o;
+                    BSEngine.Math.Quaternion value = (BSEngine.Math.Quaternion)o;
                     SerializeQuaternionToXML(ref doc, ref elementNode, value);
                 }
                 //else if (type == typeof(Transform))
@@ -216,7 +216,7 @@ namespace BSEngine
             /// <param name="doc">(REF) Document where object is serialized</param>
             /// <param name="elementNode">(REF) rootNode where to include the object inside the document</param>
             /// <param name="value">vector2 to serialize</param>
-            public static void SerializeVector2ToXML(ref XmlDocument doc, ref XmlNode elementNode, Vector2 value)
+            public static void SerializeVector2ToXML(ref XmlDocument doc, ref XmlNode elementNode, BSEngine.Math.Vector2 value)
             {
                 string x = value.x.ToString();
                 if (x.Length == 1)
@@ -238,7 +238,7 @@ namespace BSEngine
             /// <param name="doc">(REF) Document where object is serialized</param>
             /// <param name="elementNode">(REF) rootNode where to include the object inside the document</param>
             /// <param name="value">vector3 to serialize</param>
-            public static void SerializeVector3ToXML(ref XmlDocument doc, ref XmlNode elementNode, Vector3 value)
+            public static void SerializeVector3ToXML(ref XmlDocument doc, ref XmlNode elementNode, BSEngine.Math.Vector3 value)
             {
                 string x = value.x.ToString();
                 if (x.Length == 1)
@@ -266,7 +266,7 @@ namespace BSEngine
             /// <param name="doc">(REF) Document where object is serialized</param>
             /// <param name="elementNode">(REF) rootNode where to include the object inside the document</param>
             /// <param name="value">vector4 to serialize</param>
-            public static void SerializeVector4ToXML(ref XmlDocument doc, ref XmlNode elementNode, Vector4 value)
+            public static void SerializeVector4ToXML(ref XmlDocument doc, ref XmlNode elementNode, BSEngine.Math.Vector4 value)
             {
                 string x = value.x.ToString();
                 if (x.Length == 1)
@@ -300,7 +300,7 @@ namespace BSEngine
             /// <param name="doc">(REF) Document where object is serialized</param>
             /// <param name="elementNode">(REF) rootNode where to include the object inside the document</param>
             /// <param name="value">Quaternion to serialize</param>
-            public static void SerializeQuaternionToXML(ref XmlDocument doc, ref XmlNode elementNode, Quaternion value)
+            public static void SerializeQuaternionToXML(ref XmlDocument doc, ref XmlNode elementNode, BSEngine.Math.Quaternion value)
             {
                 string x = value.x.ToString();
                 if (x.Length == 1)
@@ -425,12 +425,14 @@ namespace BSEngine
                     }
                     else if (Predicates.IsList(info.Data[key]))
                     {
-                        SerializeListToXML(ref doc, ref elementNode, info.Data[key]);
+                        Debug.LogError("Lists NOT supported on serialization. Please use DataTables instead");
+                        //SerializeListToXML(ref doc, ref elementNode, info.Data[key]);
 
                     }
                     else if (Predicates.IsDictionary(info.Data[key]))
                     {
-                        SerializeDictionaryToXML(ref doc, ref elementNode, info.Data[key]);
+                        Debug.LogError("Dictionaries NOT supported on serialization. Please use DataTables instead");
+                        //SerializeDictionaryToXML(ref doc, ref elementNode, info.Data[key]);
                     }
                     else
                     {
@@ -448,50 +450,50 @@ namespace BSEngine
             /// <param name="doc">(REF) XML Document where to serialize</param>
             /// <param name="elementNode">(REF) rootNode to serialize inside the document</param>
             /// <param name="list">List to serialize</param>
-            private static void SerializeListToXML(ref XmlDocument doc, ref XmlNode elementNode, object list)
-            {
-                Type innerType = list.GetType().GetGenericArguments()[0];
+            //private static void SerializeListToXML(ref XmlDocument doc, ref XmlNode elementNode, object list)
+            //{
+            //    Type innerType = list.GetType().GetGenericArguments()[0];
 
-                XmlNode listNode = doc.CreateElement("List");
+            //    XmlNode listNode = doc.CreateElement("List");
 
-                XmlAttribute innerAttrib = doc.CreateAttribute("innerType");
-                innerAttrib.Value = innerType.AssemblyQualifiedName;
-                listNode.Attributes.Append(innerAttrib);
+            //    XmlAttribute innerAttrib = doc.CreateAttribute("innerType");
+            //    innerAttrib.Value = innerType.AssemblyQualifiedName;
+            //    listNode.Attributes.Append(innerAttrib);
 
-                elementNode.AppendChild(listNode);
+            //    elementNode.AppendChild(listNode);
 
 
-                IList objList = (IList)list;
+            //    IList objList = (IList)list;
 
-                foreach (object o in objList)
-                {
-                    XmlNode listElementNode = doc.CreateElement("ListElement");
+            //    foreach (object o in objList)
+            //    {
+            //        XmlNode listElementNode = doc.CreateElement("ListElement");
 
-                    if (Predicates.IsBasicType(o))
-                    {
-                        SerializeBasicTypeToXML(ref doc, ref listElementNode, o);
-                    }
-                    else if (innerType == typeof(DataTable))
-                    {
-                        DataTable data = (DataTable)o;
-                        SerializeDataTableToXML(ref doc, ref listElementNode, ref data);
-                    }
-                    else if (Predicates.IsList(o))
-                    {
-                        SerializeListToXML(ref doc, ref listElementNode, o);
-                    }
-                    else if (Predicates.IsDictionary(o))
-                    {
-                        SerializeDictionaryToXML(ref doc, ref elementNode, o);
-                    }
-                    else
-                    {
-                        Debug.LogError("Type: " + o.GetType() + " NOT supported on XML serialization. Please use Binary files instead");
-                    }
+            //        if (Predicates.IsBasicType(o))
+            //        {
+            //            SerializeBasicTypeToXML(ref doc, ref listElementNode, o);
+            //        }
+            //        else if (innerType == typeof(DataTable))
+            //        {
+            //            DataTable data = (DataTable)o;
+            //            SerializeDataTableToXML(ref doc, ref listElementNode, ref data);
+            //        }
+            //        else if (Predicates.IsList(o))
+            //        {
+            //            SerializeListToXML(ref doc, ref listElementNode, o);
+            //        }
+            //        else if (Predicates.IsDictionary(o))
+            //        {
+            //            SerializeDictionaryToXML(ref doc, ref elementNode, o);
+            //        }
+            //        else
+            //        {
+            //            Debug.LogError("Type: " + o.GetType() + " NOT supported on XML serialization. Please use Binary files instead");
+            //        }
 
-                    listNode.AppendChild(listElementNode);
-                }
-            }
+            //        listNode.AppendChild(listElementNode);
+            //    }
+            //}
 
             /// <summary>
             /// Dictionary serialization to XML
@@ -499,93 +501,100 @@ namespace BSEngine
             /// <param name="doc">(REF) XML Document where to serialize</param>
             /// <param name="elementNode">(REF) rootNode to serialize inside the document</param>
             /// <param name="dictionary">Dictionary to serialize</param>
-            private static void SerializeDictionaryToXML(ref XmlDocument doc, ref XmlNode elementNode, object dictionary)
-            {
-                Type keyType = dictionary.GetType().GetGenericArguments()[0];
-                Type valueType = dictionary.GetType().GetGenericArguments()[1];
+            //private static void SerializeDictionaryToXML(ref XmlDocument doc, ref XmlNode elementNode, object dictionary)
+            //{
+            //    Type keyType = dictionary.GetType().GetGenericArguments()[0];
+            //    Type valueType = dictionary.GetType().GetGenericArguments()[1];
 
-                XmlNode dicNode = doc.CreateElement("Dictionary");
+            //    XmlNode dicNode = doc.CreateElement("Dictionary");
 
-                XmlAttribute keyAttrib = doc.CreateAttribute("keyType");
-                keyAttrib.Value = keyType.AssemblyQualifiedName;
-                dicNode.Attributes.Append(keyAttrib);
+            //    XmlAttribute keyAttrib = doc.CreateAttribute("keyType");
+            //    keyAttrib.Value = keyType.AssemblyQualifiedName;
+            //    dicNode.Attributes.Append(keyAttrib);
 
-                XmlAttribute valueAttrib = doc.CreateAttribute("valueType");
-                valueAttrib.Value = valueType.AssemblyQualifiedName;
-                dicNode.Attributes.Append(valueAttrib);
+            //    XmlAttribute valueAttrib = doc.CreateAttribute("valueType");
+            //    valueAttrib.Value = valueType.AssemblyQualifiedName;
+            //    dicNode.Attributes.Append(valueAttrib);
 
-                elementNode.AppendChild(dicNode);
-
-
-                IDictionary objDic = (IDictionary)dictionary;
-
-                foreach (object key in objDic.Keys)
-                {
-                    XmlNode pairNode = doc.CreateElement("KeyValuePair");
-                    dicNode.AppendChild(pairNode);
-
-                    XmlNode keyNode = doc.CreateElement("key");
-
-                    XmlNode valueNode = doc.CreateElement("value");
-
-                    #region key serialization
-
-                    if (Predicates.IsBasicType(key))
-                    {
-                        SerializeBasicTypeToXML(ref doc, ref keyNode, key);
-                    }
-                    else if (keyType == typeof(DataTable))
-                    {
-                        DataTable data = (DataTable)key;
-                        SerializeDataTableToXML(ref doc, ref keyNode, ref data);
-                    }
-                    else if (Predicates.IsList(key))
-                    {
-                        SerializeListToXML(ref doc, ref keyNode, key);
-                    }
-                    else if (Predicates.IsDictionary(key))
-                    {
-                        SerializeDictionaryToXML(ref doc, ref keyNode, key);
-                    }
-                    else
-                    {
-                        Debug.LogError("Type: " + key.GetType() + " NOT supported on XML serialization. Please use Binary files instead");
-                    }
-
-                    pairNode.AppendChild(keyNode);
-                    #endregion
+            //    elementNode.AppendChild(dicNode);
 
 
-                    #region value serialization
-                    if (Predicates.IsBasicType(objDic[key]))
-                    {
-                        SerializeBasicTypeToXML(ref doc, ref valueNode, objDic[key]);
-                    }
-                    else if (keyType == typeof(DataTable))
-                    {
-                        DataTable data = (DataTable)objDic[key];
-                        SerializeDataTableToXML(ref doc, ref valueNode, ref data);
-                    }
-                    else if (Predicates.IsList(objDic[key]))
-                    {
-                        SerializeListToXML(ref doc, ref valueNode, objDic[key]);
-                    }
-                    else if (Predicates.IsDictionary(objDic[key]))
-                    {
-                        SerializeDictionaryToXML(ref doc, ref valueNode, objDic[key]);
-                    }
-                    else
-                    {
-                        Debug.LogError("Type: " + objDic[key].GetType() + " NOT supported on XML serialization. Please use Binary files instead");
-                    }
+            //    IDictionary objDic = (IDictionary)dictionary;
 
-                    pairNode.AppendChild(valueNode);
-                    #endregion
+            //    foreach (object key in objDic.Keys)
+            //    {
+            //        XmlNode pairNode = doc.CreateElement("KeyValuePair");
+            //        dicNode.AppendChild(pairNode);
 
-                }
-            }
+            //        XmlNode keyNode = doc.CreateElement("key");
+
+            //        XmlNode valueNode = doc.CreateElement("value");
+
+            //        #region key serialization
+
+            //        if (Predicates.IsBasicType(key))
+            //        {
+            //            SerializeBasicTypeToXML(ref doc, ref keyNode, key);
+            //        }
+            //        else if (keyType == typeof(DataTable))
+            //        {
+            //            DataTable data = (DataTable)key;
+            //            SerializeDataTableToXML(ref doc, ref keyNode, ref data);
+            //        }
+            //        else if (Predicates.IsList(key))
+            //        {
+            //            SerializeListToXML(ref doc, ref keyNode, key);
+            //        }
+            //        else if (Predicates.IsDictionary(key))
+            //        {
+            //            SerializeDictionaryToXML(ref doc, ref keyNode, key);
+            //        }
+            //        else
+            //        {
+            //            Debug.LogError("Type: " + key.GetType() + " NOT supported on XML serialization. Please use Binary files instead");
+            //        }
+
+            //        pairNode.AppendChild(keyNode);
+            //        #endregion
+
+
+            //        #region value serialization
+            //        if (Predicates.IsBasicType(objDic[key]))
+            //        {
+            //            SerializeBasicTypeToXML(ref doc, ref valueNode, objDic[key]);
+            //        }
+            //        else if (keyType == typeof(DataTable))
+            //        {
+            //            DataTable data = (DataTable)objDic[key];
+            //            SerializeDataTableToXML(ref doc, ref valueNode, ref data);
+            //        }
+            //        else if (Predicates.IsList(objDic[key]))
+            //        {
+            //            SerializeListToXML(ref doc, ref valueNode, objDic[key]);
+            //        }
+            //        else if (Predicates.IsDictionary(objDic[key]))
+            //        {
+            //            SerializeDictionaryToXML(ref doc, ref valueNode, objDic[key]);
+            //        }
+            //        else
+            //        {
+            //            Debug.LogError("Type: " + objDic[key].GetType() + " NOT supported on XML serialization. Please use Binary files instead");
+            //        }
+
+            //        pairNode.AppendChild(valueNode);
+            //        #endregion
+
+            //    }
+            //}
+
             #endregion
 
+            /// <summary>
+            /// Method used to deserialize BSEngine's basic types, from XML
+            /// </summary>
+            /// <param name="dataNode">Node that contains the info</param>
+            /// <param name="type">Destination type of the data</param>
+            /// <returns>Object deserialized casted to it's type</returns>
             public static object DeserializeBasicTypeFromXML(XmlNode dataNode, Type type)
             {
                 object data = null;
@@ -626,19 +635,19 @@ namespace BSEngine
                 {
                     data = DeserializeBoolFromXML(ref dataNode);
                 }
-                else if (type == typeof(Vector2))
+                else if (type == typeof(BSEngine.Math.Vector2))
                 {
                     data = DeserializeVector2FromXML(ref dataNode);
                 }
-                else if (type == typeof(Vector3))
+                else if (type == typeof(BSEngine.Math.Vector3))
                 {
                     data = DeserializeVector3FromXML(ref dataNode);
                 }
-                else if (type == typeof(Vector4))
+                else if (type == typeof(BSEngine.Math.Vector4))
                 {
                     data = DeserializeVector4FromXML(ref dataNode);
                 }
-                else if (type == typeof(Quaternion))
+                else if (type == typeof(BSEngine.Math.Quaternion))
                 {
                     data = DeserializeQuaternionFromXML(ref dataNode);
                 }
@@ -652,52 +661,102 @@ namespace BSEngine
 
             #region Basic types deserialization
 
+            /// <summary>
+            /// String deserializaiton from XML
+            /// </summary>
+            /// <param name="dataNode">Node containing the data</param>
+            /// <returns>Data deserialized</returns>
             public static string DeserializeStringFromXML(ref XmlNode dataNode)
             {
                 return dataNode.InnerText;
             }
 
+            /// <summary>
+            /// Int deserializaiton from XML
+            /// </summary>
+            /// <param name="dataNode">Node containing the data</param>
+            /// <returns>Data deserialized</returns>
             public static int DeserializeIntegerFromXML(ref XmlNode dataNode)
             {
                 return int.Parse(dataNode.InnerText);
             }
 
+            /// <summary>
+            /// Float deserializaiton from XML
+            /// </summary>
+            /// <param name="dataNode">Node containing the data</param>
+            /// <returns>Data deserialized</returns>
             public static float DeserializeFloatFromXML(ref XmlNode dataNode)
             {
                 return float.Parse(dataNode.InnerText);
             }
 
+            /// <summary>
+            /// Double deserializaiton from XML
+            /// </summary>
+            /// <param name="dataNode">Node containing the data</param>
+            /// <returns>Data deserialized</returns>
             public static double DeserializeDoubleFromXML(ref XmlNode dataNode)
             {
                 return double.Parse(dataNode.InnerText);
             }
 
+            /// <summary>
+            /// Short deserializaiton from XML
+            /// </summary>
+            /// <param name="dataNode">Node containing the data</param>
+            /// <returns>Data deserialized</returns>
             public static short DeserializeShortFromXML(ref XmlNode dataNode)
             {
                 return short.Parse(dataNode.InnerText);
             }
 
+            /// <summary>
+            /// Long deserializaiton from XML
+            /// </summary>
+            /// <param name="dataNode">Node containing the data</param>
+            /// <returns>Data deserialized</returns>
             public static long DeserializeLongFromXML(ref XmlNode dataNode)
             {
                 return long.Parse(dataNode.InnerText);
             }
 
+            /// <summary>
+            /// Char deserializaiton from XML
+            /// </summary>
+            /// <param name="dataNode">Node containing the data</param>
+            /// <returns>Data deserialized</returns>
             public static char DeserializeCharFromXML(ref XmlNode dataNode)
             {
                 return char.Parse(dataNode.InnerText);
             }
 
+            /// <summary>
+            /// Boolean deserializaiton from XML
+            /// </summary>
+            /// <param name="dataNode">Node containing the data</param>
+            /// <returns>Data deserialized</returns>
             public static bool DeserializeBoolFromXML(ref XmlNode dataNode)
             {
                 return bool.Parse(dataNode.InnerText);
             }
 
+            /// <summary>
+            /// Byte deserializaiton from XML
+            /// </summary>
+            /// <param name="dataNode">Node containing the data</param>
+            /// <returns>Data deserialized</returns>
             public static byte DeserializeByteFromXML(ref XmlNode dataNode)
             {
                 return byte.Parse(dataNode.InnerText);
             }
 
-            public static Vector2 DeserializeVector2FromXML(ref XmlNode dataNode)
+            /// <summary>
+            /// Vector2 deserializaiton from XML
+            /// </summary>
+            /// <param name="dataNode">Node containing the data</param>
+            /// <returns>Data deserialized</returns>
+            public static BSEngine.Math.Vector2 DeserializeVector2FromXML(ref XmlNode dataNode)
             {
                 string data = dataNode.InnerText;
                 data = data.Split('(')[1];
@@ -708,10 +767,15 @@ namespace BSEngine
                 float x = float.Parse(coords[0]);
                 float y = float.Parse(coords[1]);
 
-                return new Vector2(x, y);
+                return new BSEngine.Math.Vector2(x, y);
             }
 
-            public static Vector3 DeserializeVector3FromXML(ref XmlNode dataNode)
+            /// <summary>
+            /// Vector3 deserializaiton from XML
+            /// </summary>
+            /// <param name="dataNode">Node containing the data</param>
+            /// <returns>Data deserialized</returns>
+            public static BSEngine.Math.Vector3 DeserializeVector3FromXML(ref XmlNode dataNode)
             {
                 string data = dataNode.InnerText;
                 data = data.Split('(')[1];
@@ -723,10 +787,15 @@ namespace BSEngine
                 float y = float.Parse(coords[1]);
                 float z = float.Parse(coords[2]);
 
-                return new Vector3(x, y, z);
+                return new BSEngine.Math.Vector3(x, y, z);
             }
 
-            public static Vector4 DeserializeVector4FromXML(ref XmlNode dataNode)
+            /// <summary>
+            /// Vector4 deserializaiton from XML
+            /// </summary>
+            /// <param name="dataNode">Node containing the data</param>
+            /// <returns>Data deserialized</returns>
+            public static BSEngine.Math.Vector4 DeserializeVector4FromXML(ref XmlNode dataNode)
             {
                 string data = dataNode.InnerText;
                 data = data.Split('(')[1];
@@ -739,10 +808,15 @@ namespace BSEngine
                 float z = float.Parse(coords[2]);
                 float w = float.Parse(coords[3]);
 
-                return new Vector4(x, y, z, w);
+                return new BSEngine.Math.Vector4(x, y, z, w);
             }
 
-            public static Quaternion DeserializeQuaternionFromXML(ref XmlNode dataNode)
+            /// <summary>
+            /// Quaternion deserializaiton from XML
+            /// </summary>
+            /// <param name="dataNode">Node containing the data</param>
+            /// <returns>Data deserialized</returns>
+            public static BSEngine.Math.Quaternion DeserializeQuaternionFromXML(ref XmlNode dataNode)
             {
                 string data = dataNode.InnerText;
                 data = data.Split('(')[1];
@@ -755,7 +829,7 @@ namespace BSEngine
                 float z = float.Parse(coords[2]);
                 float w = float.Parse(coords[3]);
 
-                return new Quaternion(x, y, z, w);
+                return new BSEngine.Math.Quaternion(x, y, z, w);
             }
 
             //public static BSETransform DeserializeTransformFromXML(ref XmlNode dataNode)
@@ -784,6 +858,11 @@ namespace BSEngine
 
             #region Collections Deserialization
 
+            /// <summary>
+            /// DataTable deserialization from XML
+            /// </summary>
+            /// <param name="elementNode">XML node containing the DataTable</param>
+            /// <returns>DataTable deserialized</returns>
             public static DataTable DeserializeDataTableFromXML(XmlNode elementNode)
             {
                 //root node
@@ -817,16 +896,16 @@ namespace BSEngine
                     {
                         res.Set<object>(dataName, DeserializeDataTableFromXML(node));
                     }
-                    else if(Predicates.IsList(type))
-                    {
-                        Debug.LogWarning("XML List deserialization only works with List<object>. You may not be able to recover all data properly. Use binary files instead");
-                        res.Set<object>(dataName, DeserializeListFromXML(node));
-                    }
-                    else if(Predicates.IsDictionary(type))
-                    {
-                        Debug.LogWarning("XML List deserialization only works with Dictionary<object, object>. You may not be able to recover all data properly. Use binary files instead");
-                        res.Set<object>(dataName, DeserializeDictionaryFromXML(node));
-                    }
+                    //else if(Predicates.IsList(type))
+                    //{
+                    //    Debug.LogWarning("XML List deserialization only works with List<object>. You may not be able to recover all data properly. Use binary files instead");
+                    //    res.Set<object>(dataName, DeserializeListFromXML(node));
+                    //}
+                    //else if(Predicates.IsDictionary(type))
+                    //{
+                    //    Debug.LogWarning("XML List deserialization only works with Dictionary<object, object>. You may not be able to recover all data properly. Use binary files instead");
+                    //    res.Set<object>(dataName, DeserializeDictionaryFromXML(node));
+                    //}
                     else
                     {
                         Debug.LogError("Type: " + type + " NOT supported on XML deserialization. Please use Binary files instead");
@@ -836,121 +915,121 @@ namespace BSEngine
                 return res;
             }
 
-            public static List<object> DeserializeListFromXML(XmlNode elementNode)
-            {
-                XmlNode listNode = elementNode.FirstChild;
+            //public static List<object> DeserializeListFromXML(XmlNode elementNode)
+            //{
+            //    XmlNode listNode = elementNode.FirstChild;
 
-                Type innerType = Type.GetType(listNode.Attributes["innerType"].Value);
+            //    Type innerType = Type.GetType(listNode.Attributes["innerType"].Value);
 
-                List<object> res = new List<object>();
+            //    List<object> res = new List<object>();
 
-                foreach (XmlNode node in listNode.ChildNodes)
-                {
+            //    foreach (XmlNode node in listNode.ChildNodes)
+            //    {
                     
-                    if (Predicates.IsBasicType(innerType))
-                    {
-                        res.Add(DeserializeBasicTypeFromXML(node, innerType));
-                    }
-                    else if (innerType == typeof(DataTable))
-                    {
-                        res.Add(DeserializeDataTableFromXML(node));
-                    }
-                    else if (Predicates.IsList(innerType))
-                    {
-                        res.Add(DeserializeListFromXML(node));
-                    }
-                    else if (Predicates.IsDictionary(innerType))
-                    {
-                        res.Add(DeserializeDictionaryFromXML(node));
-                    }
-                    else
-                    {
-                        Debug.LogError("Type: " + innerType + " NOT supported on XML deserialization. Please use Binary files instead");
-                    }
+            //        if (Predicates.IsBasicType(innerType))
+            //        {
+            //            res.Add(DeserializeBasicTypeFromXML(node, innerType));
+            //        }
+            //        else if (innerType == typeof(DataTable))
+            //        {
+            //            res.Add(DeserializeDataTableFromXML(node));
+            //        }
+            //        else if (Predicates.IsList(innerType))
+            //        {
+            //            res.Add(DeserializeListFromXML(node));
+            //        }
+            //        else if (Predicates.IsDictionary(innerType))
+            //        {
+            //            res.Add(DeserializeDictionaryFromXML(node));
+            //        }
+            //        else
+            //        {
+            //            Debug.LogError("Type: " + innerType + " NOT supported on XML deserialization. Please use Binary files instead");
+            //        }
 
-                }
-                return res;
-            }
+            //    }
+            //    return res;
+            //}
 
-            public static Dictionary<object, object> DeserializeDictionaryFromXML(XmlNode elementNode)
-            {
+            //public static Dictionary<object, object> DeserializeDictionaryFromXML(XmlNode elementNode)
+            //{
 
-                XmlNode dicNode = elementNode.FirstChild;
+            //    XmlNode dicNode = elementNode.FirstChild;
 
-                Type keyType = Type.GetType(dicNode.Attributes["keyType"].Value);
-                Type valueType = Type.GetType(dicNode.Attributes["valueType"].Value);
-
-
-                Dictionary<object, object> res = new Dictionary<object,object>();
-
-                foreach (XmlNode node in dicNode.ChildNodes)
-                {
-                    XmlNode keyNode = node.FirstChild;
-
-                    XmlNode valueNode = keyNode.NextSibling;
+            //    Type keyType = Type.GetType(dicNode.Attributes["keyType"].Value);
+            //    Type valueType = Type.GetType(dicNode.Attributes["valueType"].Value);
 
 
-                    #region key deserialization
+            //    Dictionary<object, object> res = new Dictionary<object,object>();
 
-                    object key = null;
+            //    foreach (XmlNode node in dicNode.ChildNodes)
+            //    {
+            //        XmlNode keyNode = node.FirstChild;
 
-                    if (Predicates.IsBasicType(keyType))
-                    {
-                        key = DeserializeBasicTypeFromXML(keyNode, keyType);
-                    }
-                    else if (keyType == typeof(DataTable))
-                    {
-                        key = DeserializeDataTableFromXML(keyNode);
-                    }
-                    else if (Predicates.IsList(keyType))
-                    {
-                        key = DeserializeListFromXML(keyNode);
-                    }
-                    else if (Predicates.IsDictionary(keyType))
-                    {
-                        key = DeserializeDictionaryFromXML(keyNode);
-                    }
-                    else
-                    {
-                        Debug.LogError("Type: " + keyType + " NOT supported on XML serialization. Please use Binary files instead");
-                    }
-
-                    #endregion
+            //        XmlNode valueNode = keyNode.NextSibling;
 
 
-                    #region key deserialization
+            //        #region key deserialization
 
-                    object value = null;
+            //        object key = null;
 
-                    if (Predicates.IsBasicType(valueType))
-                    {
-                        value = DeserializeBasicTypeFromXML(valueNode, valueType);
-                    }
-                    else if (valueType == typeof(DataTable))
-                    {
-                        value = DeserializeDataTableFromXML(valueNode);
-                    }
-                    else if (Predicates.IsList(valueType))
-                    {
-                        value = DeserializeListFromXML(valueNode);
-                    }
-                    else if (Predicates.IsDictionary(valueType))
-                    {
-                        value = DeserializeDictionaryFromXML(valueNode);
-                    }
-                    else
-                    {
-                        Debug.LogError("Type: " + valueType + " NOT supported on XML serialization. Please use Binary files instead");
-                    }
+            //        if (Predicates.IsBasicType(keyType))
+            //        {
+            //            key = DeserializeBasicTypeFromXML(keyNode, keyType);
+            //        }
+            //        else if (keyType == typeof(DataTable))
+            //        {
+            //            key = DeserializeDataTableFromXML(keyNode);
+            //        }
+            //        else if (Predicates.IsList(keyType))
+            //        {
+            //            key = DeserializeListFromXML(keyNode);
+            //        }
+            //        else if (Predicates.IsDictionary(keyType))
+            //        {
+            //            key = DeserializeDictionaryFromXML(keyNode);
+            //        }
+            //        else
+            //        {
+            //            Debug.LogError("Type: " + keyType + " NOT supported on XML serialization. Please use Binary files instead");
+            //        }
 
-                    #endregion
+            //        #endregion
 
-                    if(key != null && value !=  null)
-                        res.Add(key, value);
-                }
 
-                return res;
-            }
+            //        #region key deserialization
+
+            //        object value = null;
+
+            //        if (Predicates.IsBasicType(valueType))
+            //        {
+            //            value = DeserializeBasicTypeFromXML(valueNode, valueType);
+            //        }
+            //        else if (valueType == typeof(DataTable))
+            //        {
+            //            value = DeserializeDataTableFromXML(valueNode);
+            //        }
+            //        else if (Predicates.IsList(valueType))
+            //        {
+            //            value = DeserializeListFromXML(valueNode);
+            //        }
+            //        else if (Predicates.IsDictionary(valueType))
+            //        {
+            //            value = DeserializeDictionaryFromXML(valueNode);
+            //        }
+            //        else
+            //        {
+            //            Debug.LogError("Type: " + valueType + " NOT supported on XML serialization. Please use Binary files instead");
+            //        }
+
+            //        #endregion
+
+            //        if(key != null && value !=  null)
+            //            res.Add(key, value);
+            //    }
+
+            //    return res;
+            //}
 
             #endregion
         }
