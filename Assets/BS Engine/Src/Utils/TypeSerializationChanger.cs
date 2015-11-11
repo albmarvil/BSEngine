@@ -36,9 +36,9 @@ namespace BSEngine
                 DataTable res = new DataTable(info.Name, info.SerializationMode, info.LoadToBlackboard, false);
 
 
-                foreach (string key in info.Data.Keys)
+                foreach (string key in info.Keys)
                 {
-                    object obj = info.Data[key];
+                    object obj = info[key];
 
                     Type type = obj.GetType();
 
@@ -69,7 +69,8 @@ namespace BSEngine
                         Debug.LogError("Type: " + type + " NOT supported on serialization.");
                     }
 
-                    res.Data.Add(key, newObj);
+                    //res.Data.Add(key, newObj);
+                    res[key] = newObj;
 
                 }
 
@@ -87,9 +88,9 @@ namespace BSEngine
                 DataTable res = new DataTable(info.Name, info.SerializationMode, info.LoadToBlackboard, false);
 
 
-                foreach (string key in info.Data.Keys)
+                foreach (string key in info.Keys)
                 {
-                    object obj = info.Data[key];
+                    object obj = info[key];
 
                     Type type = obj.GetType();
 
@@ -120,7 +121,8 @@ namespace BSEngine
                         Debug.LogError("Type: " + type + " NOT supported on serialization.");
                     }
 
-                    res.Data.Add(key, newObj);
+                    //res.Data.Add(key, newObj);
+                    res[key] = newObj;
                 }
 
                 return res;

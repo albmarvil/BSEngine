@@ -11,55 +11,112 @@ public class TestScript : MonoBehaviour {
 	void Start () {
 
 
-        //Debug.Log(Application.persistentDataPath);
+        ////Debug.Log(Application.persistentDataPath);
 
-        ///Escribir algo en la pizarra
-        StorageMgr.Blackboard.Set<float>("health", 99.9f);
-        StorageMgr.Blackboard.Set<int>("experience", 120233131);
+        /////Escribir algo en la pizarra
+        //StorageMgr.Blackboard.Set<float>("health", 99.9f);
+        //StorageMgr.Blackboard.Set<int>("experience", 120233131);
 
-        //muestro por pantalla lo que hay en la pizarra
-        //Debug.Log(StorageMgr.Blackboard.Get<float>("health"));
-
-
-        ///Escribo mi propia data table
-        DataTable data = new DataTable("dataTest", SerializationMode.BIN_XML, true);
+        ////muestro por pantalla lo que hay en la pizarra
+        ////Debug.Log(StorageMgr.Blackboard.Get<float>("health"));
 
 
-        data.Set<string>("dataTest1", "hola");
-        data.Set<string>("dataTest2", "mundo");
-        data.Set<double>("dataasdasdadeeee", 258895.33);
-        data.Set<long>("dataTest3", 1458);
-        data.Set<short>("dataTest4", 144);
-        data.Set<char>("dataTest5", 'c');
-        data.Set<byte>("dataTest6", 5);
-        data.Set<Vector2>("dataTest7", new Vector2(0.0f, 3.12526899955966f));
-        data.Set<Vector3>("dataTest8", new Vector3(0.0f, 3.0f, 3.2f));
-        data.Set<Vector4>("dataTest9", new Vector4(0.0f, 3.0f, 3.3f, 4.5f));
-        data.Set<Quaternion>("datasdasda", new Quaternion(1.0f, 5.0f, -0.025f, 0.3f));
-
-        DataTable dataTest2 = new DataTable("dataTest2", SerializationMode.XML, false);
-        dataTest2.Set<string>("hola", "mundo");
-        dataTest2.Set<Vector2>("jeeei", new Vector2(0.0f, 6.9f));
-
-        data.Set<DataTable>("aaaag", dataTest2);
+        /////Escribo mi propia data table
+        //DataTable data = new DataTable("dataTest", SerializationMode.BIN_XML, true);
 
 
+        //data.Set<string>("dataTest1", "hola");
+        //data.Set<string>("dataTest2", "mundo");
+        //data.Set<double>("dataasdasdadeeee", 258895.33);
+        //data.Set<long>("dataTest3", 1458);
+        //data.Set<short>("dataTest4", 144);
+        //data.Set<char>("dataTest5", 'c');
+        //data.Set<byte>("dataTest6", 5);
+        //data.Set<Vector2>("dataTest7", new Vector2(0.0f, 3.12526899955966f));
+        //data.Set<Vector3>("dataTest8", new Vector3(0.0f, 3.0f, 3.2f));
+        //data.Set<Vector4>("dataTest9", new Vector4(0.0f, 3.0f, 3.3f, 4.5f));
+        //data.Set<Quaternion>("datasdasda", new Quaternion(1.0f, 5.0f, -0.025f, 0.3f));
 
-        //la serializo
-        StorageMgr.Singleton.SaveToFile(data, "dataTest");
+        //DataTable dataTest2 = new DataTable("dataTest2", SerializationMode.XML, false);
+        //dataTest2.Set<string>("hola", "mundo");
+        //dataTest2.Set<Vector2>("jeeei", new Vector2(0.0f, 6.9f));
+
+        //data.Set<DataTable>("aaaag", dataTest2);
 
 
 
-        ///cargo la tabla!!
-        DataTable datLoaded = StorageMgr.Singleton.LoadFile("dataTest.xml");
+        ////la serializo
+        //StorageMgr.Singleton.SaveToFile(data, "dataTest");
 
-        datLoaded.Set<string>("hola", "mundo");
 
-        Debug.Log(StorageMgr.Blackboard.Get<DataTable>("dataTest").Get<string>("hola"));
 
-        StorageMgr.Blackboard.Get<DataTable>("dataTest").Set<string>("hola", "que te cagas");
+        /////cargo la tabla!!
+        //DataTable datLoaded = StorageMgr.Singleton.LoadFile("dataTest.xml");
 
-        Debug.Log(datLoaded.Get<string>("hola"));
+        //datLoaded.Set<string>("hola", "mundo");
+
+        //Debug.Log(StorageMgr.Blackboard.Get<DataTable>("dataTest").Get<string>("hola"));
+
+        //StorageMgr.Blackboard.Get<DataTable>("dataTest").Set<string>("hola", "que te cagas");
+
+        //Debug.Log(datLoaded.Get<string>("hola"));
+
+        DataTable resultadosGlobales = new DataTable("Resultados", SerializationMode.XML, false);
+
+        int num = 2;
+
+        for (int exp = 1; exp <= 19; ++exp)
+        {
+            DataTable expDat = new DataTable("exp", SerializationMode.NONE, false);
+
+            DataTable resultados = new DataTable("Experimento" + exp, SerializationMode.NONE, false);
+
+            resultados["num elementos"] = num;
+
+            float t1 = Time.realtimeSinceStartup;
+
+            for (int i = 0; i < num; ++i)
+            {
+                expDat[i] = i;
+            }
+
+            float t2 = Time.realtimeSinceStartup;
+
+            float duracionExp = t2 - t1;
+            //Debug.Log("Experimento "+exp+" - Inserccion ("+num+" elementos):" + duracionExp);
+            resultados["Inserccion"] = duracionExp;
+
+            t1 = Time.realtimeSinceStartup;
+            object o = null;
+            for (int i = 0; i < num; ++i)
+            {
+                o = expDat[i];
+            }
+            t2 = Time.realtimeSinceStartup;
+
+            duracionExp = t2 - t1;
+            //Debug.Log("Experimento " + exp + " - Acceso (" + num + " elementos):" + duracionExp);
+            resultados["Acceso"] = duracionExp;
+
+            t1 = Time.realtimeSinceStartup;
+            foreach (object obj in expDat)
+            {
+                duracionExp++;
+            }
+            t2 = Time.realtimeSinceStartup;
+            duracionExp = t2 - t1;
+            //Debug.Log("Experimento " + exp + " - Recorrido (" + num + " elementos):" + duracionExp);
+            resultados["Recorrido"] = duracionExp;
+
+            num *= 2;
+
+            resultadosGlobales.Set<DataTable>(resultados.Name, resultados);
+
+        }
+
+        StorageMgr.Singleton.SaveToFile(resultadosGlobales, resultadosGlobales.Name);
+
+        
 
 	}
 	

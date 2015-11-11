@@ -398,7 +398,7 @@ namespace BSEngine
                 XmlNode dataNode = doc.CreateElement("Data");
                 tableNode.AppendChild(dataNode);
 
-                foreach (string key in info.Data.Keys)
+                foreach (string key in info.Keys)
                 {
                     XmlNode elementNode = doc.CreateElement("DataElement");
                     XmlAttribute nameAttrib = doc.CreateAttribute("name");
@@ -406,7 +406,7 @@ namespace BSEngine
 
                     elementNode.Attributes.Append(nameAttrib);
 
-                    Type type = info.Data[key].GetType();
+                    Type type = info[key].GetType();
                     XmlAttribute typeAttrib = doc.CreateAttribute("type");
 
                     typeAttrib.Value = type.AssemblyQualifiedName;
@@ -414,22 +414,22 @@ namespace BSEngine
                     elementNode.Attributes.Append(typeAttrib);
 
 
-                    if (Predicates.IsBasicType(info.Data[key]))
+                    if (Predicates.IsBasicType(info[key]))
                     {
-                        SerializeBasicTypeToXML(ref doc, ref elementNode, info.Data[key]);
+                        SerializeBasicTypeToXML(ref doc, ref elementNode, info[key]);
                     }
                     else if (type == typeof(DataTable))
                     {
-                        DataTable data = (DataTable)info.Data[key];
+                        DataTable data = (DataTable)info[key];
                         SerializeDataTableToXML(ref doc, ref elementNode, ref data);
                     }
-                    else if (Predicates.IsList(info.Data[key]))
+                    else if (Predicates.IsList(info[key]))
                     {
                         Debug.LogError("Lists NOT supported on serialization. Please use DataTables instead");
                         //SerializeListToXML(ref doc, ref elementNode, info.Data[key]);
 
                     }
-                    else if (Predicates.IsDictionary(info.Data[key]))
+                    else if (Predicates.IsDictionary(info[key]))
                     {
                         Debug.LogError("Dictionaries NOT supported on serialization. Please use DataTables instead");
                         //SerializeDictionaryToXML(ref doc, ref elementNode, info.Data[key]);

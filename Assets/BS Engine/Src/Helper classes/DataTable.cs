@@ -20,10 +20,12 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+using System.Collections;
+
 namespace BSEngine
 {
     [System.Serializable]
-    public class DataTable
+    public class DataTable : IEnumerable<object>
     {
 
         #region Private params
@@ -47,6 +49,11 @@ namespace BSEngine
         /// Flag used to load the DataTable into the Blackboard
         /// </summary>
         private bool m_loadToBlackboard;
+
+        /// <summary>
+        /// ID used to give unique names when creating a DataTable from a list
+        /// </summary>
+        private static int m_ID = 0;
 
         #endregion
 
@@ -99,9 +106,14 @@ namespace BSEngine
         /// <summary>
         /// Data of the internal structure
         /// </summary>
-        public Dictionary<string, object> Data
+        //public Dictionary<string, object> Data
+        //{
+        //    get { return m_data; }
+        //}
+
+        public IEnumerable<string> Keys
         {
-            get { return m_data; }
+            get { return m_data.Keys; }
         }
 
         /// <summary>
@@ -135,8 +147,85 @@ namespace BSEngine
             m_data[name] = value;
         }
 
-        #endregion
+        /// <summary>
+        /// [] operator. (ArrayLists)
+        /// 
+        /// DataTables can be used with indexes as Lists do.
+        /// 
+        /// ***WARNING*** this operator returns objects, you should be responsible of casting those objects to
+        /// their correct types
+        /// </summary>
+        /// <param name="i">index</param>
+        /// <returns>object at the given index (not casted)</returns>
+        public object this[int i]
+        {
+            get { return m_data[i.ToString()]; }
 
+            set { m_data[i.ToString()] = value; }
+        }
+
+        /// <summary>
+        /// [] operator. (Dictionaries)
+        /// 
+        /// DataTables can be used as Dictionaries.
+        /// 
+        /// ***WARNING*** this operator returns objects, you should be responsible of casting those objects to
+        /// their correct types
+        /// </summary>
+        /// <param name="key">key value to index</param>
+        /// <returns>Value corresponding to the given key</returns>
+        public object this[string key]
+        {
+            get { return m_data[key]; }
+            set { m_data[key] = value; }
+        }
+
+        /// <summary>
+        /// Implementation from IEnumerator interface.
+        /// 
+        /// DataTables will return object values contained in m_data
+        /// when used in a 'foreach' loop
+        /// </summary>
+
+        public IEnumerator<object> GetEnumerator()
+        {
+            foreach (string key in m_data.Keys)
+            {
+                yield return m_data[key];
+            }
+        }
+
+        /// <summary>
+        /// Implementation for IEnumerator interface
+        /// </summary>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+
+
+        /// <summary>
+        /// Static method.
+        /// Transforms a List to a DataTable. Recommended to use in serialization.
+        /// 
+        /// Lists cannot be serialized.
+        /// </summary>
+        /// <param name="list">List to transform</param>
+        /// <returns>DataTable with the list's data</returns>
+        public static DataTable ListAsDataTable(List<object> list)
+        {
+            DataTable data = new DataTable("ListAsDataTable" + (m_ID++).ToString(), SerializationMode.BIN, false);
+
+            for (int i = 0; i < list.Count; ++i)
+            {
+                data[i] = list[i];
+            }
+
+            return data;
+        }
+
+        #endregion
         
     }
 }
