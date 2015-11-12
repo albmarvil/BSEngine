@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BSEngine.BSEngineLoader">
+    <Position X="34" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQBAICAAAAAAAAIAAAAAAAAAACBAAAAgAAABAAAAEA=</HashCode>
+      <FileName>Assets\BS Engine\Src\BSEngineLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSEngine.DataTable" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="18.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EEQAAAAAAEAABBBACIAAAAQAAAACAAAkAAAEAABAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Helper classes\DataTable.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_mode" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="BSEngine.SceneInfo">
+    <Position X="26.25" Y="16.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAkAAAEAgCBQABAAAgQAAgAAAACAAAABAABAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Helper classes\SceneInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSEngine.GameMgr">
+    <Position X="34" Y="12" Width="2" />
+    <AssociationLine Name="m_nextState" Type="BSEngine.State" FixedFromPoint="true">
+      <Path>
+        <Point X="34.25" Y="16.507" />
+        <Point X="34.25" Y="17.75" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="CurrentState" Type="BSEngine.State" FixedFromPoint="true">
+      <Path>
+        <Point X="35.812" Y="16.507" />
+        <Point X="35.812" Y="17.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAUAAIAAAAEABAAIACACACAAAAAAAAEIAIACBBCCAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Managers\GameMgr.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_loader" />
+      <Field Name="m_nextState" />
+      <Property Name="CurrentState" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BSEngine.PoolMgr">
+    <Position X="19.5" Y="12.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAACACAAAAAAAADAGAEIAIICCBCAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Managers\PoolMgr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSEngine.SceneMgr">
+    <Position X="25.5" Y="12.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAICAICAAAAAAAAAEIAMACABACAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Managers\SceneMgr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSEngine.State">
+    <Position X="34" Y="17.75" Width="2" />
+    <AssociationLine Name="m_inputSet" Type="BSEngine.Input.InputSet">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.715" Y="0.088" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="m_sceneState" Type="BSEngine.SceneInfo">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="2.226" Y="0.103" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ACAgAAAACBDAgABAECAAAAQAAAAAIAAAGIADABgAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Managers\State.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_inputSet" />
+      <Field Name="m_sceneState" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BSEngine.StorageMgr">
+    <Position X="10.25" Y="12.25" Width="3.25" />
+    <AssociationLine Name="m_blackboard" Type="BSEngine.DataTable">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.169" Y="0.248" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAEAQAAiAAAAABAAACAAAAgAAEAAAAEIAIACChAQBAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Managers\StorageMgr.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_blackboard" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CacheObject">
+    <Position X="19.75" Y="17.25" Width="2" />
+    <AssociationLine Name="m_Prefab" Type="UnityEngine.GameObject">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-2.384" Y="16.251" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAgAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Helper classes\CacheObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_Prefab" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameState">
+    <Position X="31.5" Y="39.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIACAAAAAAAACAAAAAAAAAAIAAAEIABAAAAAAA=</HashCode>
+      <FileName>Assets\Neon Assets\Scripts\States\GameState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuState">
+    <Position X="36.75" Y="39.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIACAAAAAAAACAAAAAAAAAAIAAAEIABAAAAAAA=</HashCode>
+      <FileName>Assets\Neon Assets\Scripts\States\MenuState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSEngine.Input.InputEvent">
+    <Position X="44.5" Y="20.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAgAAAAAAEQAAAAIAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Input\InputEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSEngine.Input.InputMgr">
+    <Position X="40.75" Y="11.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAQAAAAAABAACAAAgAAAAAAAgEIAIACABAIAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Input\InputMgr.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_mouseState" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BSEngine.Input.InputSet">
+    <Position X="38.5" Y="16.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAgAAEAAABAAAAAAAEAgQAAgkAYEAAAACQAIAAAAQ=</HashCode>
+      <FileName>Assets\BS Engine\Src\Input\InputSet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_mouseCfg" />
+      <Field Name="m_mouseMoved" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BSEngine.Input.MouseCfg">
+    <Position X="38.5" Y="21.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAKAAAAAAQAACAAACAEAAAAAAAgAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Input\MouseCfg.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSEngine.Input.MouseState">
+    <Position X="44.5" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQQAAAAAAAAAAAAEAAgAABCAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Input\MouseState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSEngine.Math.Quaternion">
+    <Position X="53.25" Y="22.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhgAQABAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Math\Quaternion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSEngine.Math.Vector2">
+    <Position X="51.25" Y="20" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Math\Vector2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSEngine.Math.Vector3">
+    <Position X="53.25" Y="20" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAQAAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Math\Vector3.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSEngine.Math.Vector4">
+    <Position X="51.25" Y="22.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhgAQAAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Math\Vector4.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSEngine.Utils.Assert">
+    <Position X="54" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Utils\Assert.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSEngine.Utils.Predicates">
+    <Position X="54" Y="13.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAACAIEAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Utils\Predicates.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSEngine.Utils.TypeSerializationChanger">
+    <Position X="54" Y="11.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAQAAAAAAAAAEAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Utils\TypeSerializationChanger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSEngine.Utils.XMLSerializer">
+    <Position X="51.25" Y="11.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>BSAGghAAAgQAAAoCgAAAAEMABgIBAAQEAAAEAAgAIQA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Utils\XMLSerializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.GameObject" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Struct Name="BSEngine.SaveData">
+    <Position X="13.25" Y="20" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Managers\StorageMgr.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="BSEngine.SerializationMode">
+    <Position X="13.25" Y="18.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAQAAACAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Managers\StorageMgr.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BSEngine.Input.BSKeyCode" Collapsed="true">
+    <Position X="42.25" Y="18.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>/Ac+QHKQAKIoREgYwoGFAAwHi+f/ID2HTfA/vv//ZVs=</HashCode>
+      <FileName>Assets\BS Engine\Src\Input\InputMgr.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="BSEngine.Input.onOrderReceived" Collapsed="true">
+    <Position X="42.25" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Input\InputMgr.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="BSEngine.Input.onMouseMoved" Collapsed="true">
+    <Position X="42.25" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Assets\BS Engine\Src\Input\InputMgr.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
