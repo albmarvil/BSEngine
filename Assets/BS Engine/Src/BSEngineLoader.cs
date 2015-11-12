@@ -25,6 +25,9 @@ namespace BSEngine
         /// </summary>
         public bool m_loadStatesScenes = true;
 
+
+        public bool m_SaveDebugBlackboard = false;
+
         
         #endregion
 

@@ -181,6 +181,14 @@ namespace BSEngine
         }
 
         /// <summary>
+        /// Clears all the data within the table
+        /// </summary>
+        public void Clear()
+        {
+            m_data.Clear();
+        }
+
+        /// <summary>
         /// Implementation from IEnumerator interface.
         /// 
         /// DataTables will return object values contained in m_data

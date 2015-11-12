@@ -30,11 +30,11 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Xml;
 using System;
+using System.Threading;
 
 using BSEngine.Utils;
 
@@ -50,6 +50,16 @@ namespace BSEngine
         XML,
         BIN,
         BIN_XML
+    }
+
+    /// <summary>
+    /// Struct used to hold the data before starting a new thread to serialize it.
+    /// </summary>
+    public struct SaveData
+    {
+        public DataTable m_data;
+
+        public string m_fullPath;
     }
 
     public class StorageMgr
@@ -110,7 +120,7 @@ namespace BSEngine
         private bool open()
         {
             m_blackboard = null;
-            m_blackboard = new DataTable("Blackboard", SerializationMode.BIN_XML, false);
+            m_blackboard = new DataTable("Blackboard", SerializationMode.XML, false);
             return true;
         }
 
@@ -119,7 +129,7 @@ namespace BSEngine
         /// </summary>
         private void close()
         {
-            SaveToFile(m_blackboard, "Blackboard");
+            ClearBlackboard();
             m_blackboard = null;
         }
 
@@ -144,7 +154,146 @@ namespace BSEngine
             get { return m_blackboard; }
         }
 
-        
+        /// <summary>
+        /// Method used to clear the balckboard.
+        /// 
+        /// It will serialize all the DataTables within the blackboard,
+        /// that were previously loaded from a file into the blackboard.
+        /// 
+        /// If the Debug flag is activated, it also serialize the remaining data in a
+        /// "Blackboard" file.
+        /// </summary>
+        public static void ClearBlackboard()
+        {
+#if !UNITY_WEBPLAYER
+            foreach (object data in m_blackboard)
+            {
+                if (data.GetType() == typeof(DataTable))
+                {
+                    DataTable dataTable = (DataTable)data;
+                    if (dataTable.LoadToBlackboard)
+                    {
+                        StorageMgr.Singleton.SaveToFileAsync(dataTable, dataTable.Name);
+                    }
+                }
+            }
+
+            if (GameMgr.Singleton.Loader.m_SaveDebugBlackboard)
+            {
+                StorageMgr.Singleton.SaveToFileAsync(m_blackboard, "Blackboard");
+            }
+#endif
+
+            m_blackboard.Clear();
+        }
+
+#if !UNITY_WEBPLAYER
+
+        #region Save Methods
+        /// <summary>
+        /// Method used to save a DataTable to a file.
+        /// 
+        /// Using the Application.persistentDataPath
+        /// </summary>
+        /// <param name="info">DataTable to save</param>
+        /// <param name="fileName">Name of the file to save</param>
+        public void SaveToFileAsync(DataTable info, string fileName)
+        {
+            string fullPath = Application.persistentDataPath + "/" + fileName;
+
+            DataTable toSerialize = TypeSerializationChanger.DataTableTypesToBSEngine(info);
+
+            Thread thread = null;
+
+            SaveData dataToSave = new SaveData();
+            dataToSave.m_data = toSerialize;
+
+            switch (info.SerializationMode)
+            {
+                case SerializationMode.XML:
+                    fullPath += ".xml";
+                    dataToSave.m_fullPath = fullPath;
+
+                    thread = new Thread(new ParameterizedThreadStart(SaveToXMLFile));
+                    thread.Start(dataToSave);
+                    break;
+                case SerializationMode.BIN:
+                    fullPath += ".bs";
+                    dataToSave.m_fullPath = fullPath;
+
+                    thread = new Thread(new ParameterizedThreadStart(SaveToBinaryFile));
+                    thread.Start(dataToSave);
+                    break;
+                case SerializationMode.BIN_XML:
+                    fullPath += ".xml";
+                    dataToSave.m_fullPath = fullPath;
+                    thread = new Thread(new ParameterizedThreadStart(SaveToXMLFile));
+                    thread.Start(dataToSave);
+
+                    fullPath = Application.persistentDataPath + "/" + fileName + ".bs";
+                    dataToSave.m_fullPath = fullPath;
+                    Thread thread2 = new Thread(new ParameterizedThreadStart(SaveToBinaryFile));
+                    thread2.Start(dataToSave);
+                    break;
+                case SerializationMode.NONE:
+                    break;
+            }
+
+        }
+
+        /// <summary>
+        /// Method used to sace DataTable to a file
+        /// 
+        /// It saves to the file in the folder given.
+        /// </summary>
+        /// <param name="info">DataTable to save</param>
+        /// <param name="folder">Folder of the fullPath to save the file</param>
+        /// <param name="fileName">Name of the file to save</param>
+        public void SaveToFullPathFileAsync(DataTable info, string folder, string fileName)
+        {
+            string fullPath = folder + "/" + fileName;
+
+            DataTable toSerialize = TypeSerializationChanger.DataTableTypesToBSEngine(info);
+
+            Thread thread = null;
+
+            SaveData dataToSave = new SaveData();
+            dataToSave.m_data = toSerialize;
+
+            switch (info.SerializationMode)
+            {
+                case SerializationMode.XML:
+                    fullPath += ".xml";
+                    dataToSave.m_fullPath = fullPath;
+
+                    thread = new Thread(new ParameterizedThreadStart(SaveToXMLFile));
+                    thread.Start(dataToSave);
+                    break;
+                case SerializationMode.BIN:
+                    fullPath += ".bs";
+                    dataToSave.m_fullPath = fullPath;
+
+                    thread = new Thread(new ParameterizedThreadStart(SaveToBinaryFile));
+                    thread.Start(dataToSave);
+                    break;
+                case SerializationMode.BIN_XML:
+                    fullPath += ".xml";
+                    dataToSave.m_fullPath = fullPath;
+                    thread = new Thread(new ParameterizedThreadStart(SaveToXMLFile));
+                    thread.Start(dataToSave);
+
+                    fullPath = folder + "/" + fileName + ".bs";
+                    dataToSave.m_fullPath = fullPath;
+                    Thread thread2 = new Thread(new ParameterizedThreadStart(SaveToBinaryFile));
+                    thread2.Start(dataToSave);
+                    break;
+                case SerializationMode.NONE:
+                    break;
+            }
+
+        }
+
+
         /// <summary>
         /// Method used to save a DataTable to a file. (Blocking operation)
         /// 
@@ -158,22 +307,29 @@ namespace BSEngine
 
             DataTable toSerialize = TypeSerializationChanger.DataTableTypesToBSEngine(info);
 
+            SaveData dataToSave = new SaveData();
+            dataToSave.m_data = toSerialize;
+
             switch (info.SerializationMode)
             {
                 case SerializationMode.XML:
                     fullPath += ".xml";
-                    SaveToXMLFile(toSerialize, fullPath);
+                    dataToSave.m_fullPath = fullPath;
+                    SaveToXMLFile(dataToSave);
                     break;
                 case SerializationMode.BIN:
                     fullPath += ".bs";
-                    SaveToBinaryFile(toSerialize, fullPath);
+                    dataToSave.m_fullPath = fullPath;
+                    SaveToBinaryFile(dataToSave);
                     break;
                 case SerializationMode.BIN_XML:
                     fullPath += ".xml";
-                    SaveToXMLFile(toSerialize, fullPath);
+                    dataToSave.m_fullPath = fullPath;
+                    SaveToXMLFile(dataToSave);
 
                     fullPath = Application.persistentDataPath + "/" + fileName + ".bs";
-                    SaveToBinaryFile(toSerialize, fullPath);
+                    dataToSave.m_fullPath = fullPath;
+                    SaveToBinaryFile(dataToSave);
                     break;
                 case SerializationMode.NONE:
                     break;
@@ -181,6 +337,52 @@ namespace BSEngine
 
         }
 
+        /// <summary>
+        /// Method used to sace DataTable to a file
+        /// 
+        /// It saves to the file in the folder given.
+        /// </summary>
+        /// <param name="info">DataTable to save</param>
+        /// <param name="folder">Folder of the fullPath to save the file</param>
+        /// <param name="fileName">Name of the file to save</param>
+        public void SaveToFullPathFile(DataTable info, string folder, string fileName)
+        {
+            string fullPath = folder + "/" + fileName;
+
+            DataTable toSerialize = TypeSerializationChanger.DataTableTypesToBSEngine(info);
+
+            SaveData dataToSave = new SaveData();
+            dataToSave.m_data = toSerialize;
+
+            switch (info.SerializationMode)
+            {
+                case SerializationMode.XML:
+                    fullPath += ".xml";
+                    dataToSave.m_fullPath = fullPath;
+                    SaveToXMLFile(dataToSave);
+                    break;
+                case SerializationMode.BIN:
+                    fullPath += ".bs";
+                    dataToSave.m_fullPath = fullPath;
+                    SaveToBinaryFile(dataToSave);
+                    break;
+                case SerializationMode.BIN_XML:
+                    fullPath += ".xml";
+                    dataToSave.m_fullPath = fullPath;
+                    SaveToXMLFile(dataToSave);
+
+                    fullPath = folder + "/" + fileName + ".bs";
+                    dataToSave.m_fullPath = fullPath;
+                    SaveToBinaryFile(dataToSave);
+                    break;
+                case SerializationMode.NONE:
+                    break;
+            }
+        }
+
+        #endregion
+
+        #region Load Methods
         /// <summary>
         /// Method used to load a DataTable from a file. (Blocking operation)
         /// 
@@ -217,12 +419,51 @@ namespace BSEngine
             return data;
         }
 
-       
 
+        /// <summary>
+        /// Method used to load a DataTable from a file. (Blocking operation)
+        /// 
+        /// Using the fullPath given
+        /// 
+        /// It will load an xml or an binary file depending on the file given
+        /// </summary>
+        /// <param name="fullPath">File name to load</param>
+        /// <returns>DataTable loaded from the given file</returns>
+        public DataTable LoadFullPathFile(string fullPath)
+        {
+
+            string[] split = fullPath.Split('.');
+
+            string extension = split[split.Length - 1];
+
+            DataTable data = null;
+
+            if (extension == "bs")
+            {
+                data = TypeSerializationChanger.DataTableTypesToUnity(LoadBinaryFile(fullPath));
+            }
+            else if (extension == "xml")
+            {
+                data = TypeSerializationChanger.DataTableTypesToUnity(LoadXMLFile(fullPath));
+            }
+
+            if (data.LoadToBlackboard)
+            {
+                Blackboard.Set<DataTable>(data.Name, data);
+            }
+
+            return data;
+        }
+        #endregion
+
+#endif
         #endregion
 
         #region Private methods
 
+#if !UNITY_WEBPLAYER
+
+        #region XML methods
         /// <summary>
         /// XML serialization method.
         /// 
@@ -230,10 +471,13 @@ namespace BSEngine
         /// 
         /// It uses XMLSerializer helper class.
         /// </summary>
-        /// <param name="info">DataTable to serialize</param>
-        /// <param name="fullPath">Fullpath of the file in the system</param>
-        private void SaveToXMLFile(DataTable info, string fullPath)
+        /// <param name="data">SaveData struct to save</param>
+        private void SaveToXMLFile(object data)
         {
+            SaveData d = (SaveData)data;
+            DataTable info = d.m_data;
+            string fullPath = d.m_fullPath;
+
             XmlDocument doc = new XmlDocument();
             XmlNode rootNode = doc.CreateElement("BSEngine_XML");
 
@@ -270,14 +514,20 @@ namespace BSEngine
 
             return data;
         }
+        #endregion
+
+        #region Binary methods
 
         /// <summary>
         /// Binary serialization method.
         /// </summary>
-        /// <param name="info">DataTable to serialize</param>
-        /// <param name="fullPath">File's fullpath in the system</param>
-        private void SaveToBinaryFile(DataTable info, string fullPath)
+        /// <param name="data">SaveData struct to save</param>
+        private void SaveToBinaryFile(object data)
         {
+            SaveData d = (SaveData)data;
+            DataTable info = d.m_data;
+            string fullPath = d.m_fullPath;
+
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(fullPath, FileMode.OpenOrCreate);
 
@@ -310,10 +560,10 @@ namespace BSEngine
             }
         }
 
-        
-
         #endregion
 
+#endif
 
+        #endregion
     }
 }
