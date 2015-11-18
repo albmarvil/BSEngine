@@ -3,14 +3,14 @@
   <Class Name="BSEngine.BSEngineLoader">
     <Position X="34" Y="4.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAQBAICAAAAAAAAIAAAAAAAAAACBAAAAgAAABAAAAEA=</HashCode>
+      <HashCode>AAQBAICAAAAQAAAIAAAAAAAAAACBAAAQgAAABAAAAEA=</HashCode>
       <FileName>Assets\BS Engine\Src\BSEngineLoader.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BSEngine.DataTable" BaseTypeListCollapsed="true">
     <Position X="9.25" Y="18.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>EEQAAAAAAEAABBBACIAAAAQAAAACAAAkAAAEAABAAAA=</HashCode>
+      <HashCode>EEQAAAAAAEAEBBBACIAAAAQAAAACAAAkAAAEAABAAAA=</HashCode>
       <FileName>Assets\BS Engine\Src\Helper classes\DataTable.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -92,7 +92,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAEAQAAiAAAAABAAACAAAAgAAEAAAAEIAIACChAQBAA=</HashCode>
+      <HashCode>AAEAQAAiAAAAARAAACAAAAgAAEAAAAEIAIACChAQBAA=</HashCode>
       <FileName>Assets\BS Engine\Src\Managers\StorageMgr.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -117,14 +117,14 @@
   <Class Name="GameState">
     <Position X="31.5" Y="39.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIACAAAAAAAACAAAAAAAAAAIAAAEIABAAAAAAA=</HashCode>
+      <HashCode>AAAAAgIACAAAAAAAACAAAAAAAAAAIAAAEIABAAAAAAA=</HashCode>
       <FileName>Assets\Neon Assets\Scripts\States\GameState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MenuState">
     <Position X="36.75" Y="39.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIACAAAAAAAACAAAAAAAAAAIAAAEIABAAAAAAA=</HashCode>
+      <HashCode>AAAAAgIACAAAAAAAACAAAAAAAAAAIAAAEIABAAAAAAA=</HashCode>
       <FileName>Assets\Neon Assets\Scripts\States\MenuState.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -152,14 +152,14 @@
       <FileName>Assets\BS Engine\Src\Input\InputSet.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="m_mouseCfg" />
       <Field Name="m_mouseMoved" />
+      <Field Name="m_mouseCfg" />
     </ShowAsAssociation>
   </Class>
   <Class Name="BSEngine.Input.MouseCfg">
     <Position X="38.5" Y="21.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAKAAAAAAQAACAAACAEAAAAAAAgAAAEAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAKAAAAAAQAACAAACAEAAAAAAAgAAEEAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\BS Engine\Src\Input\MouseCfg.cs</FileName>
     </TypeIdentifier>
   </Class>

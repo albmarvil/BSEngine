@@ -148,6 +148,16 @@ namespace BSEngine
         }
 
         /// <summary>
+        /// Contains key predicate for DataTables
+        /// </summary>
+        /// <param name="key">Key to find</param>
+        /// <returns>True if that key is in the DataTable</returns>
+        public bool ContainsKey(string key)
+        {
+            return m_data.ContainsKey(key);
+        }
+
+        /// <summary>
         /// [] operator. (ArrayLists)
         /// 
         /// DataTables can be used with indexes as Lists do.

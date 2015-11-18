@@ -41,23 +41,52 @@ public class $ClassName$ : State
     /// State constructor. Should call the base class
     /// </summary>
     public $ClassName$()
-        : base("$StateName$", createInputSet(), "$SceneName$")
+        : base("$StateName$", "$SceneName$")
     {
         Debug.Log("$StateName$ State created");
     }
     
     /// <summary>
-    /// Static method used to create the InputSet
+    /// method used to create the InputSet from the Config file loaded
     /// </summary>
-    /// <returns></returns>
-    private static InputSet createInputSet()
+    private InputSet createInputSet()
     {
-        ///TO DO: Input set creation
-        Dictionary<BSKeyCode, List<string>> keyBindings = new Dictionary<BSKeyCode, List<string>>();
-        
 
-        return new InputSet("$ClassName$InputSet", keyBindings);
+        if (StorageMgr.Blackboard.ContainsKey("CFG"))
+        {
+            DataTable cfg = StorageMgr.Blackboard.Get<DataTable>("CFG");
+
+            if (cfg.ContainsKey("$ClassName$InputSet"))
+            {
+                DataTable inputSetData = cfg.Get<DataTable>("$ClassName$InputSet");
+
+                return new InputSet(inputSetData);
+            }
+            else
+            {
+                InputSet res = createDefaultInputSet();
+                DataTable inputSetData = res.ToDataTable();
+                StorageMgr.Blackboard.Get<DataTable>("CFG").Set<DataTable>("$ClassName$InputSet", inputSetData);
+                return res;
+            }
+        }
+        else
+        {
+            return createDefaultInputSet();
+        }  
     }
+
+    /// <summary>
+    /// Method to create the default Input Set in case there is no CFG file loaded
+    /// </summary>
+    public InputSet createDefaultInputSet()
+    {
+        Dictionary<BSKeyCode, List<string>> keyBindings = new Dictionary<BSKeyCode, List<string>>();
+
+
+        return new InputSet("$ClassName$InputSet", keyBindings, null);
+    }
+    
     
     /// <summary>
     /// Called on Init step. Used for specific state code

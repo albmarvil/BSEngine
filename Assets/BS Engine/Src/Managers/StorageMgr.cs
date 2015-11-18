@@ -121,6 +121,7 @@ namespace BSEngine
         {
             m_blackboard = null;
             m_blackboard = new DataTable("Blackboard", SerializationMode.XML, false);
+            LoadCFGFile();
             return true;
         }
 
@@ -173,7 +174,14 @@ namespace BSEngine
                     DataTable dataTable = (DataTable)data;
                     if (dataTable.LoadToBlackboard)
                     {
-                        StorageMgr.Singleton.SaveToFileAsync(dataTable, dataTable.Name);
+                        if (dataTable.Name != "CFG")
+                        {
+                            StorageMgr.Singleton.SaveToFileAsync(dataTable, dataTable.Name);
+                        }
+                        else
+                        {
+                            StorageMgr.Singleton.SaveToFileAsync(dataTable, GameMgr.Singleton.Loader.m_CFGFileName);
+                        }
                     }
                 }
             }
@@ -186,8 +194,8 @@ namespace BSEngine
 
             m_blackboard.Clear();
         }
-
-#if !UNITY_WEBPLAYER
+        
+#if !UNITY_WEBPLAYER 
 
         #region Save Methods
         /// <summary>
@@ -462,6 +470,33 @@ namespace BSEngine
         #region Private methods
 
 #if !UNITY_WEBPLAYER
+
+        /// <summary>
+        /// Method used in the BSEngineLoader script to load the
+        /// main configuration file.
+        /// 
+        /// In case that the configuration a file weren't in place, an alert will be raised
+        /// </summary>
+        private void LoadCFGFile()
+        {
+            string path = Application.persistentDataPath;
+
+            if (File.Exists(path + "/" + GameMgr.Singleton.Loader.m_CFGFileName + ".xml"))
+            {
+                LoadFile(GameMgr.Singleton.Loader.m_CFGFileName + ".xml");
+            }
+            else if (File.Exists(path + "/" + GameMgr.Singleton.Loader.m_CFGFileName + ".bs"))
+            {
+                LoadFile(GameMgr.Singleton.Loader.m_CFGFileName + ".bs");
+            }
+            else
+            {
+                Debug.LogWarning("BSEngine_CFG file not found, creating default CFG from  BSEngineLoader Script");
+                new DataTable("CFG", SerializationMode.XML, true, true);
+                GameMgr.Singleton.Loader.CreateDefaultCFGFile();
+            }
+        }
+
 
         #region XML methods
         /// <summary>

@@ -17,6 +17,7 @@
 
 
 using System.Collections.Generic;
+using System;
 
 namespace BSEngine
 {
@@ -57,7 +58,7 @@ namespace BSEngine
             #region Public methods
 
             /// <summary>
-            /// Temporary construction of the key bindings of the orders
+            /// Constructor of the key bindings of the orders
             /// </summary>
             public InputSet(string name, Dictionary<BSKeyCode, List<string>> keyBindings, MouseCfg mouseCfg)
             {
@@ -68,6 +69,48 @@ namespace BSEngine
                 m_mouseMoved = null;
 
                 m_mouseCfg = mouseCfg;
+            }
+
+            /// <summary>
+            /// Constructor from DataTable
+            /// </summary>
+            /// <param name="inputSetData">DataTable loaded from CFG file</param>
+            public InputSet(DataTable inputSetData)
+            {
+
+                m_key2order = new Dictionary<BSKeyCode, List<string>>();
+
+                DataTable keyBindings = inputSetData.Get<DataTable>("KeyBindings");
+
+                foreach (string key in keyBindings.Keys)
+                {
+                    BSKeyCode keyCode = (BSKeyCode)Enum.Parse(typeof(BSKeyCode), key);
+                    List<string> logicOrders = new List<string>();
+
+                    DataTable orders = keyBindings.Get<DataTable>(key);
+
+                    foreach (object obj in orders)
+                    {
+                        logicOrders.Add((string)obj);
+                    }
+
+                    m_key2order.Add(keyCode, logicOrders);
+                }
+
+                m_name = inputSetData.Name; ;
+
+                m_mouseMoved = null;
+
+                if (inputSetData.ContainsKey("MouseCfg"))
+                {
+                    DataTable mouseCfgData = inputSetData.Get<DataTable>("MouseCfg");
+                    m_mouseCfg = new MouseCfg(mouseCfgData);
+                }
+                else
+                {
+                    m_mouseCfg = null;
+                }
+                
             }
 
             /// <summary>
@@ -192,6 +235,44 @@ namespace BSEngine
             {
                 get { return m_mouseMoved; }
             }
+
+            /// <summary>
+            /// Translates all the class info into a DataTable
+            /// </summary>
+            public DataTable ToDataTable()
+            {
+                DataTable data = new DataTable(m_name, SerializationMode.NONE, false);
+
+                DataTable keyBindings = new DataTable("KeyBindings", SerializationMode.NONE, false);
+
+                foreach (BSKeyCode code in m_key2order.Keys)
+                {
+                    string sCode = code.ToString();
+
+                    DataTable logicOrders = new DataTable(sCode, SerializationMode.NONE, false);
+
+                    List<string> orders = m_key2order[code];
+
+                    for (int i = 0; i < orders.Count; ++i)
+                    {
+                        logicOrders[i] = orders[i];
+                    }
+
+                    keyBindings.Set<DataTable>(sCode, logicOrders);
+                }
+
+                data.Set<DataTable>(keyBindings.Name, keyBindings);
+
+                if (m_mouseCfg != null)
+                {
+                    DataTable MouseCfg = m_mouseCfg.ToDataTable();
+
+                    data.Set<DataTable>("MouseCfg", MouseCfg);
+                }
+
+                return data;
+            }
+
             #endregion
         }
     }

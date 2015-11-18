@@ -80,13 +80,13 @@ namespace BSEngine
         /// <returns>Should return true if everything went ok</returns>
         private bool open(BSEngineLoader loader)
         {
-            //TO DO
             m_stateStack = new Stack<State>();
             m_initializedStates = new Dictionary<string, State>();
             m_nextState = null;
             m_changeNextState = false;
             m_loader = loader;
 
+            StorageMgr.Init();
 
             m_initializedStates = loader.States;
 
@@ -98,7 +98,7 @@ namespace BSEngine
             InputMgr.Init();
             PoolMgr.Init();
             SceneMgr.Init();
-            StorageMgr.Init();
+            
 
             return true;
         }
@@ -109,7 +109,7 @@ namespace BSEngine
         /// </summary>
         private void close()
         {
-            StorageMgr.Release();
+            
             SceneMgr.Release();
             PoolMgr.Release();
             InputMgr.Release();
@@ -123,6 +123,8 @@ namespace BSEngine
             }
 
             m_initializedStates.Clear();
+
+            StorageMgr.Release();
 
             m_loader = null;
         }

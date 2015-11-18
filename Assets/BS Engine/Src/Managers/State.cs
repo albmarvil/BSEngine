@@ -56,7 +56,7 @@ namespace BSEngine
         /// <summary>
         /// InputSet used in this state
         /// </summary>
-        private InputSet m_inputSet;
+        protected InputSet m_inputSet;
 
         /// <summary>
         /// Default scene to load when the state is pushed into the stack
@@ -109,13 +109,12 @@ namespace BSEngine
         /// Constructor of the class
         /// </summary>
         /// <param name="name">name of the state</param>
-        /// <param name="set">InputSet used on this state</param>
         /// <param name="sceneName">Scene name of the state</param>
-        public State(string name, InputSet set, string sceneName)
+        public State(string name, string sceneName)
         {
             m_stateName = name;
             m_sceneState = new SceneInfo(sceneName);
-            m_inputSet = set;
+            m_inputSet = null;
             m_isActive = false;
         }
 

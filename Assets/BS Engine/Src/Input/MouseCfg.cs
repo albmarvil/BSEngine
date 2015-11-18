@@ -65,6 +65,18 @@ namespace BSEngine.Input
         }
 
         /// <summary>
+        /// Constructor from DataTable
+        /// </summary>
+        /// <param name="mouseCfgData">DataTable loaded from CFG file</param>
+        public MouseCfg(DataTable mouseCfgData)
+        {
+            m_invertedX = mouseCfgData.Get<bool>("invertedX") ? -1.0f : 1.0f;
+            m_invertedY = mouseCfgData.Get<bool>("invertedY") ? -1.0f : 1.0f;
+            m_sensivity = mouseCfgData.Get<float>("sensivity");
+            m_useUnityScreenPosition = mouseCfgData.Get<bool>("useUnityScreenPosition");
+        }
+
+        /// <summary>
         /// Flag to indicate if X-axis is inverted
         /// </summary>
         public bool InvertedXAxis
@@ -130,6 +142,21 @@ namespace BSEngine.Input
         public bool UseUnityScreenPosition
         {
             get { return m_useUnityScreenPosition; }
+        }
+
+        /// <summary>
+        /// Translates all the class info into a DataTable
+        /// </summary>
+        public DataTable ToDataTable()
+        {
+            DataTable data = new DataTable("MouseCfg", SerializationMode.NONE, false);
+
+            data.Set<bool>("invertedX", m_invertedX == -1.0f);
+            data.Set<bool>("invertedY", m_invertedY == -1.0f);
+            data.Set<float>("sensivity", m_sensivity);
+            data.Set<bool>("useUnityScreenPosition", m_useUnityScreenPosition);
+
+            return data;
         }
 
 

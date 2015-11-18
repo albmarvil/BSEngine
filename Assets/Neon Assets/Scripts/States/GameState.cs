@@ -20,18 +20,46 @@ public class GameState : State
     /// State constructor. Should call the base class
     /// </summary>
     public GameState()
-        : base("Game", createInputSet(), "Game_Scene")
+        : base("Game", "Game_Scene")
     {
         Debug.Log("Game State created");
     }
 
     /// <summary>
-    /// Static method used to create the InputSet
+    /// method used to create the InputSet from the Config file loaded
     /// </summary>
-    /// <returns></returns>
-    private static InputSet createInputSet()
+    private InputSet createInputSet()
     {
-        ///TO DO: Input set creation
+
+        if (StorageMgr.Blackboard.ContainsKey("CFG"))
+        {
+            DataTable cfg = StorageMgr.Blackboard.Get<DataTable>("CFG");
+
+            if (cfg.ContainsKey("GameStateInputSet"))
+            {
+                DataTable inputSetData = cfg.Get<DataTable>("GameStateInputSet");
+
+                return new InputSet(inputSetData);
+            }
+            else
+            {
+                InputSet res = createDefaultInputSet();
+                DataTable inputSetData = res.ToDataTable();
+                StorageMgr.Blackboard.Get<DataTable>("CFG").Set<DataTable>("GameStateInputSet", inputSetData);
+                return res;
+            }
+        }
+        else
+        {
+            return createDefaultInputSet();
+        }
+    }
+
+    /// <summary>
+    /// Method to create the default Input Set in case there is no CFG file loaded
+    /// </summary>
+    private InputSet createDefaultInputSet()
+    {
         Dictionary<BSKeyCode, List<string>> keyBindings = new Dictionary<BSKeyCode, List<string>>();
 
         List<string> orders = new List<string>();
@@ -74,6 +102,7 @@ public class GameState : State
     protected override bool open()
     {
         //Debug.Log("Game state open");
+        m_inputSet = createInputSet();
         return true;
     }
 

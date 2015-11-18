@@ -19,18 +19,46 @@ public class MenuState : State
     /// State constructor. Should call the base class
     /// </summary>
     public MenuState()
-        : base("Menu", createInputSet(), "Menu_Scene")
+        : base("Menu", "Menu_Scene")
     {
         Debug.Log("Menu State created");
     }
 
     /// <summary>
-    /// Static method used to create the InputSet
+    /// method used to create the InputSet from the Config file loaded
     /// </summary>
-    /// <returns></returns>
-    private static InputSet createInputSet()
+    private InputSet createInputSet()
     {
-        ///TO DO: Input set creation
+
+        if (StorageMgr.Blackboard.ContainsKey("CFG"))
+        {
+            DataTable cfg = StorageMgr.Blackboard.Get<DataTable>("CFG");
+
+            if (cfg.ContainsKey("MenuStateInputSet"))
+            {
+                DataTable inputSetData = cfg.Get<DataTable>("MenuStateInputSet");
+
+                return new InputSet(inputSetData);
+            }
+            else
+            {
+                InputSet res = createDefaultInputSet();
+                DataTable inputSetData = res.ToDataTable();
+                StorageMgr.Blackboard.Get<DataTable>("CFG").Set<DataTable>("MenuStateInputSet", inputSetData);
+                return res;
+            }
+        }
+        else
+        {
+            return createDefaultInputSet();
+        }  
+    }
+
+    /// <summary>
+    /// Method to create the default Input Set in case there is no CFG file loaded
+    /// </summary>
+    public InputSet createDefaultInputSet()
+    {
         Dictionary<BSKeyCode, List<string>> keyBindings = new Dictionary<BSKeyCode, List<string>>();
 
         List<string> orders = new List<string>();
@@ -51,6 +79,7 @@ public class MenuState : State
     protected override bool open()
     {
         Debug.Log("Menu state open");
+        m_inputSet = createInputSet();
         return true;
     }
 
