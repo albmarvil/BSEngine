@@ -222,7 +222,7 @@
   <Class Name="BSEngine.Utils.XMLSerializer">
     <Position X="51.25" Y="11.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>BSAGghAAAgQAAAoCgAAAAEMABgIBAAQEAAAEAAgAIQA=</HashCode>
+      <HashCode>BSAGghAAAgQAAAoCgAAAAEMBBgIBAAQEAAAECAgAIQA=</HashCode>
       <FileName>Assets\BS Engine\Src\Utils\XMLSerializer.cs</FileName>
     </TypeIdentifier>
   </Class>

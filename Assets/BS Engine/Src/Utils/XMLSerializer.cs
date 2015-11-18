@@ -372,7 +372,8 @@ namespace BSEngine
                 //Name node
                 XmlNode nameNode = doc.CreateElement("name");
                 XmlAttribute typeAttribute = doc.CreateAttribute("type");
-                typeAttribute.Value = typeof(string).AssemblyQualifiedName;
+                //typeAttribute.Value = typeof(string).AssemblyQualifiedName;
+                typeAttribute.Value = TypeToString(typeof(string));
                 nameNode.Attributes.Append(typeAttribute);
                 nameNode.InnerText = info.Name;
                 tableNode.AppendChild(nameNode);
@@ -381,7 +382,8 @@ namespace BSEngine
                 XmlNode modeNode = doc.CreateElement("SerializationMode");
                 //reusing "typeAttribute" variable
                 typeAttribute = doc.CreateAttribute("type");
-                typeAttribute.Value = typeof(SerializationMode).AssemblyQualifiedName;
+                //typeAttribute.Value = typeof(SerializationMode).AssemblyQualifiedName;
+                typeAttribute.Value = TypeToString(typeof(SerializationMode));
                 modeNode.Attributes.Append(typeAttribute);
                 modeNode.InnerText = info.SerializationMode.ToString();
                 tableNode.AppendChild(modeNode);
@@ -389,7 +391,8 @@ namespace BSEngine
                 //loadToBlackboard node
                 XmlNode loadNode = doc.CreateElement("LoadToBlackboard");
                 typeAttribute = doc.CreateAttribute("type");
-                typeAttribute.Value = typeof(bool).AssemblyQualifiedName;
+                //typeAttribute.Value = typeof(bool).AssemblyQualifiedName;
+                typeAttribute.Value = TypeToString(typeof(bool));
                 loadNode.Attributes.Append(typeAttribute);
                 loadNode.InnerText = info.LoadToBlackboard.ToString();
                 tableNode.AppendChild(loadNode);
@@ -409,7 +412,7 @@ namespace BSEngine
                     Type type = info[key].GetType();
                     XmlAttribute typeAttrib = doc.CreateAttribute("type");
 
-                    typeAttrib.Value = type.AssemblyQualifiedName;
+                    typeAttrib.Value = TypeToString(type);
 
                     elementNode.Attributes.Append(typeAttrib);
 
@@ -884,7 +887,7 @@ namespace BSEngine
                 foreach (XmlNode node in dataNode.ChildNodes)
                 {
                     string dataName = node.Attributes["name"].Value;
-                    Type type = Type.GetType(node.Attributes["type"].Value);
+                    Type type = Type.GetType(StringTypeToAssemblyQualifiedName(node.Attributes["type"].Value));
 
                     //object data = null;
 
@@ -1032,6 +1035,153 @@ namespace BSEngine
             //}
 
             #endregion
+
+            /// <summary>
+            /// Translation from type to string before serialization on XMl file
+            /// </summary>
+            /// <param name="type">Type</param>
+            /// <returns>String corresponding to the given type</returns>
+            public static string TypeToString(Type type)
+            {
+                if (type == typeof(string))
+                {
+                    return "string";
+                }
+                else if (type == typeof(int))
+                {
+                    return "int";
+                }
+                else if (type == typeof(float))
+                {
+                    return "float";
+                }
+                else if (type == typeof(double))
+                {
+                    return "double";
+                }
+                else if (type == typeof(long))
+                {
+                    return "long";
+                }
+                else if (type == typeof(short))
+                {
+                    return "short";
+                }
+                else if (type == typeof(char))
+                {
+                    return "char";
+                }
+                else if (type == typeof(byte))
+                {
+                    return "byte";
+                }
+                else if (type == typeof(bool))
+                {
+                    return "bool";
+                }
+                else if (type == typeof(BSEngine.Math.Vector2))
+                {
+                    return "Vector2";
+                }
+                else if (type == typeof(BSEngine.Math.Vector3))
+                {
+                    return "Vector3";
+                }
+                else if (type == typeof(BSEngine.Math.Vector4))
+                {
+                    return "Vector3";
+                }
+                else if (type == typeof(BSEngine.Math.Quaternion))
+                {
+                    return "Quaternion";
+                }
+                else if (type == typeof(DataTable))
+                {
+                    return "DataTable";
+                }
+                else if (type == typeof(SerializationMode))
+                {
+                    return "SerializationMode";
+                }
+                else
+                {
+                    Debug.LogError("TypeToString - Type: " + type + " NOT supported on XML serialization. Please use Binary files instead");
+                    return "-";
+                }
+            }
+
+            /// <summary>
+            /// Trasnlation from the string linked to type used on serialization
+            /// to it's Assembly Qualiied Name
+            /// </summary>
+            public static string StringTypeToAssemblyQualifiedName(string type)
+            {
+                if (type == "string")
+                {
+                    return typeof(string).AssemblyQualifiedName;
+                }
+                else if (type == "int")
+                {
+                    return typeof(int).AssemblyQualifiedName;
+                }
+                else if (type == "float")
+                {
+                    return typeof(float).AssemblyQualifiedName;
+                }
+                else if (type == "double")
+                {
+                    return typeof(double).AssemblyQualifiedName;
+                }
+                else if (type == "long")
+                {
+                    return typeof(long).AssemblyQualifiedName;
+                }
+                else if (type == "short")
+                {
+                    return typeof(short).AssemblyQualifiedName;
+                }
+                else if (type == "char")
+                {
+                    return typeof(char).AssemblyQualifiedName;
+                }
+                else if (type == "byte")
+                {
+                    return typeof(byte).AssemblyQualifiedName;
+                }
+                else if (type == "bool")
+                {
+                    return typeof(bool).AssemblyQualifiedName;
+                }
+                else if (type == "Vector2")
+                {
+                    return typeof(BSEngine.Math.Vector2).AssemblyQualifiedName;
+                }
+                else if (type == "Vector3")
+                {
+                    return typeof(BSEngine.Math.Vector3).AssemblyQualifiedName;
+                }
+                else if (type == "Vector4")
+                {
+                    return typeof(BSEngine.Math.Vector4).AssemblyQualifiedName;
+                }
+                else if (type == "Quaternion")
+                {
+                    return typeof(BSEngine.Math.Quaternion).AssemblyQualifiedName;
+                }
+                else if (type == "DataTable")
+                {
+                    return typeof(DataTable).AssemblyQualifiedName;
+                }
+                else if (type == "SerializationMode")
+                {
+                    return typeof(SerializationMode).AssemblyQualifiedName;
+                }
+                else
+                {
+                    Debug.LogError("StringTypeToAssemblyQualifiedName - Type: " + type + " NOT supported on XML serialization. Please use Binary files instead");
+                    return "-";
+                }
+            }
         }
     }
 }
