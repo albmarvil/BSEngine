@@ -72,6 +72,7 @@ namespace BSEngine
             get { return m_initializedStates; }
         }
 
+#if !UNITY_WEBPLAYER
         /// <summary>
         /// Method used to create a default CFG file when this file doesn't exist.
         /// 
@@ -89,6 +90,7 @@ namespace BSEngine
             ///StorageMgr.Blackboard.Get<DataTable>("CFG").Set<int>("Resolution_height", 1080);
             ///StorageMgr.Blackboard.Get<DataTable>("CFG").Set<int>("Resolution_width", 1920);
         }
+#endif
 
         #endregion
 

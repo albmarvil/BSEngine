@@ -121,7 +121,9 @@ namespace BSEngine
         {
             m_blackboard = null;
             m_blackboard = new DataTable("Blackboard", SerializationMode.XML, false);
+#if !UNITY_WEBPLAYER
             LoadCFGFile();
+#endif
             return true;
         }
 
