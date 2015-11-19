@@ -42,8 +42,8 @@
     /// </summary>
     private void Awake()
     {
-        if (m_Instance == null)
-            m_Instance = this;
+        if (m_instance == null)
+            m_instance = this;
         else
         {
             Debug.LogError("Someone is trying to create various $ClassName$ [" + name + "]");
@@ -56,8 +56,8 @@
     /// </summary>
     private void OnDestroy()
     {
-        if (m_Instance == this)
-            m_Instance = null;
+        if (m_instance == this)
+            m_instance = null;
     }
 
     #endregion
