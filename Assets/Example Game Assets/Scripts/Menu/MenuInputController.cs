@@ -20,14 +20,6 @@ using BSEngine.Input;
 public class MenuInputController : MonoBehaviour {
 
 
-    #region Public params
-
-    #endregion
-
-    #region Private params
-
-    #endregion
-
     #region Public methods
 
     /// <summary>
@@ -57,9 +49,6 @@ public class MenuInputController : MonoBehaviour {
 
     #endregion
 
-    #region Private methods
-
-    #endregion
 
     #region Monobehavior calls
 

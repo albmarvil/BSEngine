@@ -65,10 +65,13 @@ public class NeonThrowTest : MonoBehaviour {
     {
         m_controller = gameObject.GetComponent<NeonMovementController>();
 
-        InputMgr.Singleton.RegisterOrderListener("Game", "MOVE_UP", onMoveReceived);
-        InputMgr.Singleton.RegisterOrderListener("Game", "MOVE_DOWN", onMoveReceived);
-        InputMgr.Singleton.RegisterOrderListener("Game", "MOVE_LEFT", onMoveReceived);
-        InputMgr.Singleton.RegisterOrderListener("Game", "MOVE_RIGHT", onMoveReceived);
+        if (InputMgr.Singleton != null)
+        {
+            InputMgr.Singleton.RegisterOrderListener("Game", "MOVE_UP", onMoveReceived);
+            InputMgr.Singleton.RegisterOrderListener("Game", "MOVE_DOWN", onMoveReceived);
+            InputMgr.Singleton.RegisterOrderListener("Game", "MOVE_LEFT", onMoveReceived);
+            InputMgr.Singleton.RegisterOrderListener("Game", "MOVE_RIGHT", onMoveReceived);
+        }
 
         //InputMgr.Singleton.RegisterMouseListener("Game", onMouseMoved);
 
@@ -77,10 +80,13 @@ public class NeonThrowTest : MonoBehaviour {
 
     private void OnDisable()
     {
-        InputMgr.Singleton.UnregisterOrderListener("Game", "MOVE_UP", onMoveReceived);
-        InputMgr.Singleton.UnregisterOrderListener("Game", "MOVE_DOWN", onMoveReceived);
-        InputMgr.Singleton.UnregisterOrderListener("Game", "MOVE_LEFT", onMoveReceived);
-        InputMgr.Singleton.UnregisterOrderListener("Game", "MOVE_RIGHT", onMoveReceived);
+        if (InputMgr.Singleton != null)
+        {
+            InputMgr.Singleton.UnregisterOrderListener("Game", "MOVE_UP", onMoveReceived);
+            InputMgr.Singleton.UnregisterOrderListener("Game", "MOVE_DOWN", onMoveReceived);
+            InputMgr.Singleton.UnregisterOrderListener("Game", "MOVE_LEFT", onMoveReceived);
+            InputMgr.Singleton.UnregisterOrderListener("Game", "MOVE_RIGHT", onMoveReceived);
+        }
 
         //InputMgr.Singleton.UnregisterMouseListener("Game", onMouseMoved);
     }
