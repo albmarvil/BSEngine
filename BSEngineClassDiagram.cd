@@ -118,14 +118,14 @@
     <Position X="31.5" Y="39.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAgIACAAAAAAAACAAAAAAAAAAIAAAEIABAAAAAAA=</HashCode>
-      <FileName>Assets\Neon Assets\Scripts\States\GameState.cs</FileName>
+      <FileName>Assets\Example Game Assets\Scripts\States\GameState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MenuState">
     <Position X="36.75" Y="39.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAgIACAAAAAAAACAAAAAAAAAAIAAAEIABAAAAAAA=</HashCode>
-      <FileName>Assets\Neon Assets\Scripts\States\MenuState.cs</FileName>
+      <FileName>Assets\Example Game Assets\Scripts\States\MenuState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BSEngine.Input.InputEvent">
@@ -171,56 +171,56 @@
     </TypeIdentifier>
   </Class>
   <Class Name="BSEngine.Math.Quaternion">
-    <Position X="53.25" Y="22.75" Width="1.75" />
+    <Position X="60.25" Y="22.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhgAQABAAA=</HashCode>
       <FileName>Assets\BS Engine\Src\Math\Quaternion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BSEngine.Math.Vector2">
-    <Position X="51.25" Y="20" Width="1.75" />
+    <Position X="58.25" Y="19.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAAA=</HashCode>
       <FileName>Assets\BS Engine\Src\Math\Vector2.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BSEngine.Math.Vector3">
-    <Position X="53.25" Y="20" Width="1.75" />
+    <Position X="60.25" Y="19.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAQAAAAA=</HashCode>
       <FileName>Assets\BS Engine\Src\Math\Vector3.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BSEngine.Math.Vector4">
-    <Position X="51.25" Y="22.75" Width="1.75" />
+    <Position X="58.25" Y="22.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhgAQAAAAA=</HashCode>
       <FileName>Assets\BS Engine\Src\Math\Vector4.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BSEngine.Utils.Assert">
-    <Position X="54" Y="16" Width="1.5" />
+    <Position X="61" Y="15.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\BS Engine\Src\Utils\Assert.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BSEngine.Utils.Predicates">
-    <Position X="54" Y="13.75" Width="2.25" />
+    <Position X="61" Y="13.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAQAAAAACAIEAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\BS Engine\Src\Utils\Predicates.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BSEngine.Utils.TypeSerializationChanger">
-    <Position X="54" Y="11.75" Width="2.25" />
+    <Position X="61" Y="11.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAQAAAAAAAAAEAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\BS Engine\Src\Utils\TypeSerializationChanger.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BSEngine.Utils.XMLSerializer">
-    <Position X="51.25" Y="11.75" Width="2.5" />
+    <Position X="58.25" Y="11.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>BSAGghAAAgQAAAoCgAAAAEMBBgIBAAQEAAAECAgAIQA=</HashCode>
       <FileName>Assets\BS Engine\Src\Utils\XMLSerializer.cs</FileName>
@@ -229,6 +229,13 @@
   <Class Name="UnityEngine.GameObject" Collapsed="true">
     <Position X="16.5" Y="0.5" Width="1.5" />
     <TypeIdentifier />
+  </Class>
+  <Class Name="BSEngine.Threading.ThreadedJob">
+    <Position X="47.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAGAAACAQAAAAAEAAAAAACAAAAAAAAAggAAI=</HashCode>
+      <FileName>Assets\BS Engine\Src\Threading\ThreadedJob.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Struct Name="BSEngine.SaveData">
     <Position X="13.25" Y="20" Width="1.5" />
