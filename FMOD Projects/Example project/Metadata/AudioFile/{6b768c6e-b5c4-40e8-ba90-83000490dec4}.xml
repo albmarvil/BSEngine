@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{6b768c6e-b5c4-40e8-ba90-83000490dec4}">
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>3.4286621315192698</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/East_Mid_High_re {8f7f7752-1cfe-46d0-92d2-8be09c1924b7}.ogg</value>
+        </property>
+        <relationship name="container">
+            <destination>{f6493238-c068-4507-af7a-824b26df96ae}</destination>
+        </relationship>
+    </object>
+</objects>

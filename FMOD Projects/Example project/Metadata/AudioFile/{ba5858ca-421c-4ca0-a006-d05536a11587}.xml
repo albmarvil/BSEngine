@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{ba5858ca-421c-4ca0-a006-d05536a11587}">
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>1.02623</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/UI2cancel {73103ed7-773b-47b3-93b2-8782f008f0f1}.ogg</value>
+        </property>
+        <relationship name="container">
+            <destination>{29f1df2a-aa46-4763-b720-9e73e24d0898}</destination>
+        </relationship>
+    </object>
+</objects>

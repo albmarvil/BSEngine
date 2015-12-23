@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="Workspace" id="{eca33bb7-c1b3-4fe2-9fef-b7789ec3bde5}">
+        <relationship name="projectSettings">
+            <destination>{bbe24bd8-09c1-4e21-92d4-d6597a8dbfb4}</destination>
+        </relationship>
+    </object>
+    <object class="ProjectSettings" id="{bbe24bd8-09c1-4e21-92d4-d6597a8dbfb4}"/>
+    <object class="AudioBinManager" id="{2b982884-e590-40e5-b5dc-61908ac23afb}"/>
+</objects>

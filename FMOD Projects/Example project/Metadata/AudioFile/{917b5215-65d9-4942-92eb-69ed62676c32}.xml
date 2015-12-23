@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{917b5215-65d9-4942-92eb-69ed62676c32}">
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>0.72247899999999998</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/DoorOpen4 {8d1f0841-97a2-43b0-a2d1-9cbdc6da7bfb}.ogg</value>
+        </property>
+        <relationship name="container">
+            <destination>{55118964-dcb0-424c-bc2f-94a3cdd6ed0a}</destination>
+        </relationship>
+    </object>
+</objects>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="Event" id="{43c41f87-701f-4c25-a9a1-c619ca106412}"/>
+    <object class="MasterTrack" id="{c9d7529e-b74d-4be4-955d-521a088479d5}"/>
+    <object class="MixerInput" id="{44eb7ec3-5309-4584-a3d3-cf4d8dc7f583}"/>
+    <object class="EventAutomatableProperties" id="{5baecdfc-e00a-4f74-828e-ef7d3f0229a7}"/>
+    <object class="MarkerTrack" id="{d346022f-f33a-4bde-b1ba-e06c97b4d83f}"/>
+    <object class="GroupTrack" id="{5264606d-f2d5-4292-88fe-ce8f526dbeed}"/>
+    <object class="GroupTrack" id="{7b6324ca-f6aa-4e47-9974-47b410f32a69}"/>
+    <object class="Timeline" id="{c09ccfa7-4bb6-45be-86fb-5dd0ef8db779}"/>
+    <object class="GameParameter" id="{b7450daa-aea2-40e5-9aec-40ae4936a328}"/>
+    <object class="EventMixerMaster" id="{86663d17-7b6a-4a84-8600-57306ade70fb}">
+        <relationship name="input">
+            <destination>{934f213e-f1a1-4c5e-9c35-54392800bf6a}</destination>
+            <destination>{d556481e-938e-4f38-8dab-06f7be43216e}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusEffectChain" id="{5a5fb423-91c4-47f2-bc77-e7cb501c0a81}"/>
+    <object class="MixerBusPanner" id="{eba72f1c-8d7f-4679-9e4f-45a66baa2810}"/>
+    <object class="ProgrammerSound" id="{499ced5a-fd1d-4bdf-8486-7a41a1150211}"/>
+    <object class="EventMixerGroup" id="{d556481e-938e-4f38-8dab-06f7be43216e}"/>
+    <object class="AutomationTrack" id="{a2e9a0cb-6e42-4b07-8362-284868118c5b}"/>
+    <object class="SingleSound" id="{e50bfe86-19a1-4bb9-8b24-b6fcc6a47229}"/>
+    <object class="EventMixerGroup" id="{934f213e-f1a1-4c5e-9c35-54392800bf6a}"/>
+    <object class="LoopRegion" id="{843e0827-55ef-4445-890a-67f6b480f5f6}"/>
+    <object class="SidechainModulator" id="{81769f05-7404-46f1-8403-1151049f77f1}"/>
+    <object class="MixerBusEffectChain" id="{280c9354-404e-495a-9473-08f897cd8443}"/>
+    <object class="MixerBusPanner" id="{fcd6eb00-8b2f-4004-9d26-32e8fc27b0ef}"/>
+    <object class="MixerBusFader" id="{dda6bbc3-2949-4e20-b45e-d4422b0d2b81}"/>
+    <object class="MixerBusEffectChain" id="{84cd0f51-2b01-4b94-ba40-3b5d187d95fd}"/>
+    <object class="MixerBusPanner" id="{2015c846-658b-4e3c-ac55-0b63586d8c3e}"/>
+    <object class="MixerBusEffectChain" id="{4e05ae72-a0a9-47d6-8d5e-a270af9e1e3a}"/>
+    <object class="MixerBusPanner" id="{25439dac-f5bd-4398-8997-232597eb625a}"/>
+    <object class="ParameterCondition" id="{4c84941f-9338-4039-8f02-acc5a617e3f7}"/>
+    <object class="PluginEffect" id="{932faed1-c72f-4bcc-b616-121f897b11fe}"/>
+    <object class="ThreeEQEffect" id="{5b93a9f6-5128-4296-bc12-3a9013066a32}"/>
+    <object class="MixerBusFader" id="{bb7231cc-053a-4201-af64-7278e94947d2}"/>
+    <object class="MixerBusFader" id="{5f4416ee-bd11-47fa-81df-afe55b0d5550}"/>
+    <object class="Sidechain" id="{ebf609a3-1683-4b21-9b12-d49b35315615}"/>
+    <object class="MixerBusFader" id="{61c7f89e-aa0e-4e74-9937-6dc7017f21e7}"/>
+    <object class="FloatPluginParameter" id="{db08173d-29a9-47a2-8155-2f78e336e754}"/>
+</objects>

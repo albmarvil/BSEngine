@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{606253a6-3a90-48bf-9f09-4a503cae568b}">
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>6</value>
+        </property>
+        <property name="length">
+            <value>62.734400000000001</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/NoonLoop {667e7f42-fba6-4102-8976-47821cfd09f8}.ogg</value>
+        </property>
+        <relationship name="container">
+            <destination>{f1a6234d-d2df-4fbd-ac2d-69a7e57c2d39}</destination>
+        </relationship>
+    </object>
+</objects>

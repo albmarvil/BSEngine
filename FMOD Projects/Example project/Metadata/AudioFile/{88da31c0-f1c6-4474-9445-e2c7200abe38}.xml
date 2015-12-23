@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{88da31c0-f1c6-4474-9445-e2c7200abe38}">
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>2.3999999999999999</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/bird_call14 {e9f4ae4d-bc00-44e9-9ef5-ff9fd255da5b}.ogg</value>
+        </property>
+        <relationship name="container">
+            <destination>{f756db9c-48e6-44ba-956d-613605c2276c}</destination>
+        </relationship>
+    </object>
+</objects>

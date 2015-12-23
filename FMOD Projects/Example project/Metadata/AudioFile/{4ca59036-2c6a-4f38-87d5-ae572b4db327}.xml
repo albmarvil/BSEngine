@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{4ca59036-2c6a-4f38-87d5-ae572b4db327}">
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>3.4286394557823101</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/East_PreRest_re {5907000c-c73f-47fd-ba7e-9c4c1510e433}.ogg</value>
+        </property>
+        <relationship name="container">
+            <destination>{f6493238-c068-4507-af7a-824b26df96ae}</destination>
+        </relationship>
+    </object>
+</objects>
