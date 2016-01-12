@@ -26,136 +26,30 @@
 [LOG] Thread::callback                         : * FMOD Studio load thread started
 [LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
 [LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {af9d027a-3a1f-49a8-a9ef-4cbe20673632}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {af9d027a-3a1f-49a8-a9ef-4cbe20673632}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {af9d027a-3a1f-49a8-a9ef-4cbe20673632}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {a9c267a4-8c88-4874-afbd-0e0ad461d6ef}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {a9c267a4-8c88-4874-afbd-0e0ad461d6ef}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {294635e8-4bb9-4d33-b984-4b85e0a7dbe1}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {a9c267a4-8c88-4874-afbd-0e0ad461d6ef}
 [LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {3e1d1653-8bd5-4dbc-865e-cba8e8ded970}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {3e1d1653-8bd5-4dbc-865e-cba8e8ded970}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {af9d027a-3a1f-49a8-a9ef-4cbe20673632}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {3e1d1653-8bd5-4dbc-865e-cba8e8ded970}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {dd124d8d-1ccd-4871-a160-5024e3e3f116}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {dd124d8d-1ccd-4871-a160-5024e3e3f116}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {da23c66c-e512-4a93-98dc-02d6f58e4c5a}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {dd124d8d-1ccd-4871-a160-5024e3e3f116}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {a9c267a4-8c88-4874-afbd-0e0ad461d6ef}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {a9c267a4-8c88-4874-afbd-0e0ad461d6ef}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {a9c267a4-8c88-4874-afbd-0e0ad461d6ef}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {a9c267a4-8c88-4874-afbd-0e0ad461d6ef}
 [LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
 [LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {7e33a2b3-db05-4b7a-ba1e-e862f2bfde36}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {ce356fc5-3954-4ee9-864e-20eaafa8dcd7}
 [LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {37ebea86-d649-4a7a-b7b5-25701bfce8e9}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {37ebea86-d649-4a7a-b7b5-25701bfce8e9}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {a9c267a4-8c88-4874-afbd-0e0ad461d6ef}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {a9c267a4-8c88-4874-afbd-0e0ad461d6ef}
 [LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {567dab1c-bdc2-4d47-9602-32adf0397c12}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {567dab1c-bdc2-4d47-9602-32adf0397c12}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {294635e8-4bb9-4d33-b984-4b85e0a7dbe1}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {294635e8-4bb9-4d33-b984-4b85e0a7dbe1}
 [LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {d9982c58-a056-4e6c-b8e3-883854b4bffb}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {0764d3d5-e260-4027-b1a9-4e6865b84e92}
 [LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {670390e5-527e-4f22-8654-b0326c9cc0c6}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {670390e5-527e-4f22-8654-b0326c9cc0c6}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {af9d027a-3a1f-49a8-a9ef-4cbe20673632}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {af9d027a-3a1f-49a8-a9ef-4cbe20673632}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {af9d027a-3a1f-49a8-a9ef-4cbe20673632}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {3e1d1653-8bd5-4dbc-865e-cba8e8ded970}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {3e1d1653-8bd5-4dbc-865e-cba8e8ded970}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {af9d027a-3a1f-49a8-a9ef-4cbe20673632}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {3e1d1653-8bd5-4dbc-865e-cba8e8ded970}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {dd124d8d-1ccd-4871-a160-5024e3e3f116}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {dd124d8d-1ccd-4871-a160-5024e3e3f116}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {da23c66c-e512-4a93-98dc-02d6f58e4c5a}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {dd124d8d-1ccd-4871-a160-5024e3e3f116}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {7e33a2b3-db05-4b7a-ba1e-e862f2bfde36}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {37ebea86-d649-4a7a-b7b5-25701bfce8e9}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {37ebea86-d649-4a7a-b7b5-25701bfce8e9}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {567dab1c-bdc2-4d47-9602-32adf0397c12}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {567dab1c-bdc2-4d47-9602-32adf0397c12}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {d9982c58-a056-4e6c-b8e3-883854b4bffb}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {670390e5-527e-4f22-8654-b0326c9cc0c6}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {670390e5-527e-4f22-8654-b0326c9cc0c6}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {af9d027a-3a1f-49a8-a9ef-4cbe20673632}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {af9d027a-3a1f-49a8-a9ef-4cbe20673632}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {af9d027a-3a1f-49a8-a9ef-4cbe20673632}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {3e1d1653-8bd5-4dbc-865e-cba8e8ded970}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {3e1d1653-8bd5-4dbc-865e-cba8e8ded970}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {af9d027a-3a1f-49a8-a9ef-4cbe20673632}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {3e1d1653-8bd5-4dbc-865e-cba8e8ded970}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {dd124d8d-1ccd-4871-a160-5024e3e3f116}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {dd124d8d-1ccd-4871-a160-5024e3e3f116}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {da23c66c-e512-4a93-98dc-02d6f58e4c5a}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {dd124d8d-1ccd-4871-a160-5024e3e3f116}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {7e33a2b3-db05-4b7a-ba1e-e862f2bfde36}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {37ebea86-d649-4a7a-b7b5-25701bfce8e9}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {37ebea86-d649-4a7a-b7b5-25701bfce8e9}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {567dab1c-bdc2-4d47-9602-32adf0397c12}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {567dab1c-bdc2-4d47-9602-32adf0397c12}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {d9982c58-a056-4e6c-b8e3-883854b4bffb}
-[LOG] Manager::readBank                        : fileversion = 68, compatVersion = 68 (oldest = 44, newest = 68)
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {670390e5-527e-4f22-8654-b0326c9cc0c6}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {670390e5-527e-4f22-8654-b0326c9cc0c6}
-[WRN] ObjectLookup::get                        : Lookup failed for BusWithSends: {524ae5a9-928c-4391-9635-34b41d4602af}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {a9c267a4-8c88-4874-afbd-0e0ad461d6ef}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {a9c267a4-8c88-4874-afbd-0e0ad461d6ef}
+[WRN] ObjectLookup::get                        : Lookup failed for BusWithInputs: {a9c267a4-8c88-4874-afbd-0e0ad461d6ef}
 [LOG] Thread::callback                         : * FMOD Studio load thread finished
 [LOG] Thread::close                            : FMOD Studio load thread thread destroyed
 [LOG] LiveUpdate::release                      : 
@@ -175,8 +69,5 @@
 [LOG] SystemI::close                           : Free emulated output.
 [LOG] SystemI::close                           : Free channel pool.
 [LOG] SystemI::close                           : Remove miscllaneous DSP stuff.
-[LOG] Global::decRef                           : Shut down streamer and FMOD_NONBLOCKING and FileSystem thread.
-[LOG] Global::decRef                           : Shut down file system.
 [LOG] SystemI::close                           : done.
 
-[LOG] System::create                           : Header version = 1.07.04. Current version = 1.07.04.

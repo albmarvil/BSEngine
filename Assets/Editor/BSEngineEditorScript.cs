@@ -28,8 +28,7 @@ namespace BSEngine
             GameObject BSEngineServers = GameObject.Find("BSEngineServers");
             if (BSEngineServers == null)
             {
-                BSEngineServers = new GameObject("BSEngineServers");
-                BSEngineServers.AddComponent<BSEngineLoader>();
+                BSEngineServers = PrefabUtility.InstantiatePrefab(Resources.Load("BSEngineServers")) as GameObject;
             }
 
 
@@ -50,8 +49,8 @@ namespace BSEngine
             GameObject BSEngineServers = GameObject.Find("BSEngineServers");
             if (BSEngineServers == null)
             {
-                BSEngineServers = new GameObject("BSEngineServers");
-                BSEngineLoader loader = BSEngineServers.AddComponent<BSEngineLoader>();
+                BSEngineServers = PrefabUtility.InstantiatePrefab(Resources.Load("BSEngineServers")) as GameObject;
+                BSEngineLoader loader = BSEngineServers.GetComponent<BSEngineLoader>();
                 loader.LoadStatesScenes = false;
             }
 

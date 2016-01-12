@@ -70,7 +70,7 @@ https://soundcloud.com/nasa</value>
             <destination>{eba72f1c-8d7f-4679-9e4f-45a66baa2810}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{af9d027a-3a1f-49a8-a9ef-4cbe20673632}</destination>
+            <destination>{294635e8-4bb9-4d33-b984-4b85e0a7dbe1}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{5baecdfc-e00a-4f74-828e-ef7d3f0229a7}">
@@ -142,14 +142,14 @@ https://soundcloud.com/nasa</value>
     </object>
     <object class="MixerBusPanner" id="{eba72f1c-8d7f-4679-9e4f-45a66baa2810}"/>
     <object class="ProgrammerSound" id="{499ced5a-fd1d-4bdf-8486-7a41a1150211}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0.28586400000000001</value>
         </property>
         <property name="length">
             <value>0.31775368245585678</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -187,14 +187,14 @@ https://soundcloud.com/nasa</value>
         </relationship>
     </object>
     <object class="SingleSound" id="{e50bfe86-19a1-4bb9-8b24-b6fcc6a47229}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0.99953297048732748</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>

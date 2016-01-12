@@ -54,7 +54,6 @@ Recordings by David at Track Time Audio.</value>
     </object>
     <object class="MasterTrack" id="{ab30ebf3-e56a-411e-a1d3-96b97b3bb5eb}">
         <relationship name="automationTracks">
-            <destination>{fd2891c9-eb24-4c19-9a80-27065c9d132c}</destination>
             <destination>{c72efcd0-49f9-4a88-8c7f-262ff5c97580}</destination>
         </relationship>
         <relationship name="mixerGroup">
@@ -69,7 +68,7 @@ Recordings by David at Track Time Audio.</value>
             <destination>{2bd3fe07-c705-4271-bca4-5b8118a34b92}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{da23c66c-e512-4a93-98dc-02d6f58e4c5a}</destination>
+            <destination>{a9c267a4-8c88-4874-afbd-0e0ad461d6ef}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{233560cd-9ab8-497d-8a7b-b81b5ee40a10}">
@@ -109,7 +108,6 @@ Recordings by David at Track Time Audio.</value>
             <destination>{2800e6bc-69c0-4efd-8e58-7e985892cf6f}</destination>
             <destination>{7259ef23-c45c-4743-85f9-efbefcbd2600}</destination>
             <destination>{c116f594-a4f3-4a9f-8be8-a7bf2503e63e}</destination>
-            <destination>{e3fe98c0-9f43-4288-b248-89d840b77714}</destination>
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{d01c45d3-78c8-4f31-b3a1-8d6606b29cd7}">
@@ -124,17 +122,6 @@ Recordings by David at Track Time Audio.</value>
         </relationship>
         <relationship name="mixer">
             <destination>{0d13036d-c221-49f6-a499-2c0ba4bc81c8}</destination>
-        </relationship>
-    </object>
-    <object class="AutomationTrack" id="{fd2891c9-eb24-4c19-9a80-27065c9d132c}">
-        <property name="nameOfPropertyBeingAutomated">
-            <value>level</value>
-        </property>
-        <relationship name="automationCurves">
-            <destination>{e3fe98c0-9f43-4288-b248-89d840b77714}</destination>
-        </relationship>
-        <relationship name="objectBeingAutomated">
-            <destination>{3c61316a-1372-46dd-bcd6-613ac20f3ed3}</destination>
         </relationship>
     </object>
     <object class="AutomationTrack" id="{c72efcd0-49f9-4a88-8c7f-262ff5c97580}">
@@ -292,12 +279,6 @@ Recordings by David at Track Time Audio.</value>
             <destination>{eaaf3d6c-5af8-47e4-8819-f1c8d62a9a9b}</destination>
         </relationship>
     </object>
-    <object class="AutomationCurve" id="{e3fe98c0-9f43-4288-b248-89d840b77714}">
-        <relationship name="automationPoints">
-            <destination>{568d38cd-6f74-4c35-8f99-03cceb2599cb}</destination>
-            <destination>{5d25beda-457f-4058-8b43-92912ae9e2ab}</destination>
-        </relationship>
-    </object>
     <object class="RandomizerModulator" id="{50ddae08-bf55-443f-835f-5423596a8d55}">
         <property name="nameOfPropertyBeingModulated">
             <value>pitch</value>
@@ -310,7 +291,6 @@ Recordings by David at Track Time Audio.</value>
         <relationship name="effects">
             <destination>{d6c948fd-73ab-4658-bf6d-dacfa0f14546}</destination>
             <destination>{3fa4aa84-cec5-41df-9776-fb672e594588}</destination>
-            <destination>{3c61316a-1372-46dd-bcd6-613ac20f3ed3}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{81aefcc3-980e-4fda-8450-0849a15ea98c}"/>
@@ -416,38 +396,11 @@ Recordings by David at Track Time Audio.</value>
             <value>5.57999992</value>
         </property>
     </object>
-    <object class="AutomationPoint" id="{568d38cd-6f74-4c35-8f99-03cceb2599cb}">
-        <property name="position">
-            <value>3</value>
-        </property>
-        <property name="value">
-            <value>-15.1759996</value>
-        </property>
-    </object>
-    <object class="AutomationPoint" id="{5d25beda-457f-4058-8b43-92912ae9e2ab}">
-        <property name="position">
-            <value>0</value>
-        </property>
-        <property name="value">
-            <value>-80</value>
-        </property>
-        <property name="curveShape">
-            <value>-0.132421002</value>
-        </property>
-    </object>
     <object class="MixerBusFader" id="{d6c948fd-73ab-4658-bf6d-dacfa0f14546}"/>
     <object class="SpatialiserEffect" id="{3fa4aa84-cec5-41df-9776-fb672e594588}">
         <property name="extentMode">
             <value>1</value>
         </property>
-    </object>
-    <object class="MixerSend" id="{3c61316a-1372-46dd-bcd6-613ac20f3ed3}">
-        <property name="inputFormat">
-            <value>1</value>
-        </property>
-        <relationship name="mixerReturn">
-            <destination>{524ae5a9-928c-4391-9635-34b41d4602af}</destination>
-        </relationship>
     </object>
     <object class="AutomationPoint" id="{40774bca-64e7-4b54-a5d7-d09dd198b418}">
         <property name="position">

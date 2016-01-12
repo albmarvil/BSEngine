@@ -98,7 +98,6 @@ namespace BSEngine
             InputMgr.Init();
             PoolMgr.Init();
             SceneMgr.Init();
-            
 
             return true;
         }
@@ -109,7 +108,6 @@ namespace BSEngine
         /// </summary>
         private void close()
         {
-            
             SceneMgr.Release();
             PoolMgr.Release();
             InputMgr.Release();

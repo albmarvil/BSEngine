@@ -60,7 +60,7 @@ Weapon sounds courtesy of Frank Bry at The Recordist.</value>
             <destination>{f2f57250-d64e-49f6-a300-16bff9658cf3}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{dd124d8d-1ccd-4871-a160-5024e3e3f116}</destination>
+            <destination>{a9c267a4-8c88-4874-afbd-0e0ad461d6ef}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{f91ec076-2dcf-408d-b9f6-b182f296d1db}">
@@ -143,14 +143,14 @@ Weapon sounds courtesy of Frank Bry at The Recordist.</value>
         </relationship>
     </object>
     <object class="LoopRegion" id="{07817edf-1446-4734-b864-5d967e48ffb1}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="position">
             <value>0</value>
         </property>
         <property name="length">
             <value>0.078034000000000006</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <relationship name="timeline">
             <destination>{fd348e80-4a9b-4d16-980b-261d33724ab7}</destination>
@@ -163,7 +163,6 @@ Weapon sounds courtesy of Frank Bry at The Recordist.</value>
         <relationship name="effects">
             <destination>{aaba4a35-b1d9-49a8-99a0-c630051bbdab}</destination>
             <destination>{ec753e97-768a-499f-9b28-339cfc99a411}</destination>
-            <destination>{06ed3317-7179-4e11-b1fc-8e061d396798}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{bff9bf59-023a-4ca4-8dff-44d7d1e9e3a0}"/>
@@ -243,16 +242,5 @@ Weapon sounds courtesy of Frank Bry at The Recordist.</value>
     <object class="MixerBusPanner" id="{eda7e555-d35d-48a8-8f10-91f44299067a}"/>
     <object class="MixerBusFader" id="{aaba4a35-b1d9-49a8-99a0-c630051bbdab}"/>
     <object class="SpatialiserEffect" id="{ec753e97-768a-499f-9b28-339cfc99a411}"/>
-    <object class="MixerSend" id="{06ed3317-7179-4e11-b1fc-8e061d396798}">
-        <property name="level">
-            <value>-35</value>
-        </property>
-        <property name="inputFormat">
-            <value>1</value>
-        </property>
-        <relationship name="mixerReturn">
-            <destination>{524ae5a9-928c-4391-9635-34b41d4602af}</destination>
-        </relationship>
-    </object>
     <object class="MixerBusFader" id="{8d9bed40-adf7-4bad-92fe-a3643f9a3d42}"/>
 </objects>

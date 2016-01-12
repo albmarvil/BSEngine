@@ -68,7 +68,7 @@ Recordings by David at Track Time Audio.</value>
             <destination>{73049af4-fa8e-47c6-aea8-41a22dc63366}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{3e1d1653-8bd5-4dbc-865e-cba8e8ded970}</destination>
+            <destination>{a9c267a4-8c88-4874-afbd-0e0ad461d6ef}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{26eaffa6-6da4-4ca8-a284-3d38805fe19b}">
@@ -220,7 +220,6 @@ Recordings by David at Track Time Audio.</value>
         <relationship name="effects">
             <destination>{c08fbf7c-bb54-49e7-8be0-4e257b8aceb6}</destination>
             <destination>{2fcb459a-d47a-479a-a38c-927b02c3f3ff}</destination>
-            <destination>{f450e8bb-9346-4a48-be0e-ec612c6dc63e}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{9a4ad4df-435d-4e24-a061-e5494f612dc6}"/>
@@ -380,14 +379,6 @@ Recordings by David at Track Time Audio.</value>
     <object class="MixerBusPanner" id="{81885872-ab2f-46c0-97fd-3143ba4dc6e0}"/>
     <object class="MixerBusFader" id="{c08fbf7c-bb54-49e7-8be0-4e257b8aceb6}"/>
     <object class="SpatialiserEffect" id="{2fcb459a-d47a-479a-a38c-927b02c3f3ff}"/>
-    <object class="MixerSend" id="{f450e8bb-9346-4a48-be0e-ec612c6dc63e}">
-        <property name="inputFormat">
-            <value>1</value>
-        </property>
-        <relationship name="mixerReturn">
-            <destination>{524ae5a9-928c-4391-9635-34b41d4602af}</destination>
-        </relationship>
-    </object>
     <object class="MixerBusFader" id="{0f9e09e8-f9d8-422b-99ad-0a48c6f75899}"/>
     <object class="MixerBusFader" id="{afd14d2a-9f6f-4867-85b3-9e8b40e26966}"/>
 </objects>

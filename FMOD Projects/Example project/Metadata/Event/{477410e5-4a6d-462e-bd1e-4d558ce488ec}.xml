@@ -18,7 +18,7 @@ Thunderstorm recordings by David at Track Time Audio.
 For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>1</value>
         </property>
         <relationship name="mixer">
             <destination>{cfd69cec-26ce-4d54-a0b7-04ee19c86a6b}</destination>
@@ -69,7 +69,7 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
             <destination>{22dea9c4-dfb1-43dc-b3ca-fd93fd198955}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{d9982c58-a056-4e6c-b8e3-883854b4bffb}</destination>
+            <destination>{0764d3d5-e260-4027-b1a9-4e6865b84e92}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{1a9c4d09-face-4748-9208-8aba9019c4a6}">
@@ -194,14 +194,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="PluginSound" id="{396186f9-1144-4700-948b-bdf2034beb71}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>5</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -236,14 +236,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{06f83599-f4ba-4f43-ad35-453638ade08c}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>7</value>
         </property>
         <property name="length">
             <value>3</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -285,14 +285,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SoundScatterer" id="{9e135e3d-f9f5-47ab-bce0-492b18242fca}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>2</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -334,14 +334,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="LoopRegion" id="{9331deee-7910-4f93-a3b7-676fbf89ca8d}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="position">
             <value>0</value>
         </property>
         <property name="length">
             <value>5</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <relationship name="timeline">
             <destination>{a751d120-f9bb-4e13-aa3e-80299c66d553}</destination>
@@ -384,7 +384,6 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         <relationship name="effects">
             <destination>{046b6c5b-6daa-4a2a-9afd-a0d603b0d18d}</destination>
             <destination>{21b2eb83-283d-4cdc-a5d8-858f5560660d}</destination>
-            <destination>{7e6bebeb-f23a-4d07-862f-cd953539ffde}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{74979798-4390-4720-853d-3c98ce5eec7e}"/>
@@ -424,14 +423,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </property>
     </object>
     <object class="MultiSound" id="{01c44a79-83ae-4cab-b702-c76b556981ee}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -572,14 +571,6 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
             <value>100</value>
         </property>
     </object>
-    <object class="MixerSend" id="{7e6bebeb-f23a-4d07-862f-cd953539ffde}">
-        <property name="inputFormat">
-            <value>2</value>
-        </property>
-        <relationship name="mixerReturn">
-            <destination>{524ae5a9-928c-4391-9635-34b41d4602af}</destination>
-        </relationship>
-    </object>
     <object class="FloatPluginParameter" id="{58c849b8-b9d6-44b1-89e7-eaeaa7d3e1b7}">
         <property name="name">
             <value>Wind</value>
@@ -692,14 +683,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
     <object class="MixerBusFader" id="{46d55450-a587-4aab-b4c6-f4b9d659bdac}"/>
     <object class="MixerBusFader" id="{29cfe858-2b42-40d9-b16a-edfdea026fdf}"/>
     <object class="SingleSound" id="{e1864c28-4443-49af-a6a5-7a7513647d77}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -709,14 +700,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{879c88cb-2a75-4f82-b196-51a39f698d63}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -726,14 +717,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{edfb2db8-1f08-4b08-ba37-1aa4915fcf35}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -743,14 +734,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{3e45622e-cbb7-4d44-b5e7-4f42729dcce5}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -760,14 +751,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{46a11ee4-cd7e-48ec-93b8-abcfb995028b}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -777,14 +768,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{9ca06834-ef78-4be9-b950-ff92f8541c32}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -794,14 +785,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{54867def-04ba-44b3-8edf-b88035cf6fcd}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -811,14 +802,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{c31a3f39-704a-42d2-96a9-cc71c6a4dd5a}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -828,14 +819,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{dd4eb17a-a63c-4e12-bc29-5eb647b3b137}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -845,14 +836,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{c0969677-724b-476b-be42-0af07591b204}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -862,14 +853,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{d08312f9-92d2-469e-91bc-9d1606cb4755}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -879,14 +870,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{ae16b2c8-b581-40e7-bc65-1804148670e0}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -896,14 +887,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{6ce6ab49-3d12-4de5-9152-4140720feb64}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -913,14 +904,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{5ab1cb7a-0dc2-4637-a2ec-1a0b2fb8cb69}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -930,14 +921,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{6da9fb77-2675-40da-972a-55a6683d6653}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -947,14 +938,14 @@ For more info on AudioGaming AudioWeather, please visit www.fmod.com/products/</
         </relationship>
     </object>
     <object class="SingleSound" id="{d9a4b204-2f94-4ecf-a75c-f7dd81f7aa05}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>

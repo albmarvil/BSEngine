@@ -60,7 +60,7 @@ Recordings by David at Track Time Audio.</value>
             <destination>{913bf796-cdbf-422b-95a3-09ffbc272dfe}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{670390e5-527e-4f22-8654-b0326c9cc0c6}</destination>
+            <destination>{a9c267a4-8c88-4874-afbd-0e0ad461d6ef}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{2e0beb85-dc56-4cc2-b6b3-fbb66bea9fe0}">
@@ -100,14 +100,14 @@ Recordings by David at Track Time Audio.</value>
     </object>
     <object class="MixerBusPanner" id="{913bf796-cdbf-422b-95a3-09ffbc272dfe}"/>
     <object class="SingleSound" id="{ba12f4d3-3c15-42ca-b2a9-af3a888f6060}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0.91754199999999997</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -133,7 +133,6 @@ Recordings by David at Track Time Audio.</value>
     <object class="MixerBusEffectChain" id="{ad18679f-d1de-4453-85cf-cfe4498abec6}">
         <relationship name="effects">
             <destination>{125fd0e0-12f8-440b-b559-3d453307bdd7}</destination>
-            <destination>{4a6c4970-7deb-4f39-a3ef-35a81653ebda}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{ef8f9954-cb0d-4cb8-beb5-75b66f26ef8b}"/>
@@ -145,13 +144,5 @@ Recordings by David at Track Time Audio.</value>
     </object>
     <object class="MixerBusPanner" id="{be46f009-6b0f-437f-92c7-a6a3669282f6}"/>
     <object class="MixerBusFader" id="{125fd0e0-12f8-440b-b559-3d453307bdd7}"/>
-    <object class="MixerSend" id="{4a6c4970-7deb-4f39-a3ef-35a81653ebda}">
-        <property name="inputFormat">
-            <value>1</value>
-        </property>
-        <relationship name="mixerReturn">
-            <destination>{524ae5a9-928c-4391-9635-34b41d4602af}</destination>
-        </relationship>
-    </object>
     <object class="MixerBusFader" id="{0b89d8d8-e82d-4dc3-871c-2e88a73b285c}"/>
 </objects>

@@ -79,7 +79,7 @@ www.yangseunghyuk.com</value>
             <destination>{7d65cc38-0d8c-43c7-b5a4-5ab0f4881947}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{7e33a2b3-db05-4b7a-ba1e-e862f2bfde36}</destination>
+            <destination>{ce356fc5-3954-4ee9-864e-20eaafa8dcd7}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{def2ec79-1d57-470a-83f6-180aba30cdba}">
@@ -158,8 +158,8 @@ www.yangseunghyuk.com</value>
             <destination>{41205119-b6c4-44b7-9f0c-1f3cfd821fce}</destination>
         </relationship>
         <relationship name="markers">
-            <destination>{38a5c12e-5b06-4147-b438-c9f399a99dc3}</destination>
             <destination>{49952568-8ba8-46ee-9d90-b466c502b030}</destination>
+            <destination>{38a5c12e-5b06-4147-b438-c9f399a99dc3}</destination>
         </relationship>
     </object>
     <object class="GameParameter" id="{20a22b40-454b-4333-98b6-eee0b54cc783}">
@@ -205,14 +205,14 @@ www.yangseunghyuk.com</value>
         </relationship>
     </object>
     <object class="MultiSound" id="{ae84f7f8-e0a1-4a32-9d55-7465c148e4db}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>56.8888888888889</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -252,14 +252,14 @@ www.yangseunghyuk.com</value>
         </relationship>
     </object>
     <object class="MultiSound" id="{1bbc3166-7fdf-4126-96c4-a43607c17ae0}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>56.8888888888889</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -299,14 +299,14 @@ www.yangseunghyuk.com</value>
         </relationship>
     </object>
     <object class="MultiSound" id="{94b4cd9e-c36e-4758-8220-4e94236a9961}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>56.8888888888889</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -345,14 +345,14 @@ www.yangseunghyuk.com</value>
         </relationship>
     </object>
     <object class="MultiSound" id="{41205119-b6c4-44b7-9f0c-1f3cfd821fce}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>56.8888888888889</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -395,6 +395,23 @@ www.yangseunghyuk.com</value>
             <destination>{7315e3ae-a090-4923-8d1d-e715e89336e0}</destination>
         </relationship>
     </object>
+    <object class="LoopRegion" id="{49952568-8ba8-46ee-9d90-b466c502b030}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
+        <property name="position">
+            <value>0</value>
+        </property>
+        <property name="length">
+            <value>56.888909722222202</value>
+        </property>
+        <relationship name="timeline">
+            <destination>{fd38a5b1-b7eb-49fd-b2e7-6e6ec1631cbe}</destination>
+        </relationship>
+        <relationship name="markerTrack">
+            <destination>{814050d8-b1d6-4a70-acb9-40a2acebec7e}</destination>
+        </relationship>
+    </object>
     <object class="TempoMarker" id="{38a5c12e-5b06-4147-b438-c9f399a99dc3}">
         <property name="position">
             <value>0</value>
@@ -407,23 +424,6 @@ www.yangseunghyuk.com</value>
         </relationship>
         <relationship name="markerTrack">
             <destination>{5472f697-7709-48bc-a831-88d98b6867b1}</destination>
-        </relationship>
-    </object>
-    <object class="LoopRegion" id="{49952568-8ba8-46ee-9d90-b466c502b030}">
-        <property name="position">
-            <value>0</value>
-        </property>
-        <property name="length">
-            <value>56.888909722222202</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
-        </property>
-        <relationship name="timeline">
-            <destination>{fd38a5b1-b7eb-49fd-b2e7-6e6ec1631cbe}</destination>
-        </relationship>
-        <relationship name="markerTrack">
-            <destination>{814050d8-b1d6-4a70-acb9-40a2acebec7e}</destination>
         </relationship>
     </object>
     <object class="AutomationCurve" id="{9671ce88-f791-4c52-a35e-95dc4427fe52}">

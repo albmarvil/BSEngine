@@ -64,7 +64,7 @@ Recordings by David Nichols of Track Time Audio. Engine is a 1985 Mercedes-Benz 
             <destination>{011aec8c-f6a9-4c93-874d-fe02618c18ea}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{37ebea86-d649-4a7a-b7b5-25701bfce8e9}</destination>
+            <destination>{a9c267a4-8c88-4874-afbd-0e0ad461d6ef}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{5289d670-77be-452b-931e-634f840d54f3}">
@@ -666,7 +666,6 @@ Recordings by David Nichols of Track Time Audio. Engine is a 1985 Mercedes-Benz 
         <relationship name="effects">
             <destination>{42cab93d-da01-41b9-be0e-79d9a25bd2f2}</destination>
             <destination>{01c8c124-4057-429c-8833-f6d0f39b8f4f}</destination>
-            <destination>{3debf704-4e5f-496e-a8db-a2f9a9917a58}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{038eac33-220e-451d-b5ac-863adc37e2c1}">
@@ -1133,14 +1132,6 @@ Recordings by David Nichols of Track Time Audio. Engine is a 1985 Mercedes-Benz 
     </object>
     <object class="MixerBusFader" id="{42cab93d-da01-41b9-be0e-79d9a25bd2f2}"/>
     <object class="SpatialiserEffect" id="{01c8c124-4057-429c-8833-f6d0f39b8f4f}"/>
-    <object class="MixerSend" id="{3debf704-4e5f-496e-a8db-a2f9a9917a58}">
-        <property name="inputFormat">
-            <value>1</value>
-        </property>
-        <relationship name="mixerReturn">
-            <destination>{524ae5a9-928c-4391-9635-34b41d4602af}</destination>
-        </relationship>
-    </object>
     <object class="AutomationPoint" id="{1de2bf06-2ae8-4e69-96cc-6085dd591a99}">
         <property name="position">
             <value>4600</value>

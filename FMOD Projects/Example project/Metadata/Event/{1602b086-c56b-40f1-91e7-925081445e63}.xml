@@ -60,7 +60,7 @@ Weapon sounds courtesy of Frank Bry at The Recordist.</value>
             <destination>{47315a97-e85e-4428-90f8-2a9a9a3982a9}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{dd124d8d-1ccd-4871-a160-5024e3e3f116}</destination>
+            <destination>{a9c267a4-8c88-4874-afbd-0e0ad461d6ef}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{6c6a6b20-c40d-45d6-bd14-92d0b493444d}">
@@ -138,7 +138,6 @@ Weapon sounds courtesy of Frank Bry at The Recordist.</value>
         <relationship name="effects">
             <destination>{4c36b500-7a5e-4ff7-afb5-a86594d990f0}</destination>
             <destination>{35a609d6-ffcf-4c55-919d-01b2c90b30c7}</destination>
-            <destination>{67b767cb-1e86-41b2-a134-2af82c1937c7}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{adf5db35-738f-4147-aea6-333e848c9f55}">
@@ -174,17 +173,6 @@ Weapon sounds courtesy of Frank Bry at The Recordist.</value>
         <property name="maximumDistance">
             <value>40</value>
         </property>
-    </object>
-    <object class="MixerSend" id="{67b767cb-1e86-41b2-a134-2af82c1937c7}">
-        <property name="level">
-            <value>-42</value>
-        </property>
-        <property name="inputFormat">
-            <value>1</value>
-        </property>
-        <relationship name="mixerReturn">
-            <destination>{524ae5a9-928c-4391-9635-34b41d4602af}</destination>
-        </relationship>
     </object>
     <object class="MixerBusFader" id="{eab61081-57bc-4fe2-85dd-022dbd098ed6}"/>
 </objects>

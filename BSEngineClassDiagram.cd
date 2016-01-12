@@ -10,7 +10,7 @@
   <Class Name="BSEngine.DataTable" BaseTypeListCollapsed="true">
     <Position X="9.25" Y="18.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>EEQAAAAAAEAEBBBACIAAAAQAAAACAAAkAAAEAABAAAA=</HashCode>
+      <HashCode>EEYAAAAAAEAEBBBACIAAAAQAAAACAAAkAAAEAABAAAA=</HashCode>
       <FileName>Assets\BS Engine\Src\Helper classes\DataTable.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -233,7 +233,7 @@
   <Class Name="BSEngine.Threading.ThreadedJob">
     <Position X="47.25" Y="12" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAACAAAGAAACAQAAAAAEAAAAAACAAAAAAAAAggAAI=</HashCode>
+      <HashCode>AAQAACAAAGAAACAQAAAAAEAABAAACAAAAAAAAAggAwI=</HashCode>
       <FileName>Assets\BS Engine\Src\Threading\ThreadedJob.cs</FileName>
     </TypeIdentifier>
   </Class>

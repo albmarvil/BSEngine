@@ -82,6 +82,8 @@ namespace BSEngine
         /// IE: resolution, aspect ratio, music and effects volume, language selected, etc.
         /// 
         /// All the data related to InputSets and keybindings is done in each State, where creation of InputSets takes place.
+        /// 
+        /// At this point if this funciton is called, the DataTable "CFG" has already been created into the Blackboard
         /// </summary>
         public void CreateDefaultCFGFile()
         {
@@ -89,6 +91,12 @@ namespace BSEngine
             /// REsolution CFG example
             ///StorageMgr.Blackboard.Get<DataTable>("CFG").Set<int>("Resolution_height", 1080);
             ///StorageMgr.Blackboard.Get<DataTable>("CFG").Set<int>("Resolution_width", 1920);
+
+            //Master volume settings
+            //StorageMgr.Blackboard.Get<DataTable>("CFG").Set<float>("Music_Volume", 1.0f);
+            //StorageMgr.Blackboard.Get<DataTable>("CFG").Set<float>("Effects_Volume", 1.0f);
+            //StorageMgr.Blackboard.Get<DataTable>("CFG").Set<float>("Dialogs_Volume", 1.0f);
+
         }
 #endif
 

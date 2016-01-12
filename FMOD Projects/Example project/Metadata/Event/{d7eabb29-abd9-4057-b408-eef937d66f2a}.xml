@@ -63,7 +63,7 @@ Note with banks that a sound file can be assigned to multiple banks, but it is n
             <destination>{346ff174-7386-40dd-b00e-5518e798185a}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{567dab1c-bdc2-4d47-9602-32adf0397c12}</destination>
+            <destination>{294635e8-4bb9-4d33-b984-4b85e0a7dbe1}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{9be4c177-2836-47c7-afa4-084973c36f08}">
@@ -103,14 +103,14 @@ Note with banks that a sound file can be assigned to multiple banks, but it is n
     </object>
     <object class="MixerBusPanner" id="{346ff174-7386-40dd-b00e-5518e798185a}"/>
     <object class="SingleSound" id="{c3402baf-f6de-4880-a774-e4a1179a2700}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>2.1829200000000002</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -136,7 +136,6 @@ Note with banks that a sound file can be assigned to multiple banks, but it is n
     <object class="MixerBusEffectChain" id="{d4c1d887-264e-44a2-a7e6-bc3fc10ecc69}">
         <relationship name="effects">
             <destination>{026d33c4-371e-4a27-8bc1-3df59a3b4381}</destination>
-            <destination>{309750f9-b055-49c9-a661-466f4a9e0b32}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{4029b248-6fda-4c60-866f-b91ad37e4717}"/>
@@ -148,16 +147,5 @@ Note with banks that a sound file can be assigned to multiple banks, but it is n
     </object>
     <object class="MixerBusPanner" id="{e5fb09ba-51ec-4300-99ee-fd264ca6cc39}"/>
     <object class="MixerBusFader" id="{026d33c4-371e-4a27-8bc1-3df59a3b4381}"/>
-    <object class="MixerSend" id="{309750f9-b055-49c9-a661-466f4a9e0b32}">
-        <property name="level">
-            <value>-22</value>
-        </property>
-        <property name="inputFormat">
-            <value>0</value>
-        </property>
-        <relationship name="mixerReturn">
-            <destination>{524ae5a9-928c-4391-9635-34b41d4602af}</destination>
-        </relationship>
-    </object>
     <object class="MixerBusFader" id="{f1d6ebd0-efbd-4462-b4ec-9bb818adbeb0}"/>
 </objects>

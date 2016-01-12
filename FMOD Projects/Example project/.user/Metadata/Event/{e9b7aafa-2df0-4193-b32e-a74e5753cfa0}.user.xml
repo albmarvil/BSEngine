@@ -29,6 +29,5 @@
     <object class="MixerBusPanner" id="{eda7e555-d35d-48a8-8f10-91f44299067a}"/>
     <object class="MixerBusFader" id="{aaba4a35-b1d9-49a8-99a0-c630051bbdab}"/>
     <object class="SpatialiserEffect" id="{ec753e97-768a-499f-9b28-339cfc99a411}"/>
-    <object class="MixerSend" id="{06ed3317-7179-4e11-b1fc-8e061d396798}"/>
     <object class="MixerBusFader" id="{8d9bed40-adf7-4bad-92fe-a3643f9a3d42}"/>
 </objects>

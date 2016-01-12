@@ -10,7 +10,7 @@
 To audition the snapshot, open a second Event Editor window and play the &quot;Forest&quot; event. Play this event and notice how the forest sounds are ducked until cue 'A' is triggered.</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>1</value>
         </property>
         <relationship name="mixer">
             <destination>{c75d8bdc-ec7f-44a3-b61b-a7458d6477de}</destination>
@@ -32,6 +32,9 @@ To audition the snapshot, open a second Event Editor window and play the &quot;F
         </relationship>
         <relationship name="timeline">
             <destination>{51fc2c22-6bfb-4aba-8f34-909d9fbddd66}</destination>
+        </relationship>
+        <relationship name="banks">
+            <destination>{f4157fde-dd75-4e31-ae38-e514b2decfd0}</destination>
         </relationship>
         <relationship name="folder">
             <destination>{660d8cf9-5917-44af-b2f8-ac4ec0c98f0d}</destination>
@@ -61,7 +64,7 @@ To audition the snapshot, open a second Event Editor window and play the &quot;F
             <destination>{2be1222b-841a-41d5-93b1-95596ed05885}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{af9d027a-3a1f-49a8-a9ef-4cbe20673632}</destination>
+            <destination>{a9c267a4-8c88-4874-afbd-0e0ad461d6ef}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{7fb19a06-8e3a-4900-90ae-ff536a309e40}">
@@ -109,14 +112,14 @@ To audition the snapshot, open a second Event Editor window and play the &quot;F
         </relationship>
     </object>
     <object class="SnapshotModule" id="{1e6db72d-e20a-44a8-8ff7-2032401756fd}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>2.00407</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -170,7 +173,6 @@ To audition the snapshot, open a second Event Editor window and play the &quot;F
         <relationship name="effects">
             <destination>{9d48f666-2c87-4c2c-8973-7df43a7e635e}</destination>
             <destination>{949182d6-3564-4434-8d29-8e4c6b7842e8}</destination>
-            <destination>{ef003027-a22d-4e66-8bd1-276fa4c37aa8}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{7753e5c4-3a37-4252-aac8-caa8ddceca02}"/>
@@ -219,13 +221,5 @@ To audition the snapshot, open a second Event Editor window and play the &quot;F
     </object>
     <object class="MixerBusFader" id="{9d48f666-2c87-4c2c-8973-7df43a7e635e}"/>
     <object class="SpatialiserEffect" id="{949182d6-3564-4434-8d29-8e4c6b7842e8}"/>
-    <object class="MixerSend" id="{ef003027-a22d-4e66-8bd1-276fa4c37aa8}">
-        <property name="inputFormat">
-            <value>2</value>
-        </property>
-        <relationship name="mixerReturn">
-            <destination>{524ae5a9-928c-4391-9635-34b41d4602af}</destination>
-        </relationship>
-    </object>
     <object class="MixerBusFader" id="{225ac202-4155-41ac-843d-276b6ccf3403}"/>
 </objects>

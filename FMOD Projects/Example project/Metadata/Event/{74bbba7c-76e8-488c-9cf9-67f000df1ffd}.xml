@@ -60,7 +60,7 @@
             <destination>{c2e0d3cb-442a-4684-a140-01ce2bc07d6f}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{7e33a2b3-db05-4b7a-ba1e-e862f2bfde36}</destination>
+            <destination>{ce356fc5-3954-4ee9-864e-20eaafa8dcd7}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{e2fcc771-45b3-478f-bcc7-2172c2804424}">
@@ -117,11 +117,11 @@
             <destination>{6a185df7-74ee-4e93-80de-19bb5a064c52}</destination>
         </relationship>
         <relationship name="markers">
-            <destination>{e2cbb5ee-5bd0-4837-b475-b11ad10865e5}</destination>
-            <destination>{8f35e631-4f49-4aae-95f7-05a0a9741d5c}</destination>
-            <destination>{be6b7254-c32f-41c6-8dca-e3a0a25fe59b}</destination>
-            <destination>{fa90166a-e210-43a9-9110-8038692aa45a}</destination>
             <destination>{a919a6ac-b148-423f-951d-abc17659ef1e}</destination>
+            <destination>{fa90166a-e210-43a9-9110-8038692aa45a}</destination>
+            <destination>{be6b7254-c32f-41c6-8dca-e3a0a25fe59b}</destination>
+            <destination>{8f35e631-4f49-4aae-95f7-05a0a9741d5c}</destination>
+            <destination>{e2cbb5ee-5bd0-4837-b475-b11ad10865e5}</destination>
         </relationship>
     </object>
     <object class="GameParameter" id="{25a540fc-fedb-48d6-8e2f-c51e3cbea5b0}">
@@ -166,14 +166,14 @@
         </relationship>
     </object>
     <object class="SingleSound" id="{1da016d2-f3d8-43ee-84b8-b0dba9b2a593}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>9.0565999999999995</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -183,14 +183,14 @@
         </relationship>
     </object>
     <object class="SingleSound" id="{5f142c9e-6967-4946-95ae-f94b2407319d}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>9.0565999999999995</value>
         </property>
         <property name="length">
             <value>54.339599999999997</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -225,14 +225,14 @@
         </relationship>
     </object>
     <object class="SingleSound" id="{3fadbdbd-925e-438d-9268-e12933eb5091}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>18.113199999999999</value>
         </property>
         <property name="length">
             <value>14.1509</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -245,14 +245,14 @@
         </relationship>
     </object>
     <object class="SingleSound" id="{72c90f3b-1844-479b-994c-335ced088626}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>27.169799999999999</value>
         </property>
         <property name="length">
             <value>36.226399999999998</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -279,14 +279,14 @@
         </relationship>
     </object>
     <object class="MultiSound" id="{691d270d-98e4-49b4-8778-8c18ca29af33}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>45.283000000000001</value>
         </property>
         <property name="length">
             <value>18.113199999999999</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="quantizationInterval">
             <value>2</value>
@@ -305,14 +305,14 @@
         </relationship>
     </object>
     <object class="MultiSound" id="{76c35584-a701-43a6-85e3-35d2cbb55bfe}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>27.169799999999999</value>
         </property>
         <property name="length">
             <value>18.113199999999999</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="quantizationInterval">
             <value>1</value>
@@ -359,12 +359,15 @@
             <destination>{3f648a72-b87b-4daf-912b-4145bbc973c7}</destination>
         </relationship>
     </object>
-    <object class="NamedMarker" id="{e2cbb5ee-5bd0-4837-b475-b11ad10865e5}">
-        <property name="position">
-            <value>9.0565999999999995</value>
+    <object class="LoopRegion" id="{a919a6ac-b148-423f-951d-abc17659ef1e}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
         </property>
-        <property name="name">
-            <value>Start</value>
+        <property name="position">
+            <value>36.226399999999998</value>
+        </property>
+        <property name="length">
+            <value>27.169799999999999</value>
         </property>
         <relationship name="timeline">
             <destination>{175a2507-76ed-4565-a440-28ecd5d5f1be}</destination>
@@ -373,13 +376,19 @@
             <destination>{9846293c-d891-4d7a-8f92-57345fdb0f33}</destination>
         </relationship>
     </object>
-    <object class="TempoMarker" id="{8f35e631-4f49-4aae-95f7-05a0a9741d5c}">
+    <object class="LoopRegion" id="{fa90166a-e210-43a9-9110-8038692aa45a}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="position">
-            <value>0</value>
+            <value>9.0565999999999995</value>
         </property>
-        <property name="tempo">
-            <value>106</value>
+        <property name="length">
+            <value>9.0565999999999995</value>
         </property>
+        <relationship name="triggerConditions">
+            <destination>{05c2e4db-c26a-48e9-889e-e1bb40ee73fe}</destination>
+        </relationship>
         <relationship name="timeline">
             <destination>{175a2507-76ed-4565-a440-28ecd5d5f1be}</destination>
         </relationship>
@@ -388,14 +397,14 @@
         </relationship>
     </object>
     <object class="TransitionRegion" id="{be6b7254-c32f-41c6-8dca-e3a0a25fe59b}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="position">
             <value>27.169799999999999</value>
         </property>
         <property name="length">
             <value>36.226399999999998</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="quantizationInterval">
             <value>1</value>
@@ -413,19 +422,13 @@
             <destination>{acf06f29-ebfa-4436-ad2e-de0308d4e9c1}</destination>
         </relationship>
     </object>
-    <object class="LoopRegion" id="{fa90166a-e210-43a9-9110-8038692aa45a}">
+    <object class="TempoMarker" id="{8f35e631-4f49-4aae-95f7-05a0a9741d5c}">
         <property name="position">
-            <value>9.0565999999999995</value>
+            <value>0</value>
         </property>
-        <property name="length">
-            <value>9.0565999999999995</value>
+        <property name="tempo">
+            <value>106</value>
         </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
-        </property>
-        <relationship name="triggerConditions">
-            <destination>{05c2e4db-c26a-48e9-889e-e1bb40ee73fe}</destination>
-        </relationship>
         <relationship name="timeline">
             <destination>{175a2507-76ed-4565-a440-28ecd5d5f1be}</destination>
         </relationship>
@@ -433,15 +436,12 @@
             <destination>{acf06f29-ebfa-4436-ad2e-de0308d4e9c1}</destination>
         </relationship>
     </object>
-    <object class="LoopRegion" id="{a919a6ac-b148-423f-951d-abc17659ef1e}">
+    <object class="NamedMarker" id="{e2cbb5ee-5bd0-4837-b475-b11ad10865e5}">
         <property name="position">
-            <value>36.226399999999998</value>
+            <value>9.0565999999999995</value>
         </property>
-        <property name="length">
-            <value>27.169799999999999</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
+        <property name="name">
+            <value>Start</value>
         </property>
         <relationship name="timeline">
             <destination>{175a2507-76ed-4565-a440-28ecd5d5f1be}</destination>
@@ -538,14 +538,14 @@
         </relationship>
     </object>
     <object class="SingleSound" id="{c7c40540-442b-4a29-8ba2-17a826343b1e}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -566,14 +566,14 @@
         </relationship>
     </object>
     <object class="SingleSound" id="{ff9b0de1-64ed-4ab5-baa2-0945045dd27a}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>0</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>
@@ -626,23 +626,23 @@
             <value>-0.439949006</value>
         </property>
     </object>
-    <object class="ParameterCondition" id="{c12ff3f1-db41-48d8-be34-3c3097903fb1}">
-        <property name="minimum">
-            <value>0</value>
-        </property>
-        <property name="maximum">
-            <value>0.155</value>
-        </property>
-        <relationship name="parameter">
-            <destination>{25a540fc-fedb-48d6-8e2f-c51e3cbea5b0}</destination>
-        </relationship>
-    </object>
     <object class="ParameterCondition" id="{05c2e4db-c26a-48e9-889e-e1bb40ee73fe}">
         <property name="minimum">
             <value>0</value>
         </property>
         <property name="maximum">
             <value>0.20000000000000001</value>
+        </property>
+        <relationship name="parameter">
+            <destination>{25a540fc-fedb-48d6-8e2f-c51e3cbea5b0}</destination>
+        </relationship>
+    </object>
+    <object class="ParameterCondition" id="{c12ff3f1-db41-48d8-be34-3c3097903fb1}">
+        <property name="minimum">
+            <value>0</value>
+        </property>
+        <property name="maximum">
+            <value>0.155</value>
         </property>
         <relationship name="parameter">
             <destination>{25a540fc-fedb-48d6-8e2f-c51e3cbea5b0}</destination>

@@ -60,7 +60,7 @@ Recordings by David at Track Time Audio.</value>
             <destination>{f3421fef-e1fb-4050-8c5f-ee2c04ab91fa}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{670390e5-527e-4f22-8654-b0326c9cc0c6}</destination>
+            <destination>{a9c267a4-8c88-4874-afbd-0e0ad461d6ef}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{22cdd995-e7d5-473e-b107-104520d3ef00}">
@@ -100,14 +100,14 @@ Recordings by David at Track Time Audio.</value>
     </object>
     <object class="MixerBusPanner" id="{f3421fef-e1fb-4050-8c5f-ee2c04ab91fa}"/>
     <object class="SingleSound" id="{bfcbadd7-f0b2-4d78-80cb-d4d3dbe76e0f}">
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <property name="start">
             <value>0</value>
         </property>
         <property name="length">
             <value>1.02623</value>
-        </property>
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
         </property>
         <property name="voiceStealing">
             <value>3</value>

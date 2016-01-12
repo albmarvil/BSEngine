@@ -74,7 +74,6 @@
     <object class="MixerBusPanner" id="{5f11a552-ee58-4ff5-853a-e6a976b5a84a}"/>
     <object class="MixerBusFader" id="{42cab93d-da01-41b9-be0e-79d9a25bd2f2}"/>
     <object class="SpatialiserEffect" id="{01c8c124-4057-429c-8833-f6d0f39b8f4f}"/>
-    <object class="MixerSend" id="{3debf704-4e5f-496e-a8db-a2f9a9917a58}"/>
     <object class="MixerBusFader" id="{6eb004a8-3c26-4805-9990-6a81d472f4b8}"/>
     <object class="ThreeEQEffect" id="{349e3216-f987-45a8-9946-13dcb1e65d30}"/>
     <object class="PluginEffect" id="{da6b2095-063c-489d-87b7-3acc091313ba}"/>

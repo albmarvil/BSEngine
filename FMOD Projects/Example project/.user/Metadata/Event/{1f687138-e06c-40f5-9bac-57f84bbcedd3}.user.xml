@@ -13,7 +13,6 @@
             <destination>{59b91bea-c2e6-40fd-bc28-b8af0f259f6d}</destination>
         </relationship>
     </object>
-    <object class="AutomationTrack" id="{fd2891c9-eb24-4c19-9a80-27065c9d132c}"/>
     <object class="AutomationTrack" id="{c72efcd0-49f9-4a88-8c7f-262ff5c97580}"/>
     <object class="MixerBusEffectChain" id="{b77e4de5-07fd-4efc-b864-542a219db1cb}"/>
     <object class="MixerBusPanner" id="{2bd3fe07-c705-4271-bca4-5b8118a34b92}"/>
@@ -31,6 +30,5 @@
     <object class="MixerBusPanner" id="{c69f408b-0ab2-4ed1-b572-dd20ec6422fb}"/>
     <object class="MixerBusFader" id="{d6c948fd-73ab-4658-bf6d-dacfa0f14546}"/>
     <object class="SpatialiserEffect" id="{3fa4aa84-cec5-41df-9776-fb672e594588}"/>
-    <object class="MixerSend" id="{3c61316a-1372-46dd-bcd6-613ac20f3ed3}"/>
     <object class="MixerBusFader" id="{cd68ae7b-c6d0-491c-ae7d-c26a44ef501d}"/>
 </objects>
