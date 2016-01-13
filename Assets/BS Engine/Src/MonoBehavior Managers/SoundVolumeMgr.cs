@@ -174,7 +174,6 @@ public class SoundVolumeMgr : MonoBehaviour {
 
         foreach (string busName in m_soundOptions.Keys)
         {
-            Debug.Log(busName);
             FMOD.Studio.Bus bus = null;
             if (busName == "Master")
             {
