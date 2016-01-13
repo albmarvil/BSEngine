@@ -14,7 +14,6 @@
 using UnityEditor;
 using UnityEngine;
 using System.Collections;
-using System.IO;
 
 namespace BSEngine
 {
@@ -80,25 +79,6 @@ namespace BSEngine
             if (Pool != null)
             {
                 GameObject.DestroyImmediate(Pool);
-            }
-        }
-
-        /// <summary>
-        /// Function used to delete files saved on Application Persistent Data Path. Be careful uysing this
-        /// </summary>
-        [MenuItem("BSEngine/Delete Persistent Data Path (CAUTION)")]
-        private static void DeletePersistentDataPath()
-        {
-            DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath);
-
-            foreach (FileInfo file in dir.GetFiles())
-            {
-                file.Delete();
-            }
-
-            foreach (DirectoryInfo d in dir.GetDirectories())
-            {
-                d.Delete();
             }
         }
     }
