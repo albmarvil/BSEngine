@@ -10,6 +10,7 @@
 [LOG] Thread::initThread                       : Initializing FMOD (WASAPI) feeder thread.  priority 0
 [LOG] Thread::initThread                       : - Stacksize 0.  Stack pointer 0000000000000000 : usesemaphore = 0 : sleeptime = 0
 [LOG] Thread::callback                         : * FMOD (WASAPI) feeder thread started
+[LOG] Thread::initThread                       : Initializing FMOD mixer thread.  priority 2
 [LOG] OutputWASAPI::feederUpdate               : WASAPI feeder thread set to 'Audio' characteristic
 [LOG] Thread::initThread                       : - Stacksize 49152.  Stack pointer 0000000000000000 : usesemaphore = 1 : sleeptime = 0
 [LOG] Thread::callback                         : * FMOD mixer thread started
@@ -43,6 +44,7 @@
 [LOG] Thread::initThread                       : - Stacksize 81920.  Stack pointer 0000000000000000 : usesemaphore = 1 : sleeptime = 0
 [LOG] Thread::callback                         : * FMOD nonblocking thread (0) started
 <<<<<<< HEAD
+<<<<<<< HEAD
 [LOG] SystemI::createSound                     : setdata soundi = 0000000018C9E5E8 : node = 0000000022B67F80
 [LOG] SystemI::createSound                     : add node to async list : head = 0000000022A91180.  list count = 0
 [LOG] SystemI::createSound                     : filename = E:/BSEngine/BSEngine/FMOD Projects/Example project\Build\Desktop/Vehicles.bank : mode 0a010202
@@ -50,25 +52,40 @@
 [LOG] SystemI::createSoundInternal             :     filename = E:/BSEngine/BSEngine/FMOD Projects/Example project\Build\Desktop/Vehicles.bank : mode 0a010202
 [LOG] OutputSoftware::createSample             :     lengthpcm 0, lengthbytes 0, channels 0, format 0, freq 0, mode 00000000
 [LOG] SystemI::createSound                     :     setdata soundi = 0000000018C9E138 : node = 0000000022B680C0
+=======
+[LOG] SystemI::createSound                     : setdata soundi = 00000000202D3DF8 : node = 00000000202BD220
+[LOG] SystemI::createSound                     : add node to async list : head = 00000000202D4100.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000000202D3DF8
+ct\Build\Desktop/Vehicles.bank : mode 0a010202
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+hicles.bank : mode 0a010202
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 216
+ls 0, format 0, freq 0, mode 00000000
+>>>>>>> parent of 9559836... critical commit
 [LOG] SystemI::createSoundInternal             :     exinfo->length             = 214208
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 18176
-[LOG] SystemI::createSound                     :     add node to async list : head = 0000000022A91180.  list count = 0
+ode = 00000000202BCD20
+[LOG] SystemI::createSound                     :     add node to async list : head = 00000000202D4100.  list count = 0
 [LOG] SystemI::createSound                     :     filename = E:/BSEngine/BSEngine/FMOD Projects/Example project\Build\Desktop/Vehicles.bank : mode 0a010202
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000022B68088
- to be opened asynchronously!
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-nels 0, format 0, freq 0, mode 00000000
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] OutputSoftware::createSample             :     lengthpcm 0, lengthbytes 0, channels 0, format 0, freq 0, mode 00000000
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-8 : node = 0000000022B685C0
-[LOG] SystemI::createSound                     :     add node to async list : head = 0000000022A91180.  list count = 1
+[LOG] SystemI::createSound                     :     setdata soundi = 0000000020305758 : node = 00000000202BCAA0
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+00000000202D4100.  list count = 1
 [LOG] SystemI::createSound                     :     filename = E:/BSEngine/BSEngine/FMOD Projects/Example project\Build\Desktop/Vehicles.bank : mode 0a010202
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] OutputSoftware::createSample             :     lengthpcm 0, lengthbytes 0, channels 0, format 0, freq 0, mode 00000000
+[LOG] SystemI::createSound                     :     setdata soundi = 0000000020307C58 : node = 00000000202BCBE0
+[LOG] SystemI::createSound                     :     add node to async list : head = 00000000202D4100.  list count = 2
 [LOG] SystemI::createSoundInternal             :     Format has 1 subsounds.
 [LOG] SystemI::createSoundInternal             :     Create as FMOD_CREATESAMPLE
-Putting into queue to be opened asynchronously!
+ne/FMOD Projects/Example project\Build\Desktop/Vehicles.bank : mode 0a010202
 [LOG] SystemI::createSoundInternal             :     Multi-sample sound (1 subsounds), create a sample container.
- 00000000
-[LOG] SystemI::createSound                     :     setdata soundi = 0000000018C9EA98 : node = 0000000022AA3260
+synchronously!
+[LOG] SystemI::createSoundInternal             :     creating subsound 0/1
+s 0, channels 0, format 0, freq 0, mode 00000000
 [LOG] SystemI::createSample                    :     mode 0a010202 length 53609 samples, lengthbytes 10656
+<<<<<<< HEAD
  count = 2
 [LOG] SystemI::createSample                    :     channels = 1
 =======
@@ -163,9 +180,21 @@ E28A28 : node = 00000000294103D0
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000018C9E5E8
 [LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000018C9E138
 ct\Build\Desktop/Vehicles.bank : mode 0a010202
+=======
+D0E0
+[LOG] SystemI::createSound                     :     add node to async list : head = 00000000202D4100.  list count = 3
+[LOG] SystemI::createSample                    :     output = 000000001FC5AF38
+[LOG] SystemI::createSound                     :     filename = E:/BSEngine/BSEngine/FMOD Projects/Example project\Build\Desktop/Vehicles.bank : mode 0a010202
 [LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-hicles.bank : mode 0a010202
+1020a
 [LOG] OutputSoftware::createSample             :     lengthpcm 0, lengthbytes 0, channels 0, format 0, freq 0, mode 00000000
+[LOG] SystemI::createSound                     :     setdata soundi = 00000000203167B8 : node = 00000000202BD360
+[LOG] SystemI::createSound                     :     add node to async list : head = 00000000202D4100.  list count = 4
+[LOG] SystemI::createSound                     :     filename = E:/BSEngine/BSEngine/FMOD Projects/Example project\Build\Desktop/Vehicles.bank : mode 0a010202
+>>>>>>> parent of 9559836... critical commit
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] OutputSoftware::createSample             :     lengthpcm 0, lengthbytes 0, channels 0, format 0, freq 0, mode 00000000
+<<<<<<< HEAD
 =======
 [LOG] OutputSoftware::createSample             : lengthpcm 0, lengthbytes 0, channels 0, format 0, freq 0, mode 00000000
 [LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000002943A2A8
@@ -263,11 +292,20 @@ nels 0, format 0, freq 0, mode 00000000
 [LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000029439AD8
 [LOG] SystemI::createSoundInternal             :     filename = E:/BSEngine/BSEngine/FMOD Projects/Example project\Build\Desktop/Vehicles.bank : mode 0a010202
 >>>>>>> parent of 090d9e0... Updated BSEngineEditorScript
+=======
+[LOG] SystemI::createSoundInternal             :     done.  OpenState now = FMOD_OPENSTATE_READY.
+
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000000202D3DF8
+[LOG] SystemI::createSound                     : setdata soundi = 00000000203058E8 : node = 00000000202BD4A0
+[LOG] SystemI::createSound                     : add node to async list : head = 00000000202D4100.  list count = 5
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000000202D4158
+[LOG] SystemI::createSoundInternal             :     filename = E:/BSEngine/BSEngine/FMOD Projects/Example project\Build\Desktop/Vehicles.bank : mode 0a010202
+>>>>>>> parent of 9559836... critical commit
 [LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 216
-[LOG] SystemI::createSound                     :     setdata soundi = 0000000018C9EDB8 : node = 0000000022AA3C60
-[LOG] SystemI::createSound                     :     add node to async list : head = 0000000022A91180.  list count = 3
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 214208
 [LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 18176
 [LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+<<<<<<< HEAD
 <<<<<<< HEAD
 [LOG] SystemI::createSound                     :     filename = E:/BSEngine/BSEngine/FMOD Projects/Example project\Build\Desktop/Vehicles.bank : mode 0a010202
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000022B681C8
@@ -277,15 +315,19 @@ nels 0, format 0, freq 0, mode 00000000
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000029411518
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 >>>>>>> parent of 090d9e0... Updated BSEngineEditorScript
+=======
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000000202BCE28
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+>>>>>>> parent of 9559836... critical commit
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-8 : node = 0000000022AA2D60
-[LOG] SystemI::createSound                     :     add node to async list : head = 0000000022A91180.  list count = 4
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
 [LOG] SystemI::createSoundInternal             :     Format has 1 subsounds.
 [LOG] SystemI::createSoundInternal             :     Create as FMOD_CREATESAMPLE
 [LOG] SystemI::createSoundInternal             :     Multi-sample sound (1 subsounds), create a sample container.
 [LOG] SystemI::createSoundInternal             :     creating subsound 0/1
 [LOG] SystemI::createSample                    :     mode 0a010202 length 44030 samples, lengthbytes 9088
 [LOG] SystemI::createSample                    :     channels = 1
+<<<<<<< HEAD
 <<<<<<< HEAD
 [LOG] SystemI::createSample                    :     output = 0000000018C9DFA8
 [LOG] OutputSoftware::createSample             :     lengthpcm 44030, lengthbytes 9088, channels 1, format 2, freq 48000, mode 0a01020a
@@ -302,17 +344,30 @@ nels 0, format 0, freq 0, mode 00000000
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000029439AD8
 [LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000001DE29B58
 >>>>>>> parent of 090d9e0... Updated BSEngineEditorScript
+=======
+[LOG] SystemI::createSample                    :     output = 000000001FC5AF38
+[LOG] OutputSoftware::createSample             :     lengthpcm 44030, lengthbytes 9088, channels 1, format 2, freq 48000, mode 0a01020a
+[LOG] SystemI::createSoundInternal             :     done.  OpenState now = FMOD_OPENSTATE_READY.
+
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000000202D4158
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000020305758
+>>>>>>> parent of 9559836... critical commit
 [LOG] SystemI::createSoundInternal             :     filename = E:/BSEngine/BSEngine/FMOD Projects/Example project\Build\Desktop/Vehicles.bank : mode 0a010202
+[WRN] SoundSourceInstrumentInstance::startChannelIfReady :     Loading delay exceeded, sound may play at incorrect time
 [LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 216
 [WRN] SoundSourceInstrumentInstance::startChannelIfReady :     Loading delay exceeded, sound may play at incorrect time
 [LOG] SystemI::createSoundInternal             :     exinfo->length             = 214208
 [LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 18176
 [LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000022B686C8
 =======
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000000294109D8
 >>>>>>> parent of 090d9e0... Updated BSEngineEditorScript
+=======
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000000202BCBA8
+>>>>>>> parent of 9559836... critical commit
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
@@ -322,6 +377,7 @@ nels 0, format 0, freq 0, mode 00000000
 [LOG] SystemI::createSoundInternal             :     creating subsound 0/1
 [LOG] SystemI::createSample                    :     mode 0a010202 length 43318 samples, lengthbytes 8512
 [LOG] SystemI::createSample                    :     channels = 1
+<<<<<<< HEAD
 <<<<<<< HEAD
 [LOG] SystemI::createSample                    :     output = 0000000018C9DFA8
 [LOG] OutputSoftware::createSample             :     lengthpcm 43318, lengthbytes 8512, channels 1, format 2, freq 48000, mode 0a01020a
@@ -337,16 +393,28 @@ nels 0, format 0, freq 0, mode 00000000
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000001DE29B58
 [LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000001DE28708
 >>>>>>> parent of 090d9e0... Updated BSEngineEditorScript
+=======
+[LOG] SystemI::createSample                    :     output = 000000001FC5AF38
+[LOG] OutputSoftware::createSample             :     lengthpcm 43318, lengthbytes 8512, channels 1, format 2, freq 48000, mode 0a01020a
+[LOG] SystemI::createSoundInternal             :     done.  OpenState now = FMOD_OPENSTATE_READY.
+
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000020305758
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000020307C58
+>>>>>>> parent of 9559836... critical commit
 [LOG] SystemI::createSoundInternal             :     filename = E:/BSEngine/BSEngine/FMOD Projects/Example project\Build\Desktop/Vehicles.bank : mode 0a010202
 [LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 216
 [LOG] SystemI::createSoundInternal             :     exinfo->length             = 214208
 [LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 18176
 [LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000022AA3368
 =======
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000029410618
 >>>>>>> parent of 090d9e0... Updated BSEngineEditorScript
+=======
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000000202BCCE8
+>>>>>>> parent of 9559836... critical commit
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
@@ -356,6 +424,7 @@ nels 0, format 0, freq 0, mode 00000000
 [LOG] SystemI::createSoundInternal             :     creating subsound 0/1
 [LOG] SystemI::createSample                    :     mode 0a010202 length 58228 samples, lengthbytes 10688
 [LOG] SystemI::createSample                    :     channels = 1
+<<<<<<< HEAD
 <<<<<<< HEAD
 [LOG] SystemI::createSample                    :     output = 0000000018C9DFA8
 [LOG] OutputSoftware::createSample             :     lengthpcm 58228, lengthbytes 10688, channels 1, format 2, freq 48000, mode 0a01020a
@@ -371,16 +440,28 @@ nels 0, format 0, freq 0, mode 00000000
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000001DE28708
 [LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000001DE28A28
 >>>>>>> parent of 090d9e0... Updated BSEngineEditorScript
+=======
+[LOG] SystemI::createSample                    :     output = 000000001FC5AF38
+[LOG] OutputSoftware::createSample             :     lengthpcm 58228, lengthbytes 10688, channels 1, format 2, freq 48000, mode 0a01020a
+[LOG] SystemI::createSoundInternal             :     done.  OpenState now = FMOD_OPENSTATE_READY.
+
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000020307C58
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000002030FAC8
+>>>>>>> parent of 9559836... critical commit
 [LOG] SystemI::createSoundInternal             :     filename = E:/BSEngine/BSEngine/FMOD Projects/Example project\Build\Desktop/Vehicles.bank : mode 0a010202
 [LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 216
 [LOG] SystemI::createSoundInternal             :     exinfo->length             = 214208
 [LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 18176
 [LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000022AA3C28
 =======
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000000294104D8
 >>>>>>> parent of 090d9e0... Updated BSEngineEditorScript
+=======
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000000202BD1E8
+>>>>>>> parent of 9559836... critical commit
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
@@ -390,6 +471,7 @@ nels 0, format 0, freq 0, mode 00000000
 [LOG] SystemI::createSoundInternal             :     creating subsound 0/1
 [LOG] SystemI::createSample                    :     mode 0a010202 length 43668 samples, lengthbytes 7552
 [LOG] SystemI::createSample                    :     channels = 1
+<<<<<<< HEAD
 <<<<<<< HEAD
 [LOG] SystemI::createSample                    :     output = 0000000018C9DFA8
 [LOG] OutputSoftware::createSample             :     lengthpcm 43668, lengthbytes 7552, channels 1, format 2, freq 48000, mode 0a01020a
@@ -405,16 +487,28 @@ nels 0, format 0, freq 0, mode 00000000
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000001DE28A28
 [LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000001DE29068
 >>>>>>> parent of 090d9e0... Updated BSEngineEditorScript
+=======
+[LOG] SystemI::createSample                    :     output = 000000001FC5AF38
+[LOG] OutputSoftware::createSample             :     lengthpcm 43668, lengthbytes 7552, channels 1, format 2, freq 48000, mode 0a01020a
+[LOG] SystemI::createSoundInternal             :     done.  OpenState now = FMOD_OPENSTATE_READY.
+
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000002030FAC8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000000203167B8
+>>>>>>> parent of 9559836... critical commit
 [LOG] SystemI::createSoundInternal             :     filename = E:/BSEngine/BSEngine/FMOD Projects/Example project\Build\Desktop/Vehicles.bank : mode 0a010202
 [LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 216
 [LOG] SystemI::createSoundInternal             :     exinfo->length             = 214208
 [LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 18176
 [LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000022AA3D68
 =======
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000029411798
 >>>>>>> parent of 090d9e0... Updated BSEngineEditorScript
+=======
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000000202BD468
+>>>>>>> parent of 9559836... critical commit
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
@@ -424,6 +518,7 @@ nels 0, format 0, freq 0, mode 00000000
 [LOG] SystemI::createSoundInternal             :     creating subsound 0/1
 [LOG] SystemI::createSample                    :     mode 0a010202 length 136134 samples, lengthbytes 24608
 [LOG] SystemI::createSample                    :     channels = 1
+<<<<<<< HEAD
 <<<<<<< HEAD
 [LOG] SystemI::createSample                    :     output = 0000000018C9DFA8
 [LOG] OutputSoftware::createSample             :     lengthpcm 136134, lengthbytes 24608, channels 1, format 2, freq 48000, mode 0a01020a
@@ -439,18 +534,30 @@ nels 0, format 0, freq 0, mode 00000000
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000001DE29068
 [LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000001DE28578
 >>>>>>> parent of 090d9e0... Updated BSEngineEditorScript
+=======
+[LOG] SystemI::createSample                    :     output = 000000001FC5AF38
+[LOG] OutputSoftware::createSample             :     lengthpcm 136134, lengthbytes 24608, channels 1, format 2, freq 48000, mode 0a01020a
+[LOG] SystemI::createSoundInternal             :     done.  OpenState now = FMOD_OPENSTATE_READY.
+
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000000203167B8
+[WRN] SoundSourceInstrumentInstance::startChannelIfReady : Loading delay exceeded, sound may play at incorrect time
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000000203058E8
+>>>>>>> parent of 9559836... critical commit
 [LOG] SystemI::createSoundInternal             :     filename = E:/BSEngine/BSEngine/FMOD Projects/Example project\Build\Desktop/Vehicles.bank : mode 0a010202
 [LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 216
-[WRN] SoundSourceInstrumentInstance::startChannelIfReady :     Loading delay exceeded, sound may play at incorrect time
 [LOG] SystemI::createSoundInternal             :     exinfo->length             = 214208
 [WRN] SoundSourceInstrumentInstance::startChannelIfReady :     Loading delay exceeded, sound may play at incorrect time
 [LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 18176
 [LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000022AA2E68
 =======
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000029410ED8
 >>>>>>> parent of 090d9e0... Updated BSEngineEditorScript
+=======
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000000202BD5A8
+>>>>>>> parent of 9559836... critical commit
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
@@ -460,6 +567,7 @@ nels 0, format 0, freq 0, mode 00000000
 [LOG] SystemI::createSoundInternal             :     creating subsound 0/1
 [LOG] SystemI::createSample                    :     mode 0a010202 length 67947 samples, lengthbytes 12992
 [LOG] SystemI::createSample                    :     channels = 1
+<<<<<<< HEAD
 <<<<<<< HEAD
 [LOG] SystemI::createSample                    :     output = 0000000018C9DFA8
 [LOG] OutputSoftware::createSample             :     lengthpcm 67947, lengthbytes 12992, channels 1, format 2, freq 48000, mode 0a01020a
@@ -551,6 +659,41 @@ nels 0, format 0, freq 0, mode 00000000
 [LOG] SoundI::release                          :     (null) (000000001DE135E8)
 [LOG] SoundI::release                          : release codec. (000000001DD44168)
 >>>>>>> parent of 090d9e0... Updated BSEngineEditorScript
+=======
+[LOG] SystemI::createSample                    :     output = 000000001FC5AF38
+[LOG] OutputSoftware::createSample             :     lengthpcm 67947, lengthbytes 12992, channels 1, format 2, freq 48000, mode 0a01020a
+[LOG] SystemI::createSoundInternal             :     done.  OpenState now = FMOD_OPENSTATE_READY.
+
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000000203058E8
+[LOG] SoundI::release                          : (null) (0000000020305758)
+[LOG] SoundI::release                          : release subsounds. (0000000020305758)
+[LOG] SoundI::release                          :     (null) (00000000203060F8)
+[LOG] SoundI::release                          : release codec. (0000000020305758)
+[LOG] SoundI::release                          : (null) (0000000020307C58)
+[LOG] SoundI::release                          : release subsounds. (0000000020307C58)
+[LOG] SoundI::release                          :     (null) (000000002031DD38)
+[LOG] SoundI::release                          : release codec. (0000000020307C58)
+[LOG] SoundI::release                          : (null) (000000002030FAC8)
+[LOG] SoundI::release                          : release subsounds. (000000002030FAC8)
+[LOG] SoundI::release                          :     (null) (0000000020320AE8)
+[LOG] SoundI::release                          : release codec. (000000002030FAC8)
+[LOG] SoundI::release                          : (null) (00000000203058E8)
+[LOG] SoundI::release                          : release subsounds. (00000000203058E8)
+[LOG] SoundI::release                          :     (null) (00000000203314C8)
+[LOG] SoundI::release                          : release codec. (00000000203058E8)
+[LOG] SoundI::release                          : (null) (00000000202D3DF8)
+[LOG] SoundI::release                          : release subsounds. (00000000202D3DF8)
+[LOG] SoundI::release                          :     (null) (0000000020313C68)
+[LOG] SoundI::release                          : release codec. (00000000202D3DF8)
+[LOG] SoundI::release                          : (null) (00000000202D4158)
+[LOG] SoundI::release                          : release subsounds. (00000000202D4158)
+[LOG] SoundI::release                          :     (null) (00000000202D3C18)
+[LOG] SoundI::release                          : release codec. (00000000202D4158)
+[LOG] SoundI::release                          : (null) (00000000203167B8)
+[LOG] SoundI::release                          : release subsounds. (00000000203167B8)
+[LOG] SoundI::release                          :     (null) (0000000020318F98)
+[LOG] SoundI::release                          : release codec. (00000000203167B8)
+>>>>>>> parent of 9559836... critical commit
 [LOG] Thread::callback                         : * FMOD Studio update thread finished
 [LOG] Thread::close                            : FMOD Studio update thread thread destroyed
 [LOG] Thread::callback                         : * FMOD Studio load thread finished

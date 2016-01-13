@@ -67,7 +67,7 @@ namespace BSEngine.Input
         /// </summary>
         public void Update()
         {
-            //update the data according to the actual cfg
+            //update the data ccording to the actual cfg
 
 
             
