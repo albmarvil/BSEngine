@@ -126,28 +126,28 @@ namespace BSEngine
         /// This operation may cause lag when laoding big scenes in-game
         /// </summary>
         /// <param name="sceneName">Name of the scene to load</param>
-        public void LoadScene(string sceneName)
-        {
-            
-            SceneInfo sceneInfo = new SceneInfo(sceneName);
-            LoadScene(sceneInfo);
-            GameMgr.Singleton.CurrentState.SceneInfo.LoadSubscene(sceneName);
+        //public void LoadScene(string sceneName)
+        //{
 
-        }
+        //    SceneInfo sceneInfo = new SceneInfo(sceneName);
+        //    LoadScene(sceneInfo);
+        //    GameMgr.Singleton.CurrentState.SceneInfo.LoadSubscene(sceneName);
+
+        //}
 
         /// <summary>
         /// Method used to load a scene and replace the current Main Scene.
         /// 
-        /// This operation may cause lag when laoding big scenes in-game
+        /// This operation may cause lag when loading big scenes in-game
         /// </summary>
         /// <param name="info">SceneInfo of the scene to load</param>
-        public void LoadScene(SceneInfo info)
-        {
-            GameMgr.Singleton.CurrentState.SceneInfo.DestroyScene();
-            GameMgr.Singleton.CurrentState.SceneInfo = info;
-            GameMgr.Singleton.CurrentState.SceneInfo.ActivateScene();
+        //public void LoadScene(SceneInfo info)
+        //{
+        //    GameMgr.Singleton.CurrentState.SceneInfo.DestroyScene();
+        //    GameMgr.Singleton.CurrentState.SceneInfo = info;
+        //    GameMgr.Singleton.CurrentState.SceneInfo.ActivateScene();
 
-        }
+        //}
 
 
         /// <summary>

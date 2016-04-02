@@ -24,6 +24,11 @@
 ///
 /// @author Alberto Martinez Villaran <tukaram92@gmail.com>
 /// @date 15/9/2015
+/// 
+/// @refactor Alberto Martinez Villaran <tukaram92@gmail.com>
+/// @date 02/04/2016
+/// 
+/// Added Unity Scene Management Support
 ///----------------------------------------------------------------------
 
 
@@ -31,6 +36,7 @@
 
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
@@ -42,6 +48,11 @@ namespace BSEngine
     {
 
         #region Private params
+
+        /// <summary>
+        /// Scene reference.
+        /// </summary>
+        private Scene m_scene;
 
         /// <summary>
         /// Scene name. Used also to locate the scene root GameObject.
@@ -107,6 +118,14 @@ namespace BSEngine
         }
 
         /// <summary>
+        /// Public property to acces to the Scene reference (Unity SceneManagement)
+        /// </summary>
+        public Scene Scene
+        {
+            get { return m_scene; }
+        }
+
+        /// <summary>
         /// Property to access to Scene's name
         /// </summary>
         public string Name
@@ -148,7 +167,10 @@ namespace BSEngine
         /// </summary>
         public void LoadSceneAdditive()
         {
-            Application.LoadLevelAdditive(m_name);
+            //Application.LoadLevelAdditive(m_name);
+            SceneManager.LoadScene(m_name, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+            m_scene = SceneManager.GetSceneByName(m_name);
+
             m_loaded = true;
             m_activated = true;
             m_subscenes.Clear();
@@ -175,6 +197,11 @@ namespace BSEngine
  
             m_activated = true;
  
+        }
+
+        public void SetAsActiveScene()
+        {
+            SceneManager.SetActiveScene(m_scene);
         }
 
         /// <summary>
@@ -221,8 +248,8 @@ namespace BSEngine
                     PoolMgr.Singleton.Destroy(m_root, true);
                 }
             }
-            
 
+           SceneManager.UnloadScene(m_name);
             m_loaded = false;
         }
 

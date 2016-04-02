@@ -152,8 +152,11 @@ namespace BSEngine
         {
             ///ENGINE CODE
             m_isActive = true;
-            if(GameMgr.Singleton.Loader.LoadStatesScenes)
+            if (GameMgr.Singleton.Loader.LoadStatesScenes)
+            {
                 m_sceneState.LoadSceneAdditive();
+                m_sceneState.SetAsActiveScene();
+            }
 
             ///GAME CODE
             return onActivate();
@@ -167,6 +170,7 @@ namespace BSEngine
         {
             ///ENGINE CODE
             m_sceneState.ActivateScene();
+            m_sceneState.SetAsActiveScene();
 
             ///GAME CODE
             return onResume();
