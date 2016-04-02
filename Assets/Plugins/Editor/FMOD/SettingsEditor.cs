@@ -61,7 +61,9 @@ namespace FMODUnity
                 case FMODPlatform.PSVita:
                     return "PS Vita";
                 case FMODPlatform.Android:
-                    return "Android";
+				    return "Android";
+			    case FMODPlatform.AppleTV:
+				    return "Apple TV";
                 case FMODPlatform.MobileHigh:
                     return "High-End Mobile";
                 case FMODPlatform.MobileLow:
@@ -161,7 +163,7 @@ namespace FMODUnity
 
         void DisplayParentSpeakerMode(string label, List<PlatformIntSetting> settings, FMODPlatform platform)
         {
-            int current = Settings.GetSetting(settings, platform, 0);
+            int current = Settings.GetSetting(settings, platform, (int)FMOD.SPEAKERMODE.STEREO);
             int index = Array.IndexOf(SpeakerModeValues, current);
             int next = EditorGUILayout.Popup(label, index, SpeakerModeDisplay);
             Settings.SetSetting(settings, platform, SpeakerModeValues[next]);
@@ -217,6 +219,7 @@ namespace FMODUnity
             if (next == 0)
             {
                 Settings.RemoveSetting(settings, platform);
+                Settings.RemoveSetting(((Settings)target).SpeakerModeSettings, platform);
             }
             else
             {
@@ -270,6 +273,18 @@ namespace FMODUnity
                     bool prevChanged = GUI.changed;
                     DisplayChildBuildDirectories("Bank Platform", settings.BankDirectorySettings, platform);
                     hasBankSourceChanged |= !prevChanged && GUI.changed;
+
+                    if (Settings.HasSetting(settings.BankDirectorySettings, platform))
+                    {
+                        DisplayChildSpeakerMode("Speaker Mode", settings.SpeakerModeSettings, platform);
+                        EditorGUILayout.HelpBox(String.Format("Match the speaker mode to the setting of the platform <b>{0}</b> inside FMOD Studio", settings.GetBankPlatform(platform)), MessageType.Info, false);
+                    }
+                    else
+                    {
+                        EditorGUI.BeginDisabledGroup(true);
+                        DisplayChildSpeakerMode("Speaker Mode", settings.SpeakerModeSettings, platform);
+                        EditorGUI.EndDisabledGroup();
+                    }
                 }
 
                 DisplayChildInt("Virtual Channel Count", settings.VirtualChannelSettings, platform, 0, 2048);
@@ -302,7 +317,7 @@ namespace FMODUnity
         {
             Settings settings = target as Settings;
             
-            EditorUtility.SetDirty(settings);
+            EditorGUI.BeginChangeCheck();
 
             hasBankSourceChanged = false;
 
@@ -345,7 +360,7 @@ namespace FMODUnity
                     string path = EditorUtility.OpenFilePanel("Locate Studio Project", oldPath, "fspro");
                     if (!String.IsNullOrEmpty(path))
                     {
-                        settings.SourceProjectPath = path;
+                        settings.SourceProjectPath = MakePathRelativeToProject(path);
                         this.Repaint();
                     }
                 }
@@ -375,6 +390,7 @@ namespace FMODUnity
                     var path = EditorUtility.OpenFolderPanel("Locate Build Folder", oldPath, null);
                     if (!String.IsNullOrEmpty(path))
                     {
+                        path = MakePathRelativeToProject(path);
                         settings.SourceBankPath = path;
                     }
                 }
@@ -402,6 +418,7 @@ namespace FMODUnity
                     var path = EditorUtility.OpenFolderPanel("Locate Build Folder", oldPath, null);
                     if (!String.IsNullOrEmpty(path))
                     {
+                        path = MakePathRelativeToProject(path);
                         settings.SourceBankPath = path;
                     }
                 }
@@ -425,6 +442,10 @@ namespace FMODUnity
             if (!validBanks)
             {
                 EditorGUILayout.HelpBox(failReason, MessageType.Error, true);
+                if (EditorGUI.EndChangeCheck())
+                {
+                    EditorUtility.SetDirty(settings);
+                }
                 return;
             }
 
@@ -457,6 +478,17 @@ namespace FMODUnity
             {
                 DisplayParentBuildDirectory("Bank Platform", settings.BankDirectorySettings, FMODPlatform.PlayInEditor);
             }
+
+            DisplayParentSpeakerMode("Speaker Mode", settings.SpeakerModeSettings, FMODPlatform.PlayInEditor);
+            if (settings.HasPlatforms)
+            {
+                EditorGUILayout.HelpBox(String.Format("Match the speaker mode to the setting of the platform <b>{0}</b> inside FMOD Studio", settings.GetBankPlatform(FMODPlatform.PlayInEditor)), MessageType.Info, false);
+            }
+            else
+            {
+                EditorGUILayout.HelpBox("Match the speaker mode to the setting inside FMOD Studio", MessageType.Info, false);
+            }
+
             EditorGUI.indentLevel--;
 
             // ----- Default ----------------------------------------------
@@ -473,14 +505,22 @@ namespace FMODUnity
                 #endif
             }
             DisplayParentBool("Debug Overlay", settings.OverlaySettings, FMODPlatform.Default);
-            DisplayParentSpeakerMode("Speaker Mode", settings.SpeakerModeSettings, FMODPlatform.Default);
-            EditorGUILayout.HelpBox("Match the speaker mode to the <b>Project Output Format</b> setting inside FMOD Studio", MessageType.Info, false);
             DisplayParentFreq("Sample Rate", settings.SampleRateSettings, FMODPlatform.Default);
             if (settings.HasPlatforms)
             {
                 bool prevChanged = GUI.changed;
                 DisplayParentBuildDirectory("Bank Platform", settings.BankDirectorySettings, FMODPlatform.Default);
                 hasBankSourceChanged |= !prevChanged && GUI.changed;
+            }
+
+            DisplayParentSpeakerMode("Speaker Mode", settings.SpeakerModeSettings, FMODPlatform.Default);
+            if (settings.HasPlatforms)
+            {
+                EditorGUILayout.HelpBox(String.Format("Match the speaker mode to the setting of the platform <b>{0}</b> inside FMOD Studio", settings.GetBankPlatform(FMODPlatform.Default)), MessageType.Info, false);
+            }
+            else
+            {
+                EditorGUILayout.HelpBox("Match the speaker mode to the setting inside FMOD Studio", MessageType.Info, false);
             }
             DisplayParentInt("Virtual Channel Count", settings.VirtualChannelSettings, FMODPlatform.Default, 0, 2048);
             DisplayParentInt("Real Channel Count", settings.RealChannelSettings, FMODPlatform.Default, 0, 2048);
@@ -514,8 +554,13 @@ namespace FMODUnity
 
             // ----- Windows ----------------------------------------------
             DisplayPlatform(FMODPlatform.Desktop, null);
-            DisplayPlatform(FMODPlatform.Mobile, new FMODPlatform[] { FMODPlatform.MobileHigh, FMODPlatform.MobileLow, FMODPlatform.PSVita });
+			DisplayPlatform(FMODPlatform.Mobile, new FMODPlatform[] { FMODPlatform.MobileHigh, FMODPlatform.MobileLow, FMODPlatform.PSVita, FMODPlatform.AppleTV });
             DisplayPlatform(FMODPlatform.Console, new FMODPlatform[] { FMODPlatform.XboxOne, FMODPlatform.PS4, FMODPlatform.WiiU });
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                EditorUtility.SetDirty(settings);
+            }
 
             if (hasBankSourceChanged)
             {
@@ -523,5 +568,11 @@ namespace FMODUnity
             }
         }
 
+        private string MakePathRelativeToProject(string path)
+        {
+            string fullPath = Path.GetFullPath(path);
+            string fullProjectPath = Path.GetFullPath(Environment.CurrentDirectory + Path.DirectorySeparatorChar);
+            return fullPath.Replace(fullProjectPath, "");
+        }
     }
 }

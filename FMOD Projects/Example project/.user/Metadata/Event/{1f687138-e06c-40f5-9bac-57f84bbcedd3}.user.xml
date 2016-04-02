@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.07.00">
-    <object class="Event" id="{1f687138-e06c-40f5-9bac-57f84bbcedd3}"/>
+    <object class="Event" id="{1f687138-e06c-40f5-9bac-57f84bbcedd3}">
+        <relationship name="uiLastParameterSelection">
+            <destination>{a48df1a9-feee-4c60-959c-5afea6991e61}</destination>
+        </relationship>
+    </object>
     <object class="MasterTrack" id="{ab30ebf3-e56a-411e-a1d3-96b97b3bb5eb}"/>
     <object class="MixerInput" id="{ed0717cb-1c91-479a-b068-783a4a103bb3}"/>
-    <object class="EventAutomatableProperties" id="{233560cd-9ab8-497d-8a7b-b81b5ee40a10}"/>
+    <object class="EventAutomatableProperties" id="{233560cd-9ab8-497d-8a7b-b81b5ee40a10}">
+        <property name="uiModulationDrawerVisible">
+            <value>true</value>
+        </property>
+    </object>
     <object class="MarkerTrack" id="{4f47a8ae-e5da-40bf-b40f-6c75b9844a74}"/>
     <object class="GroupTrack" id="{36fca5d3-2762-4508-8e35-78ae25e4146e}"/>
-    <object class="Timeline" id="{a48df1a9-feee-4c60-959c-5afea6991e61}"/>
-    <object class="GameParameter" id="{2860903d-d2a5-4ff6-826d-77426e47a44f}"/>
+    <object class="Timeline" id="{a48df1a9-feee-4c60-959c-5afea6991e61}">
+        <property name="uiLastRulerScaleRatio">
+            <value>0.046082949308755762</value>
+        </property>
+    </object>
+    <object class="GameParameter" id="{2860903d-d2a5-4ff6-826d-77426e47a44f}">
+        <property name="cursorPosition">
+            <value>0.8399999737739563</value>
+        </property>
+        <property name="uiLastRulerScaleRatio">
+            <value>0.0047021943573667714</value>
+        </property>
+    </object>
     <object class="EventMixerMaster" id="{d01c45d3-78c8-4f31-b3a1-8d6606b29cd7}">
+        <property name="uiModulationDrawerVisible">
+            <value>true</value>
+        </property>
         <relationship name="input">
             <destination>{59b91bea-c2e6-40fd-bc28-b8af0f259f6d}</destination>
         </relationship>
@@ -29,6 +51,10 @@
     <object class="MixerBusEffectChain" id="{ee1917ae-43af-4e5b-9450-dabf5badd7e6}"/>
     <object class="MixerBusPanner" id="{c69f408b-0ab2-4ed1-b572-dd20ec6422fb}"/>
     <object class="MixerBusFader" id="{d6c948fd-73ab-4658-bf6d-dacfa0f14546}"/>
-    <object class="SpatialiserEffect" id="{3fa4aa84-cec5-41df-9776-fb672e594588}"/>
+    <object class="SpatialiserEffect" id="{3fa4aa84-cec5-41df-9776-fb672e594588}">
+        <property name="uiModulationDrawerVisible">
+            <value>true</value>
+        </property>
+    </object>
     <object class="MixerBusFader" id="{cd68ae7b-c6d0-491c-ae7d-c26a44ef501d}"/>
 </objects>

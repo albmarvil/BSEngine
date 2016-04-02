@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.07.00">
-    <object class="Event" id="{477410e5-4a6d-462e-bd1e-4d558ce488ec}"/>
+    <object class="Event" id="{477410e5-4a6d-462e-bd1e-4d558ce488ec}">
+        <relationship name="uiLastParameterSelection">
+            <destination>{a751d120-f9bb-4e13-aa3e-80299c66d553}</destination>
+        </relationship>
+    </object>
     <object class="MasterTrack" id="{2df7e3f4-5003-4479-9cdc-41d8624c62c4}"/>
     <object class="MixerInput" id="{7b0a71bb-c0f3-421c-8267-f8da3e67a1a8}"/>
     <object class="EventAutomatableProperties" id="{1a9c4d09-face-4748-9208-8aba9019c4a6}"/>
@@ -8,9 +12,21 @@
     <object class="GroupTrack" id="{f2d497a7-cb8d-42fc-a5cb-138eaa65b625}"/>
     <object class="GroupTrack" id="{d3aa5873-291d-4ca7-936b-ce6bd944ddd7}"/>
     <object class="GroupTrack" id="{8c940a81-7f2e-4243-9f51-288fdef7a5b4}"/>
-    <object class="Timeline" id="{a751d120-f9bb-4e13-aa3e-80299c66d553}"/>
-    <object class="GameParameter" id="{ef37c878-ff32-4606-b987-3b15b9136ca0}"/>
-    <object class="GameParameter" id="{e33a0f22-a535-4076-b244-4b3482d4181e}"/>
+    <object class="Timeline" id="{a751d120-f9bb-4e13-aa3e-80299c66d553}">
+        <property name="uiLastRulerScaleRatio">
+            <value>0.0088325652841781867</value>
+        </property>
+    </object>
+    <object class="GameParameter" id="{ef37c878-ff32-4606-b987-3b15b9136ca0}">
+        <property name="uiLastRulerScaleRatio">
+            <value>0.015673981191222569</value>
+        </property>
+    </object>
+    <object class="GameParameter" id="{e33a0f22-a535-4076-b244-4b3482d4181e}">
+        <property name="uiLastRulerScaleRatio">
+            <value>0.015673981191222569</value>
+        </property>
+    </object>
     <object class="EventMixerMaster" id="{77d4d62b-136c-4600-b647-d25bda527f38}">
         <relationship name="input">
             <destination>{77f17b22-1c82-4647-9ccc-a5d365a8391e}</destination>

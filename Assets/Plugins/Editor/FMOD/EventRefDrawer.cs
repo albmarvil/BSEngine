@@ -9,14 +9,12 @@ namespace FMODUnity
     [CustomPropertyDrawer(typeof(EventRefAttribute))]
     class EventRefDrawer : PropertyDrawer
     {
-        bool displayProperties = false;
-
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             Texture browseIcon = EditorGUIUtility.Load("FMOD/SearchIconBlack.png") as Texture;
-            Texture openIcon = EditorGUIUtility.Load("FMOD/StudioIcon.png") as Texture;
-
-
+            Texture openIcon = EditorGUIUtility.Load("FMOD/BrowserIcon.png") as Texture;
+            Texture addIcon = EditorGUIUtility.Load("FMOD/AddIcon.png") as Texture;
+                        
             EditorGUI.BeginProperty(position, label, property);
             SerializedProperty pathProperty = property;
 
@@ -48,43 +46,54 @@ namespace FMODUnity
 
             position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
 
-            GUIStyle buttonStyle = GUI.skin.button;
+            GUIStyle buttonStyle = new GUIStyle(GUI.skin.button);
             buttonStyle.padding.top = 1;
             buttonStyle.padding.bottom = 1;
-            
-            Rect openRect = new Rect(position.x + position.width - openIcon.width - 15, position.y, openIcon.width + 10, baseHeight);
-            Rect searchRect = new Rect(openRect.x - browseIcon.width - 15, position.y, browseIcon.width + 10, baseHeight);
-            Rect pathRect = new Rect(position.x, position.y, searchRect.x - position.x - 5, baseHeight);
-            
-            EditorGUI.PropertyField(pathRect, pathProperty, GUIContent.none);
+
+            Rect addRect = new Rect(position.x + position.width - addIcon.width - 7, position.y, addIcon.width + 7, baseHeight);
+            Rect openRect = new Rect(addRect.x - openIcon.width - 7, position.y, openIcon.width + 6, baseHeight);
+            Rect searchRect = new Rect(openRect.x - browseIcon.width - 9, position.y, browseIcon.width + 8, baseHeight);
+            Rect pathRect = new Rect(position.x, position.y, searchRect.x - position.x - 3, baseHeight);
+
+            EditorGUI.PropertyField(pathRect, pathProperty, GUIContent.none);                       
+
             if (GUI.Button(searchRect, new GUIContent(browseIcon, "Search"), buttonStyle))
             {
                 var eventBrowser = EventBrowser.CreateInstance<EventBrowser>();
-
-                #if UNITY_4_6
-				eventBrowser.title  = "Select FMOD Event";
-                #else
-                eventBrowser.titleContent = new GUIContent("Select FMOD Event");
-                #endif
-
+                
                 eventBrowser.SelectEvent(property);
-                eventBrowser.ShowUtility();
+                var windowRect = position;
+                windowRect.position = GUIUtility.GUIToScreenPoint(windowRect.position);
+                windowRect.height = openRect.height + 1;
+                eventBrowser.ShowAsDropDown(windowRect, new Vector2(windowRect.width, 400));
+
             }
-            if (GUI.Button(openRect, new GUIContent(openIcon, "Open In FMOD Studio"), buttonStyle) &&
+            if (GUI.Button(addRect, new GUIContent(addIcon, "Create New Event in Studio"), buttonStyle))
+            {
+                var addDropdown= EditorWindow.CreateInstance<CreateEventPopup>();
+
+                addDropdown.SelectEvent(property);
+                var windowRect = position;
+                windowRect.position = GUIUtility.GUIToScreenPoint(windowRect.position);
+                windowRect.height = openRect.height + 1;
+                addDropdown.ShowAsDropDown(windowRect, new Vector2(windowRect.width, 500));
+
+            }
+            if (GUI.Button(openRect, new GUIContent(openIcon, "Open In Browser"), buttonStyle) &&
                 !String.IsNullOrEmpty(pathProperty.stringValue) && 
                 EventManager.EventFromPath(pathProperty.stringValue) != null
                 )
             {
-                EditorEventRef eventRef = EventManager.EventFromPath(pathProperty.stringValue);
-                string cmd = string.Format("studio.window.navigateTo(studio.project.lookup(\"{0}\"))", eventRef.Guid.ToString("b"));
-                EditorUtils.SendScriptCommand(cmd);
+                EventBrowser.ShowEventBrowser();
+                var eventBrowser = EditorWindow.GetWindow<EventBrowser>();
+                eventBrowser.JumpToEvent(pathProperty.stringValue);
             }
             
             if (!String.IsNullOrEmpty(pathProperty.stringValue) && EventManager.EventFromPath(pathProperty.stringValue) != null)
             {
                 Rect foldoutRect = new Rect(position.x + 10, position.y + baseHeight, position.width, baseHeight);
-                displayProperties = EditorGUI.Foldout(foldoutRect, displayProperties, "Event Properties");
-                if (displayProperties)
+                property.isExpanded = EditorGUI.Foldout(foldoutRect, property.isExpanded, "Event Properties");
+                if (property.isExpanded)
                 {
                     var style = new GUIStyle(GUI.skin.label);
                     style.richText = true;
@@ -132,8 +141,9 @@ namespace FMODUnity
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
+            bool expanded = property.isExpanded && !String.IsNullOrEmpty(property.stringValue) && EventManager.EventFromPath(property.stringValue) != null;
             float baseHeight = GUI.skin.textField.CalcSize(new GUIContent()).y;            
-            return baseHeight * (displayProperties ? 7 : 2); // 6 lines of info
+            return baseHeight * (expanded ? 7 : 2); // 6 lines of info
         }
     }
 }

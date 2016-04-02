@@ -1,5 +1,5 @@
 /* ========================================================================================== */
-/* FMOD System - C# Wrapper . Copyright (c), Firelight Technologies Pty, Ltd. 2004-2015.      */
+/* FMOD System - C# Wrapper . Copyright (c), Firelight Technologies Pty, Ltd. 2004-2016.      */
 /*                                                                                            */
 /*                                                                                            */
 /* ========================================================================================== */
@@ -8,13 +8,11 @@ using System;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace FMOD
-{
-namespace Studio
+namespace FMOD.Studio
 {
     public class STUDIO_VERSION
     {
-#if UNITY_IPHONE && !UNITY_EDITOR
+#if (UNITY_IPHONE || UNITY_TVOS) && !UNITY_EDITOR
         public const string dll    = "__Internal";
 #elif (UNITY_PS4 || UNITY_WIIU || UNITY_PSP2) && !UNITY_EDITOR
 		public const string dll    = "libfmodstudio";
@@ -43,7 +41,7 @@ namespace Studio
     [StructLayout(LayoutKind.Sequential)]
     public struct PROGRAMMER_SOUND_PROPERTIES
     {
-        public string name;
+        public StringWrapper name;
         public IntPtr sound;
         public int subsoundIndex;
     }
@@ -51,7 +49,7 @@ namespace Studio
     [StructLayout(LayoutKind.Sequential)]
     public struct TIMELINE_MARKER_PROPERTIES
     {
-        public IntPtr name;
+        public StringWrapper name;
         public int position;
     }
 
@@ -73,6 +71,7 @@ namespace Studio
         public int commandQueueSize;     /* [r/w] Optional. Specify 0 to ignore. Specify the command queue size for studio async processing.  Default 4096 (4kb) */
         public int handleInitialSize;    /* [r/w] Optional. Specify 0 to ignore. Specify the initial size to allocate for handles.  Memory for handles will grow as needed in pages. */
         public int studioUpdatePeriod;   /* [r/w] Optional. Specify 0 to ignore. Specify the update period of Studio when in async mode, in milliseconds.  Will be quantised to the nearest multiple of mixer duration.  Default is 20ms. */
+        public int idleSampleDataPoolSize; /* [r/w] Optional. Specify 0 to ignore. Specify the amount of sample data to keep in memory when no longer used, to avoid repeated disk IO.  Use -1 to disable.  Default is 256kB. */
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -139,8 +138,10 @@ namespace Studio
     public struct PARAMETER_DESCRIPTION
     {
         public string name;                                /* Name of the parameter. */
+        public int index;                                  /* Index of the parameter */
         public float minimum;                              /* Minimum parameter value. */
         public float maximum;                              /* Maximum parameter value. */
+        public float defaultValue;                         /* Default parameter value. */
         public PARAMETER_TYPE type;                        /* Type of the parameter */
     }
 
@@ -151,16 +152,20 @@ namespace Studio
     struct PARAMETER_DESCRIPTION_INTERNAL
     {
         public IntPtr name;                                /* Name of the parameter. */
+        public int index;                                  /* Index of the parameter */
         public float minimum;                              /* Minimum parameter value. */
         public float maximum;                              /* Maximum parameter value. */
+        public float defaultValue;                         /* Default parameter value. */
         public PARAMETER_TYPE type;                        /* Type of the parameter */
 
         // Helper functions
         public void assign(out PARAMETER_DESCRIPTION publicDesc)
         {
             publicDesc.name = MarshallingHelper.stringFromNativeUtf8(name);
+            publicDesc.index = index;
             publicDesc.minimum = minimum;
             publicDesc.maximum = maximum;
+            publicDesc.defaultValue = defaultValue;
             publicDesc.type = type;
         }
     }
@@ -445,25 +450,27 @@ namespace Studio
     [Flags]
     public enum EVENT_CALLBACK_TYPE : uint
     {
-        STARTED                  = 0x00000001,  /* Called when an instance starts. Parameters = unused. */
-        RESTARTED                = 0x00000002,  /* Called when an instance is restarted. Parameters = unused. */
-        STOPPED                  = 0x00000004,  /* Called when an instance stops. Parameters = unused. */
-        CREATE_PROGRAMMER_SOUND  = 0x00000008,  /* Called when a programmer sound needs to be created in order to play a programmer instrument. Parameters = FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES. */
-        DESTROY_PROGRAMMER_SOUND = 0x00000010,  /* Called when a programmer sound needs to be destroyed. Parameters = FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES. */
-        PLUGIN_CREATED           = 0x00000020,  /* Called when a DSP plugin instance has just been created. Parameters = FMOD_STUDIO_PLUGIN_INSTANCE_PROPERTIES. */
-        PLUGIN_DESTROYED         = 0x00000040,  /* Called when a DSP plugin instance is about to be destroyed. Parameters = FMOD_STUDIO_PLUGIN_INSTANCE_PROPERTIES. */
-        CREATED                  = 0x00000080,  /* Called when an instance is fully created. Parameters = unused. */
-        DESTROYED                = 0x00000100,  /* Called when an instance is just about to be destroyed. Parameters = unused. */
-        START_FAILED             = 0x00000200,  /* Called when an instance did not start, e.g. due to polyphony. Parameters = unused. */
-        TIMELINE_MARKER          = 0x00000400,  /* Called when the timeline passes a named marker.  Parameters = FMOD_STUDIO_TIMELINE_MARKER_PROPERTIES. */
-        TIMELINE_BEAT            = 0x00000800,  /* Called when the timeline hits a beat in a tempo section.  Parameters = FMOD_STUDIO_TIMELINE_BEAT_PROPERTIES. */
+        CREATED                  = 0x00000001,  /* Called when an instance is fully created. Parameters = unused. */
+        DESTROYED                = 0x00000002,  /* Called when an instance is just about to be destroyed. Parameters = unused. */
+        STARTING                 = 0x00000004,  /* Called when an instance is preparing to start. Parameters = unused. */
+        STARTED                  = 0x00000008,  /* Called when an instance starts playing. Parameters = unused. */
+        RESTARTED                = 0x00000010,  /* Called when an instance is restarted. Parameters = unused. */
+        STOPPED                  = 0x00000020,  /* Called when an instance stops. Parameters = unused. */
+        START_FAILED             = 0x00000040,  /* Called when an instance did not start, e.g. due to polyphony. Parameters = unused. */
+        CREATE_PROGRAMMER_SOUND  = 0x00000080,  /* Called when a programmer sound needs to be created in order to play a programmer instrument. Parameters = FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES. */
+        DESTROY_PROGRAMMER_SOUND = 0x00000100,  /* Called when a programmer sound needs to be destroyed. Parameters = FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES. */
+        PLUGIN_CREATED           = 0x00000200,  /* Called when a DSP plugin instance has just been created. Parameters = FMOD_STUDIO_PLUGIN_INSTANCE_PROPERTIES. */
+        PLUGIN_DESTROYED         = 0x00000400,  /* Called when a DSP plugin instance is about to be destroyed. Parameters = FMOD_STUDIO_PLUGIN_INSTANCE_PROPERTIES. */
+        TIMELINE_MARKER          = 0x00000800,  /* Called when the timeline passes a named marker.  Parameters = FMOD_STUDIO_TIMELINE_MARKER_PROPERTIES. */
+        TIMELINE_BEAT            = 0x00001000,  /* Called when the timeline hits a beat in a tempo section.  Parameters = FMOD_STUDIO_TIMELINE_BEAT_PROPERTIES. */
+
         ALL                      = 0xFFFFFFFF,  /* Pass this mask to Studio::EventDescription::setCallback or Studio::EventInstance::setCallback to receive all callback types. */
     }
 
     public delegate RESULT EVENT_CALLBACK(EVENT_CALLBACK_TYPE type, IntPtr eventInstance, IntPtr parameters);
 
     public delegate RESULT COMMANDREPLAY_FRAME_CALLBACK(IntPtr replay, int commandIndex, float currentTime, IntPtr userdata);
-    public delegate RESULT COMMANDREPLAY_LOAD_BANK_CALLBACK(IntPtr replay, ref Guid guid, StringWrapper bankFilename, LOAD_BANK_FLAGS flags, out IntPtr bank, IntPtr userdata);
+	public delegate RESULT COMMANDREPLAY_LOAD_BANK_CALLBACK(IntPtr replay, IntPtr guid, StringWrapper bankFilename, LOAD_BANK_FLAGS flags, out IntPtr bank, IntPtr userdata);
     public delegate RESULT COMMANDREPLAY_CREATE_INSTANCE_CALLBACK(IntPtr replay, IntPtr eventDescription, IntPtr originalHandle, out IntPtr instance, IntPtr userdata);
 
     public enum INSTANCETYPE
@@ -473,7 +480,6 @@ namespace Studio
         EVENTDESCRIPTION,
         EVENTINSTANCE,
         PARAMETERINSTANCE,
-        CUEINSTANCE,
         BUS,
         VCA,
         BANK,
@@ -497,12 +503,15 @@ namespace Studio
     {
         public static RESULT ParseID(string idString, out Guid id)
         {
-            return FMOD_Studio_ParseID(Encoding.UTF8.GetBytes(idString + Char.MinValue), out id);
+			byte[] rawguid = new byte[16];
+			RESULT result = FMOD_Studio_ParseID(Encoding.UTF8.GetBytes(idString + Char.MinValue), rawguid);
+			id = new Guid(rawguid);
+			return result;
         }
 
         #region importfunctions
         [DllImport (STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_ParseID                      (byte[] idString, out Guid id);
+		private static extern RESULT FMOD_Studio_ParseID                      (byte[] idString, byte[] id);
         #endregion
     }
 
@@ -691,7 +700,7 @@ namespace Studio
             _event = null;
 
             IntPtr eventraw = new IntPtr();
-            RESULT result = FMOD_Studio_System_GetEventByID(rawPtr, ref guid, out eventraw);
+			RESULT result = FMOD_Studio_System_GetEventByID(rawPtr, guid.ToByteArray(), out eventraw);
             if (result != RESULT.OK)
             {
                 return result;
@@ -705,7 +714,7 @@ namespace Studio
             bus = null;
 
             IntPtr newPtr = new IntPtr();
-            RESULT result = FMOD_Studio_System_GetBusByID(rawPtr, ref guid, out newPtr);
+			RESULT result = FMOD_Studio_System_GetBusByID(rawPtr, guid.ToByteArray(), out newPtr);
             if (result != RESULT.OK)
             {
                 return result;
@@ -719,7 +728,7 @@ namespace Studio
             vca = null;
 
             IntPtr newPtr = new IntPtr();
-            RESULT result = FMOD_Studio_System_GetVCAByID(rawPtr, ref guid, out newPtr);
+			RESULT result = FMOD_Studio_System_GetVCAByID(rawPtr, guid.ToByteArray(), out newPtr);
             if (result != RESULT.OK)
             {
                 return result;
@@ -733,7 +742,7 @@ namespace Studio
             bank = null;
 
             IntPtr newPtr = new IntPtr();
-            RESULT result = FMOD_Studio_System_GetBankByID(rawPtr, ref guid, out newPtr);
+			RESULT result = FMOD_Studio_System_GetBankByID(rawPtr, guid.ToByteArray(), out newPtr);
             if (result != RESULT.OK)
             {
                 return result;
@@ -759,7 +768,10 @@ namespace Studio
         }
         public RESULT lookupID(string path, out Guid guid)
         {
-            return FMOD_Studio_System_LookupID(rawPtr, Encoding.UTF8.GetBytes(path + Char.MinValue), out guid);
+			byte[] rawguid = new byte[16];
+			RESULT result =  FMOD_Studio_System_LookupID(rawPtr, Encoding.UTF8.GetBytes(path + Char.MinValue), rawguid);
+			guid = new Guid(rawguid);
+			return result;
         }
         public RESULT lookupPath(Guid guid, out string path)
         {
@@ -767,12 +779,12 @@ namespace Studio
 
             byte[] buffer = new byte[256];
             int retrieved = 0;
-            RESULT result = FMOD_Studio_System_LookupPath(rawPtr, ref guid, buffer, buffer.Length, out retrieved);
+			RESULT result = FMOD_Studio_System_LookupPath(rawPtr, guid.ToByteArray(), buffer, buffer.Length, out retrieved);
 
             if (result == RESULT.ERR_TRUNCATED)
             {
                 buffer = new byte[retrieved];
-                result = FMOD_Studio_System_LookupPath(rawPtr, ref guid, buffer, buffer.Length, out retrieved);
+				result = FMOD_Studio_System_LookupPath(rawPtr, guid.ToByteArray(), buffer, buffer.Length, out retrieved);
             }
 
             if (result == RESULT.OK)
@@ -854,6 +866,10 @@ namespace Studio
         public RESULT flushCommands()
         {
             return FMOD_Studio_System_FlushCommands(rawPtr);
+        }
+        public RESULT flushSampleLoading()
+        {
+            return FMOD_Studio_System_FlushSampleLoading(rawPtr);
         }
         public RESULT startCommandCapture(string path, COMMANDCAPTURE_FLAGS flags)
         {
@@ -967,19 +983,19 @@ namespace Studio
         [DllImport (STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_System_GetBank                 (IntPtr studiosystem, byte[] path, out IntPtr bank);
         [DllImport (STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_System_GetEventByID            (IntPtr studiosystem, ref Guid guid, out IntPtr description);
+		private static extern RESULT FMOD_Studio_System_GetEventByID            (IntPtr studiosystem, byte[] guid, out IntPtr description);
         [DllImport (STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_System_GetBusByID              (IntPtr studiosystem, ref Guid guid, out IntPtr bus);
+		private static extern RESULT FMOD_Studio_System_GetBusByID              (IntPtr studiosystem, byte[] guid, out IntPtr bus);
         [DllImport (STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_System_GetVCAByID              (IntPtr studiosystem, ref Guid guid, out IntPtr vca);
+		private static extern RESULT FMOD_Studio_System_GetVCAByID              (IntPtr studiosystem, byte[] guid, out IntPtr vca);
         [DllImport (STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_System_GetBankByID             (IntPtr studiosystem, ref Guid guid, out IntPtr bank);
+		private static extern RESULT FMOD_Studio_System_GetBankByID             (IntPtr studiosystem, byte[] guid, out IntPtr bank);
         [DllImport (STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_System_GetSoundInfo            (IntPtr studiosystem, byte[] key, out SOUND_INFO_INTERNAL info);
         [DllImport (STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_System_LookupID                (IntPtr studiosystem, byte[] path, out Guid guid);
+		private static extern RESULT FMOD_Studio_System_LookupID                (IntPtr studiosystem, byte[] path, [Out] byte[] guid);
         [DllImport(STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_System_LookupPath              (IntPtr studiosystem, ref Guid guid, [Out] byte[] path, int size, out int retrieved);
+		private static extern RESULT FMOD_Studio_System_LookupPath              (IntPtr studiosystem, byte[] guid, [Out] byte[] path, int size, out int retrieved);
         [DllImport(STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_System_GetNumListeners         (IntPtr studiosystem, out int numlisteners);
         [DllImport (STUDIO_VERSION.dll)]
@@ -998,6 +1014,8 @@ namespace Studio
         private static extern RESULT FMOD_Studio_System_UnloadAll               (IntPtr studiosystem);
         [DllImport (STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_System_FlushCommands           (IntPtr studiosystem);
+        [DllImport (STUDIO_VERSION.dll)]
+        private static extern RESULT FMOD_Studio_System_FlushSampleLoading      (IntPtr studiosystem);
         [DllImport (STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_System_StartCommandCapture     (IntPtr studiosystem, byte[] path, COMMANDCAPTURE_FLAGS flags);
         [DllImport (STUDIO_VERSION.dll)]
@@ -1041,7 +1059,10 @@ namespace Studio
     {
         public RESULT getID(out Guid id)
         {
-            return FMOD_Studio_EventDescription_GetID(rawPtr, out id);
+			byte[] rawguid = new byte[16];
+			RESULT result = FMOD_Studio_EventDescription_GetID(rawPtr, rawguid);
+			id = new Guid(rawguid);
+			return result;
         }
         public RESULT getPath(out string path)
         {
@@ -1153,6 +1174,10 @@ namespace Studio
         {
             return FMOD_Studio_EventDescription_Is3D(rawPtr, out is3D);
         }
+        public RESULT hasCue(out bool cue)
+        {
+            return FMOD_Studio_EventDescription_HasCue(rawPtr, out cue);
+        }
 
         public RESULT createInstance(out EventInstance instance)
         {
@@ -1246,7 +1271,7 @@ namespace Studio
         [DllImport(STUDIO_VERSION.dll)]
         private static extern bool FMOD_Studio_EventDescription_IsValid(IntPtr eventdescription);
         [DllImport (STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_EventDescription_GetID(IntPtr eventdescription, out Guid id);
+		private static extern RESULT FMOD_Studio_EventDescription_GetID(IntPtr eventdescription, [Out] byte[] id);
         [DllImport(STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_EventDescription_GetPath(IntPtr eventdescription, [Out] byte[] path, int size, out int retrieved);
         [DllImport(STUDIO_VERSION.dll)]
@@ -1273,6 +1298,8 @@ namespace Studio
         private static extern RESULT FMOD_Studio_EventDescription_IsStream(IntPtr eventdescription, out bool isStream);
         [DllImport (STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_EventDescription_Is3D(IntPtr eventdescription, out bool is3D);
+        [DllImport (STUDIO_VERSION.dll)]
+        private static extern RESULT FMOD_Studio_EventDescription_HasCue(IntPtr eventdescription, out bool cue);
         [DllImport (STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_EventDescription_CreateInstance(IntPtr eventdescription, out IntPtr instance);
         [DllImport (STUDIO_VERSION.dll)]
@@ -1439,45 +1466,25 @@ namespace Studio
 
             return result;
         }
+        public RESULT getParameterValue(string name, out float value)
+        {
+            return FMOD_Studio_EventInstance_GetParameterValue(rawPtr, Encoding.UTF8.GetBytes(name + Char.MinValue), out value);
+        }
         public RESULT setParameterValue(string name, float value)
         {
             return FMOD_Studio_EventInstance_SetParameterValue(rawPtr, Encoding.UTF8.GetBytes(name + Char.MinValue), value);
+        }
+        public RESULT getParameterValueByIndex(int index, out float value)
+        {
+            return FMOD_Studio_EventInstance_GetParameterValueByIndex(rawPtr, index, out value);
         }
         public RESULT setParameterValueByIndex(int index, float value)
         {
             return FMOD_Studio_EventInstance_SetParameterValueByIndex(rawPtr, index, value);
         }
-        public RESULT getCue(string name, out CueInstance instance)
+        public RESULT triggerCue()
         {
-            instance = null;
-
-            IntPtr newPtr = new IntPtr();
-            RESULT result = FMOD_Studio_EventInstance_GetCue(rawPtr, Encoding.UTF8.GetBytes(name + Char.MinValue), out newPtr);
-            if (result != RESULT.OK)
-            {
-                return result;
-            }
-            instance = new CueInstance(newPtr);
-
-            return result;
-        }
-        public RESULT getCueByIndex(int index, out CueInstance instance)
-        {
-            instance = null;
-
-            IntPtr newPtr = new IntPtr();
-            RESULT result = FMOD_Studio_EventInstance_GetCueByIndex(rawPtr, index, out newPtr);
-            if (result != RESULT.OK)
-            {
-                return result;
-            }
-            instance = new CueInstance(newPtr);
-
-            return result;
-        }
-        public RESULT getCueCount(out int count)
-        {
-            return FMOD_Studio_EventInstance_GetCueCount(rawPtr, out count);
+            return FMOD_Studio_EventInstance_TriggerCue(rawPtr);
         }
         public RESULT setCallback(EVENT_CALLBACK callback, EVENT_CALLBACK_TYPE callbackmask = EVENT_CALLBACK_TYPE.ALL)
         {
@@ -1540,15 +1547,15 @@ namespace Studio
         [DllImport(STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_EventInstance_GetParameterCount    (IntPtr _event, out int count);
         [DllImport(STUDIO_VERSION.dll)]
+        private static extern RESULT FMOD_Studio_EventInstance_GetParameterValue    (IntPtr _event, byte[] name, out float value);
+        [DllImport(STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_EventInstance_SetParameterValue    (IntPtr _event, byte[] name, float value);
+        [DllImport(STUDIO_VERSION.dll)]
+        private static extern RESULT FMOD_Studio_EventInstance_GetParameterValueByIndex (IntPtr _event, int index, out float value);
         [DllImport(STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_EventInstance_SetParameterValueByIndex (IntPtr _event, int index, float value);
         [DllImport(STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_EventInstance_GetCue               (IntPtr _event, byte[] name, out IntPtr cue);
-        [DllImport(STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_EventInstance_GetCueByIndex        (IntPtr _event, int index, out IntPtr cue);
-        [DllImport(STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_EventInstance_GetCueCount          (IntPtr _event, out int count);
+        private static extern RESULT FMOD_Studio_EventInstance_TriggerCue           (IntPtr _event);
         [DllImport(STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_EventInstance_SetCallback          (IntPtr _event, EVENT_CALLBACK callback, EVENT_CALLBACK_TYPE callbackmask);
         [DllImport (STUDIO_VERSION.dll)]
@@ -1567,35 +1574,6 @@ namespace Studio
         protected override bool isValidInternal()
         {
             return FMOD_Studio_EventInstance_IsValid(rawPtr);
-        }
-
-        #endregion
-    }
-
-    public class CueInstance : HandleBase
-    {
-        public RESULT trigger()
-        {
-            return FMOD_Studio_CueInstance_Trigger(rawPtr);
-        }
-
-        #region importfunctions
-        [DllImport(STUDIO_VERSION.dll)]
-        private static extern bool FMOD_Studio_CueInstance_IsValid(IntPtr cue);
-        [DllImport(STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_CueInstance_Trigger(IntPtr cue);
-        #endregion
-
-        #region wrapperinternal
-
-        public CueInstance(IntPtr raw)
-        : base(raw)
-        {
-        }
-
-        protected override bool isValidInternal()
-        {
-            return FMOD_Studio_CueInstance_IsValid(rawPtr);
         }
 
         #endregion
@@ -1656,7 +1634,10 @@ namespace Studio
     {
         public RESULT getID(out Guid id)
         {
-            return FMOD_Studio_Bus_GetID(rawPtr, out id);
+			byte[] rawguid = new byte[16];
+			RESULT result = FMOD_Studio_Bus_GetID(rawPtr, rawguid);
+			id = new Guid(rawguid);
+			return result;
         }
         public RESULT getPath(out string path)
         {
@@ -1735,7 +1716,7 @@ namespace Studio
         [DllImport(STUDIO_VERSION.dll)]
         private static extern bool FMOD_Studio_Bus_IsValid(IntPtr bus);
         [DllImport(STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_Bus_GetID(IntPtr bus, out Guid id);
+		private static extern RESULT FMOD_Studio_Bus_GetID(IntPtr bus, [Out] byte[] id);
         [DllImport(STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_Bus_GetPath(IntPtr bus, [Out] byte[] path, int size, out int retrieved);
         [DllImport(STUDIO_VERSION.dll)]
@@ -1779,7 +1760,10 @@ namespace Studio
     {
         public RESULT getID(out Guid id)
         {
-            return FMOD_Studio_VCA_GetID(rawPtr, out id);
+			byte[] rawguid = new byte[16];
+			RESULT result = FMOD_Studio_VCA_GetID(rawPtr, rawguid);
+			id = new Guid(rawguid);
+			return result;
         }
         public RESULT getPath(out string path)
         {
@@ -1815,7 +1799,7 @@ namespace Studio
         [DllImport(STUDIO_VERSION.dll)]
         private static extern bool FMOD_Studio_VCA_IsValid(IntPtr vca);
         [DllImport(STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_VCA_GetID(IntPtr vca, out Guid id);
+		private static extern RESULT FMOD_Studio_VCA_GetID(IntPtr vca, [Out] byte[] id);
         [DllImport(STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_VCA_GetPath(IntPtr vca, [Out] byte[] path, int size, out int retrieved);
         [DllImport(STUDIO_VERSION.dll)]
@@ -1845,7 +1829,10 @@ namespace Studio
 
         public RESULT getID(out Guid id)
         {
-            return FMOD_Studio_Bank_GetID(rawPtr, out id);
+			byte[] rawguid = new byte[16];
+			RESULT result = FMOD_Studio_Bank_GetID(rawPtr, rawguid);
+			id = new Guid(rawguid);
+			return result;
         }
         public RESULT getPath(out string path)
         {
@@ -1906,20 +1893,23 @@ namespace Studio
         public RESULT getStringInfo(int index, out Guid id, out string path)
         {
             path = null;
+			id = Guid.Empty;
 
             byte[] buffer = new byte[256];
             int retrieved = 0;
-            RESULT result = FMOD_Studio_Bank_GetStringInfo(rawPtr, index, out id, buffer, buffer.Length, out retrieved);
+			byte[] rawguid = new byte[16];
+            RESULT result = FMOD_Studio_Bank_GetStringInfo(rawPtr, index, rawguid, buffer, buffer.Length, out retrieved);
 
             if (result == RESULT.ERR_TRUNCATED)
             {
                 buffer = new byte[retrieved];
-                result = FMOD_Studio_Bank_GetStringInfo(rawPtr, index, out id, buffer, buffer.Length, out retrieved);
+                result = FMOD_Studio_Bank_GetStringInfo(rawPtr, index, rawguid, buffer, buffer.Length, out retrieved);
             }
 
             if (result == RESULT.OK)
             {
                 path = Encoding.UTF8.GetString(buffer, 0, retrieved - 1);
+				id = new Guid(rawguid);
             }
 
             return RESULT.OK;
@@ -2057,7 +2047,7 @@ namespace Studio
         [DllImport(STUDIO_VERSION.dll)]
         private static extern bool FMOD_Studio_Bank_IsValid(IntPtr bank);
         [DllImport(STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_Bank_GetID(IntPtr bank, out Guid id);
+		private static extern RESULT FMOD_Studio_Bank_GetID(IntPtr bank, [Out] byte[] id);
         [DllImport(STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_Bank_GetPath(IntPtr bank, [Out] byte[] path, int size, out int retrieved);
         [DllImport(STUDIO_VERSION.dll)]
@@ -2073,7 +2063,7 @@ namespace Studio
         [DllImport(STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_Bank_GetStringCount(IntPtr bank, out int count);
         [DllImport(STUDIO_VERSION.dll)]
-        private static extern RESULT FMOD_Studio_Bank_GetStringInfo(IntPtr bank, int index, out Guid id, [Out] byte[] path, int size, out int retrieved);
+		private static extern RESULT FMOD_Studio_Bank_GetStringInfo(IntPtr bank, int index, [Out] byte[] id, [Out] byte[] path, int size, out int retrieved);
         [DllImport(STUDIO_VERSION.dll)]
         private static extern RESULT FMOD_Studio_Bank_GetEventCount(IntPtr bank, out int count);
         [DllImport(STUDIO_VERSION.dll)]
@@ -2325,6 +2315,4 @@ namespace Studio
     }
 
     #endregion
-} // System
-
 } // FMOD

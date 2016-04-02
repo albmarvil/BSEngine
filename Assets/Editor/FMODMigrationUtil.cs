@@ -4,6 +4,12 @@ using System.Text;
 using UnityEngine;
 using UnityEditor;
 
+// Disable all the deprecated function warnings. Can't change anything because we have to be backwards compatible.
+#pragma warning disable 0618
+
+
+#pragma warning disable 0649
+
 namespace FMODUnity
 {
 
@@ -100,7 +106,7 @@ namespace FMODUnity
         {
             int oldUndoIndex = Undo.GetCurrentGroup();
             Undo.IncrementCurrentGroup();
-            #if !UNITY_4_6
+            #if !UNITY_4_6 || UNITY_4_7
             Undo.SetCurrentGroupName("FMOD Studio Integration Migration");
             #endif
 

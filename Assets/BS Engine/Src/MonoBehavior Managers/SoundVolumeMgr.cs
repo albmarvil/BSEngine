@@ -21,9 +21,10 @@ using BSEngine;
 using BSEngine.Utils;
 
 
-public class SoundVolumeMgr : MonoBehaviour {
+public class SoundVolumeMgr : MonoBehaviour
+{
 
-	    
+
     #region Singleton
 
     /// <summary>
@@ -52,8 +53,8 @@ public class SoundVolumeMgr : MonoBehaviour {
             this.enabled = false;
         }
     }
-	
-	/// <summary>
+
+    /// <summary>
     /// This is like the Release but done by the MonoBehaviour
     /// </summary>
     private void OnDestroy()
@@ -101,8 +102,8 @@ public class SoundVolumeMgr : MonoBehaviour {
     /// <param name="volumeLevel"></param>
     public void setBusVolume(string busName, float volumeLevel)
     {
-        float finalLevel =  Mathf.Clamp01(volumeLevel);
-        m_soundOptions.Set<float>(busName,finalLevel);
+        float finalLevel = Mathf.Clamp01(volumeLevel);
+        m_soundOptions.Set<float>(busName, finalLevel);
         m_buses[busName].setFaderLevel(finalLevel);
     }
 
@@ -156,7 +157,7 @@ public class SoundVolumeMgr : MonoBehaviour {
             DataTable aux = new DataTable("aux", SerializationMode.NONE, false);
             foreach (string key in m_soundOptions.Keys)
             {
-               aux.Set<float>(key, Mathf.Clamp01(m_soundOptions.Get<float>(key)));
+                aux.Set<float>(key, Mathf.Clamp01(m_soundOptions.Get<float>(key)));
             }
 
             foreach (string key in aux.Keys)
@@ -184,11 +185,11 @@ public class SoundVolumeMgr : MonoBehaviour {
                 m_system.getBus("bus:/" + busName, out bus);
             }
 
-            Assert.assert(bus != null, "FMOD "+busName+" bus not found!");
+            Assert.assert(bus != null, "FMOD " + busName + " bus not found!");
             bus.setFaderLevel(m_soundOptions.Get<float>(busName));
             m_buses.Add(busName, bus);
         }
-        
+
     }
 
     #endregion

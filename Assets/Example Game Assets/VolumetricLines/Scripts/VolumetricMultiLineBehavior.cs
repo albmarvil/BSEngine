@@ -133,7 +133,7 @@ namespace VolumetricLines
 			m_volumetricLines = new VolumetricLineBehavior[m_lineVertices.Length - 1];
 			for (int i=0; i < m_lineVertices.Length - 1; ++i)
 			{
-                GameObject go = PoolMgr.Singleton.Instatiate(m_volumetricLinePrefab, gameObject.transform);
+                GameObject go = PoolMgr.Singleton.Instantiate(m_volumetricLinePrefab, gameObject.transform);
                 //GameObject go = GameObject.Instantiate(m_volumetricLinePrefab) as GameObject;
 				go.transform.parent = gameObject.transform;
 				go.transform.localPosition = Vector3.zero;

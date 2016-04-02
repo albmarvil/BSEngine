@@ -33,26 +33,6 @@ namespace BSEngine
 
             #region Private params
 
-            /// <summary>
-            /// Flag to indicates when the thread is finished or not
-            /// </summary>
-            //private bool m_IsDone = false;
-
-            /// <summary>
-            /// Flag to indicate when the thread is aborted
-            /// </summary>
-            //private bool m_Aborted = false;
-
-            /// <summary>
-            /// Object handler. Used to lock thread resources
-            /// </summary>
-            //private object m_Handle = new object();
-
-            /// <summary>
-            /// Thread reference
-            /// </summary>
-            //private Thread m_Thread = null;
-
             private float m_maxProcessingTime = 0.0f;
 
             private Stopwatch m_timer = null;
@@ -70,56 +50,6 @@ namespace BSEngine
                 m_maxProcessingTime = maxProcessingTime;
             }
 
-            /// <summary>
-            /// Property to acces check if the Thread is finished or not
-            /// </summary>
-            //public bool IsDone
-            //{
-            //    get
-            //    {
-            //        bool tmp;
-            //        lock (m_Handle)
-            //        {
-            //            tmp = m_IsDone;
-            //        }
-
-            //        return tmp;
-            //    }
-
-            //    set
-            //    {
-            //        lock (m_Handle)
-            //        {
-            //            m_IsDone = value;
-            //        }
-            //    }
-            //}
-
-            /// <summary>
-            /// Property to acces check if the Thread is aborted or not
-            /// </summary>
-            //public bool Aborted
-            //{
-            //    get
-            //    {
-            //        bool tmp;
-            //        lock (m_Handle)
-            //        {
-            //            tmp = m_Aborted;
-            //        }
-
-            //        return tmp;
-            //    }
-
-            //    set
-            //    {
-            //        lock (m_Handle)
-            //        {
-            //            m_Aborted = value;
-            //        }
-            //    }
-            //}
-
 
             /// <summary>
             /// Used to start the threading job
@@ -135,7 +65,7 @@ namespace BSEngine
 
 
             /// <summary>
-            /// Used to abort the treading job
+            /// Used to abort the threading job
             /// </summary>
             public override void Abort()
             {
@@ -191,34 +121,6 @@ namespace BSEngine
                 m_timer.Stop();
                 IsDone = true;
             }
-
-            /// <summary>
-            /// Corutine used to wait to the end of the of the job in other Corutines
-            /// </summary>
-            /// <returns></returns>
-            //public IEnumerator WaitFor()
-            //{
-            //    while (!Update())
-            //    {
-            //        yield return null;
-            //    }
-            //}
-
-            /// <summary>
-            /// Threading function to do
-            /// </summary>
-            //protected abstract void ThreadFunction();
-
-            /// <summary>
-            /// Tasks to do when the job has finished
-            /// </summary>
-            //protected abstract void OnFinished();
-
-            /// <summary>
-            /// Tasks to do when the job is aborted
-            /// </summary>
-            //protected abstract void OnAbort();
-
             #endregion
 
         }

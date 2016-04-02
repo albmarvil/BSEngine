@@ -20,18 +20,29 @@ namespace FMODUnity
         private FMOD.Studio.EventDescription eventDescription;
         private FMOD.Studio.EventInstance instance;
         private bool hasTriggered;
-        private Rigidbody cachedRigidBody;
-        private bool isOneshot;
-        private bool firstUpdate = true;
+        private bool isQuitting;
 
-        void OnEnable() 
-        {                   
-            cachedRigidBody = GetComponent<Rigidbody>();
+        void Start() 
+        {
+            RuntimeUtils.EnforceLibraryOrder();
+            HandleGameEvent(EmitterGameEvent.LevelStart);
+        }
+
+        void OnApplicationQuit()
+        {
+            isQuitting = true;
         }
 
         void OnDestroy()
         {
-            HandleGameEvent(EmitterGameEvent.LevelEnd);
+            if (!isQuitting)
+            {
+                HandleGameEvent(EmitterGameEvent.LevelEnd);
+                if (instance != null && instance.isValid())
+                {
+                    RuntimeManager.DetachInstanceFromGameObject(instance);
+                }
+            }
         }
 
         void OnTriggerEnter(Collider other)
@@ -92,7 +103,19 @@ namespace FMODUnity
             if (eventDescription == null)
             {
                 Lookup();
+            }
+
+            bool isOneshot = false;
+            if (!Event.StartsWith("snapshot", StringComparison.CurrentCultureIgnoreCase))
+            {
                 eventDescription.isOneshot(out isOneshot);
+            }
+            bool is3D;
+            eventDescription.is3D(out is3D);
+
+            if (instance != null && !instance.isValid())
+            {
+                instance = null;
             }
 
             // Let previous oneshot instances play out
@@ -105,24 +128,26 @@ namespace FMODUnity
             if (instance == null)
             {
                 eventDescription.createInstance(out instance);
+
+                // Only want to update if we need to set 3D attributes
+                if (is3D)
+                {
+                    var rigidBody = GetComponent<Rigidbody>();
+                    var transform = GetComponent<Transform>();
+                    instance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject, rigidBody));
+                    RuntimeManager.AttachInstanceToGameObject(instance, transform, rigidBody);
+                }
             }
 
-            instance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject, cachedRigidBody));
             foreach(var param in Params)
             {
                 instance.setParameterValue(param.Name, param.Value);
             }
+
             instance.start();
 
             hasTriggered = true;
 
-            // Only want to update if we need to set 3D attributes
-            bool is3d = false;
-            eventDescription.is3D(out is3d);
-            if (is3d)
-            {
-                enabled = true;
-            }
         }
 
         public void Stop()
@@ -133,38 +158,25 @@ namespace FMODUnity
                 instance.release();
                 instance = null;
             }
-            enabled = false;
         }
-
-        void Update()
-        {
-            if (firstUpdate)
-            {
-                enabled = false;
-                HandleGameEvent(EmitterGameEvent.LevelStart);
-                firstUpdate = false;
-            }
-
-            if (instance != null)
-            {
-                instance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject, cachedRigidBody));
-                FMOD.Studio.PLAYBACK_STATE state;
-                instance.getPlaybackState(out state);
-                if (state == FMOD.Studio.PLAYBACK_STATE.STOPPED)
-                {
-                    instance.release();
-                    instance = null;
-                    enabled = false;
-                }
-            }
-        }
-
+        
         public void SetParameter(string name, float value)
         {
             if (instance != null)
             {
                 instance.setParameterValue(name, value);
             }
+        }
+        
+        public bool IsPlaying()
+        {
+            if (instance != null && instance.isValid())
+            {
+                FMOD.Studio.PLAYBACK_STATE playbackState;
+                instance.getPlaybackState(out playbackState);
+                return (playbackState != FMOD.Studio.PLAYBACK_STATE.STOPPED);
+            }
+            return false;
         }        
     }
 }

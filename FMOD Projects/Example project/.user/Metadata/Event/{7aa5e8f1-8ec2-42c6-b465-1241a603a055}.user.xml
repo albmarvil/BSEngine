@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.07.00">
     <object class="Event" id="{7aa5e8f1-8ec2-42c6-b465-1241a603a055}">
         <relationship name="uiLastParameterSelection">
-            <destination>{6a524f5e-6e76-4c7b-b84b-f77a700051a5}</destination>
+            <destination>{27917f63-d316-4f46-95a0-a271283fb8ad}</destination>
         </relationship>
     </object>
     <object class="MasterTrack" id="{f17f59ec-069e-4b01-9100-e363ff965769}"/>
@@ -10,18 +10,28 @@
     <object class="EventAutomatableProperties" id="{a025d556-71e6-46dc-8b15-29e8bf95dfec}"/>
     <object class="MarkerTrack" id="{b7966369-4c11-43d1-9ad0-7e7774c5c9ac}"/>
     <object class="GroupTrack" id="{a79b361f-e88e-4aa0-aae9-aafdb4ad463c}"/>
-    <object class="GroupTrack" id="{00f8d28b-026a-4a3d-8c6a-4bad93b39037}"/>
+    <object class="GroupTrack" id="{00f8d28b-026a-4a3d-8c6a-4bad93b39037}">
+        <property name="uiAutomationTracksVisible">
+            <value>true</value>
+        </property>
+    </object>
     <object class="Timeline" id="{6a524f5e-6e76-4c7b-b84b-f77a700051a5}">
         <property name="uiLastRulerScaleRatio">
             <value>0.025884383088869714</value>
         </property>
     </object>
     <object class="GameParameter" id="{27917f63-d316-4f46-95a0-a271283fb8ad}">
+        <property name="cursorPosition">
+            <value>720</value>
+        </property>
         <property name="uiLastRulerScaleRatio">
-            <value>3.134796238244514</value>
+            <value>3.0721966205837172</value>
         </property>
     </object>
     <object class="GameParameter" id="{89d0e20e-eb47-4891-83b1-65406223d5b5}">
+        <property name="cursorPosition">
+            <value>1</value>
+        </property>
         <property name="uiLastRulerScaleRatio">
             <value>0.003134796238244514</value>
         </property>

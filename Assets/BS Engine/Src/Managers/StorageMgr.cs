@@ -406,24 +406,28 @@ namespace BSEngine
         {
             string fullPath = Application.persistentDataPath + "/" + fileName;
 
-            string[] split = fileName.Split('.');
-
-            string extension = split[split.Length - 1];
-
             DataTable data = null;
 
-            if (extension == "bs")
+            if (File.Exists(fullPath))
             {
-                data = TypeSerializationChanger.DataTableTypesToUnity(LoadBinaryFile(fullPath));
-            }
-            else if (extension == "xml")
-            {
-                data = TypeSerializationChanger.DataTableTypesToUnity(LoadXMLFile(fullPath));
-            }
 
-            if (data.LoadToBlackboard)
-            {
-                Blackboard.Set<DataTable>(data.Name, data);
+                string[] split = fileName.Split('.');
+
+                string extension = split[split.Length - 1];
+
+                if (extension == "bs")
+                {
+                    data = TypeSerializationChanger.DataTableTypesToUnity(LoadBinaryFile(fullPath));
+                }
+                else if (extension == "xml")
+                {
+                    data = TypeSerializationChanger.DataTableTypesToUnity(LoadXMLFile(fullPath));
+                }
+
+                if (data.LoadToBlackboard)
+                {
+                    Blackboard.Set<DataTable>(data.Name, data);
+                }
             }
 
             return data;
@@ -442,24 +446,30 @@ namespace BSEngine
         public DataTable LoadFullPathFile(string fullPath)
         {
 
-            string[] split = fullPath.Split('.');
-
-            string extension = split[split.Length - 1];
-
             DataTable data = null;
 
-            if (extension == "bs")
+            if (File.Exists(fullPath))
             {
-                data = TypeSerializationChanger.DataTableTypesToUnity(LoadBinaryFile(fullPath));
-            }
-            else if (extension == "xml")
-            {
-                data = TypeSerializationChanger.DataTableTypesToUnity(LoadXMLFile(fullPath));
-            }
 
-            if (data.LoadToBlackboard)
-            {
-                Blackboard.Set<DataTable>(data.Name, data);
+                string[] split = fullPath.Split('.');
+
+                string extension = split[split.Length - 1];
+
+
+
+                if (extension == "bs")
+                {
+                    data = TypeSerializationChanger.DataTableTypesToUnity(LoadBinaryFile(fullPath));
+                }
+                else if (extension == "xml")
+                {
+                    data = TypeSerializationChanger.DataTableTypesToUnity(LoadXMLFile(fullPath));
+                }
+
+                if (data.LoadToBlackboard)
+                {
+                    Blackboard.Set<DataTable>(data.Name, data);
+                }
             }
 
             return data;

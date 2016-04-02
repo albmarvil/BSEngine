@@ -164,7 +164,7 @@ namespace BSEngine
         /// <param name="position">Position to instantiate</param>
         /// <param name="rotation">Initial Rotation to instantiate</param>
         /// <returns>Instance of the desired GameObject</returns>
-        public GameObject Instatiate(GameObject prefab, Vector3 position, Quaternion rotation)
+        public GameObject Instantiate(GameObject prefab, Vector3 position, Quaternion rotation)
         {
             GameObject instance = null;
             if (m_cache.ContainsKey(prefab.name))
@@ -210,7 +210,7 @@ namespace BSEngine
         /// <param name="prefab">GameObject to instantiate</param>
         /// <param name="transfrom">Transform to instantiate</param>
         /// <returns>Instance of the desired GameObject</returns>
-        public GameObject Instatiate(GameObject prefab, Transform transform)
+        public GameObject Instantiate(GameObject prefab, Transform transform)
         {
             GameObject instance = null;
             if (m_cache.ContainsKey(prefab.name))

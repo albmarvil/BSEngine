@@ -14,6 +14,7 @@ namespace FMODUnity
         public List<string> Banks;
         public String CollisionTag;
         public bool PreloadSamples;
+        private bool isQuitting;
         
         void HandleGameEvent(LoaderGameEvent gameEvent)
         {
@@ -27,18 +28,23 @@ namespace FMODUnity
             }
         }
 
-        void OnEnable()
+        void Start()
         {
+            RuntimeUtils.EnforceLibraryOrder();
             HandleGameEvent(LoaderGameEvent.LevelStart);
         }
 
         void OnApplicationQuit()
         {
+            isQuitting = true;
         }
 
-        void OnDisable()
+        void OnDestroy()
         {
-            HandleGameEvent(LoaderGameEvent.LevelEnd);
+            if (!isQuitting)
+            {
+                HandleGameEvent(LoaderGameEvent.LevelEnd);
+            }
         }
 
         void OnTriggerEnter(Collider other)
