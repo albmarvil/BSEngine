@@ -60,6 +60,7 @@ public class GameState : State
     /// </summary>
     private InputSet createDefaultInputSet()
     {
+		
         Dictionary<BSKeyCode, List<string>> keyBindings = new Dictionary<BSKeyCode, List<string>>();
 
         List<string> orders = new List<string>();
